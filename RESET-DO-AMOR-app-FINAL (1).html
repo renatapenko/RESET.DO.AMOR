@@ -1,0 +1,1182 @@
+<!DOCTYPE html>
+<html lang="pt-PT">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Protocolo de Reidentificação — Reset do Amor</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;700&family=Fraunces:ital,opsz,wght@0,9..144,100..900;1,9..144,100..900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Tailwind CSS para estilização moderna e responsiva -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            creme: '#F7F1E8',
+            tinta: '#2B2118',
+            rejeicao: '#4C1D95', // Roxo escuro
+            abandono: '#4C0519', // Vinho
+            humilhacao: '#78350F', // Dourado
+            traicao: '#0F172A', // Azul petróleo
+            injustica: '#7C2D12', // Terracota
+            identidade: '#9D174D', // Rosé
+          },
+          fontFamily: {
+            serif: ['Fraunces', 'serif'],
+            sans: ['Inter', 'sans-serif'],
+            handwritten: ['Caveat', 'cursive'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    /* Rede de segurança: impede ícones SVG de ficarem gigantes se o Tailwind
+       falhar ao carregar por qualquer instabilidade de rede */
+    svg { max-width: 32px; max-height: 32px; }
+    * { box-sizing: border-box; }
+    body { font-family: sans-serif; }
+    /* Transições de opacidade suaves */
+    .fade-in {
+      animation: fadeIn 0.4s ease-out forwards;
+    }
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(8px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    /* Estilização da barra de rolagem */
+    ::-webkit-scrollbar {
+      width: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #F7F1E8;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #D1C7BD;
+      border-radius: 3px;
+    }
+  </style>
+
+  <!-- Bibliotecas carregadas via UMD tradicional para suporte completo ao protocolo file:// -->
+  <script src="https://unpkg.com/react@18/umd/react.production.min.js"></script>
+  <script src="https://unpkg.com/react-dom@18/umd/react-dom.production.min.js"></script>
+  <script src="https://unpkg.com/babel-standalone@6.26.0/babel.min.js"></script>
+</head>
+<body class="bg-[#F7F1E8] text-[#2B2118] font-sans antialiased min-h-screen selection:bg-[#2B2118] selection:text-white">
+
+  <!-- Ponto de montagem para a aplicação React -->
+  <div id="root" class="w-full h-auto"></div>
+
+  <!-- Script compilado localmente pelo Babel -->
+  <script type="text/babel">
+    const { useState, useEffect } = React;
+
+    // Componente customizado de ícones SVG para garantir funcionamento 100% offline e sem CORS
+    function Icon({ name, className = "w-5 h-5", fill = "none" }) {
+      if (name === "heart") {
+        return (
+          <svg className={className} viewBox="0 0 24 24" fill={fill} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M19 14c1.49-1.46 3-3.21 3-5.5A5.5 5.5 0 0 0 16.5 3c-1.76 0-3 .5-4.5 2-1.5-1.5-2.74-2-4.5-2A5.5 5.5 0 0 0 2 8.5c0 2.3 1.5 4.05 3 5.5l7 7Z" />
+          </svg>
+        );
+      }
+      if (name === "sparkles") {
+        return (
+          <svg className={className} viewBox="0 0 24 24" fill={fill} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="m12 3-1.912 5.813a2 2 0 0 1-1.275 1.275L3 12l5.813 1.912a2 2 0 0 1 1.275 1.275L12 21l1.912-5.813a2 2 0 0 1 1.275-1.275L21 12l-5.813-1.912a2 2 0 0 1-1.275-1.275Z" />
+            <path d="m5 3 1 2.5L8.5 6 6 7 5 9.5 4 7 1.5 6 4 5Z" />
+            <path d="m19 17 1 2.5 2.5.5-2.5 1-1 2.5-1-2.5-2.5-1 2.5-1Z" />
+          </svg>
+        );
+      }
+      if (name === "check") {
+        return (
+          <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M20 6 9 17l-5-5" />
+          </svg>
+        );
+      }
+      if (name === "chevron-right") {
+        return (
+          <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="m9 18 6-6-6-6" />
+          </svg>
+        );
+      }
+      if (name === "chevron-left") {
+        return (
+          <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="m15 18-6-6 6-6" />
+          </svg>
+        );
+      }
+      if (name === "lock") {
+        return (
+          <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <rect width="18" height="11" x="3" y="11" rx="2" ry="2" />
+            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+          </svg>
+        );
+      }
+      if (name === "play") {
+        return (
+          <svg className={className} viewBox="0 0 24 24" fill={fill} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polygon points="6 3 20 12 6 21 6 3" />
+          </svg>
+        );
+      }
+      if (name === "arrow-right") {
+        return (
+          <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M5 12h14" />
+            <path d="m12 5 7 7-7 7" />
+          </svg>
+        );
+      }
+      if (name === "message-circle") {
+        return (
+          <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M7.9 20A9 9 0 1 0 4 16.1L2 22Z" />
+          </svg>
+        );
+      }
+      if (name === "alert-circle") {
+        return (
+          <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <line x1="12" x2="12" y1="8" y2="12" />
+            <line x1="12" x2="12.01" y1="16" y2="16" />
+          </svg>
+        );
+      }
+      if (name === "refresh-cw") {
+        return (
+          <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <path d="M21 12a9 9 0 0 0-9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+            <path d="M3 3v5h5" />
+            <path d="M3 12a9 9 0 0 0 9 9 9.75 9.75 0 0 0 6.74-2.74L21 16" />
+            <path d="M16 16h5v5" />
+          </svg>
+        );
+      }
+      if (name === "star") {
+        return (
+          <svg className={className} viewBox="0 0 24 24" fill={fill} stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2" />
+          </svg>
+        );
+      }
+      if (name === "check-circle") {
+        return (
+          <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+            <circle cx="12" cy="12" r="10" />
+            <path d="m9 12 2 2 4-4" />
+          </svg>
+        );
+      }
+      return null;
+    }
+
+    // Definição das 12 perguntas do diagnóstico
+    const QUIZ_QUESTIONS = [
+      {
+        id: 1,
+        question: "Quando alguém começa a se aproximar de verdade, qual é sua reação mais comum?",
+        options: [
+          { text: "Sinto um impulso de me afastar ou sumir antes que me conheçam demais.", ferida: "rejeicao" },
+          { text: "Fico extremamente ansiosa com medo de a pessoa mudar de ideia e ir embora.", ferida: "abandono" },
+          { text: "Tendo a fazer tudo para agradar e garantir que a pessoa goste de mim.", ferida: "humilhacao" },
+          { text: "Fico em alerta máximo, buscando sinais de que serei enganada ou traída.", ferida: "traicao" },
+          { text: "Cobro perfeição de mim para ser impecável e não dar motivos para críticas.", ferida: "injustica" }
+        ]
+      },
+      {
+        id: 2,
+        question: "No fim de um relacionamento que não deu certo, o que mais fica com você?",
+        options: [
+          { text: "A confirmação de que eu realmente nunca serei suficiente.", ferida: "rejeicao" },
+          { text: "Um vazio angustiante e a certeza de que estou completamente sozinha.", ferida: "abandono" },
+          { text: "A vergonha profunda por ter aceitado tão pouco e me rebaixado.", ferida: "humilhacao" },
+          { text: "A raiva ardente por ter sido enganada e a promessa de vigiar melhor.", ferida: "traicao" },
+          { text: "A indignação por ter dado o meu melhor e o outro não ter sido justo.", ferida: "injustica" }
+        ]
+      },
+      {
+        id: 3,
+        question: "O que mais dói quando alguém te decepciona?",
+        options: [
+          { text: "Sentir que fui descartada por não ter valor.", ferida: "rejeicao" },
+          { text: "O medo de que agora vou ter que lidar com o vazio da solidão.", ferida: "abandono" },
+          { text: "Sentir que fui feita de boba ou exposta ao julgamento de outros.", ferida: "humilhacao" },
+          { text: "A quebra absoluta da confiança e a mentira pelas costas.", ferida: "traicao" },
+          { text: "A sensação de desequilíbrio, onde dei tudo e recebi descaso.", ferida: "injustica" }
+        ]
+      },
+      {
+        id: 4,
+        question: "Qual dessas frases mais soa como você, no fundo?",
+        options: [
+          { text: "\"Se eles me conhecerem por inteiro, vão acabar fugindo.\"", ferida: "rejeicao" },
+          { text: "\"Por favor, só não me deixe sozinha.\"", ferida: "abandono" },
+          { text: "\"Eu sempre carrego o peso de todo mundo nas minhas costas.\"", ferida: "humilhacao" },
+          { text: "\"Preciso controlar as coisas ao meu redor para não ser pega de surpresa.\"", ferida: "traicao" },
+          { text: "\"Tenho que ser forte e impecável em tudo o que faço.\"", ferida: "injustica" }
+        ]
+      },
+      {
+        id: 5,
+        question: "Nos relacionamentos, o que mais se repete na sua vida?",
+        options: [
+          { text: "Acabo atraindo pessoas frias ou distantes e prefiro me fechar.", ferida: "rejeicao" },
+          { text: "Relações de dependência, onde tolero quase tudo para não ficar só.", ferida: "abandono" },
+          { text: "Parceiros que me colocam em segundo plano ou me desvalorizam.", ferida: "humilhacao" },
+          { text: "Discussões por ciúmes, controle e necessidade de checar tudo.", ferida: "traicao" },
+          { text: "Cobranças extremas e frieza por achar que o outro nunca faz o suficiente.", ferida: "injustica" }
+        ]
+      },
+      {
+        id: 6,
+        question: "Se você pudesse mudar uma coisa em como você ama, qual seria?",
+        options: [
+          { text: "Conseguir me expor e me conectar sem a urgência de fugir.", ferida: "rejeicao" },
+          { text: "Aprender a ter paz e segurança mesmo quando o parceiro está longe.", ferida: "abandono" },
+          { text: "Começar a colocar limites firmes e parar de me anular.", ferida: "humilhacao" },
+          { text: "Conseguir relaxar e confiar sem precisar fiscalizar o outro.", ferida: "traicao" },
+          { text: "Ser menos rígida com o parceiro e comigo mesma nas falhas.", ferida: "injustica" }
+        ]
+      },
+      {
+        id: 7,
+        question: "No seu corpo, onde você sente mais tensão quando pensa em se relacionar de verdade?",
+        options: [
+          { text: "No peito, como se eu quisesse me encolher ou ficar invisível.", ferida: "rejeicao" },
+          { text: "Um vazio profundo e constante no estômago.", ferida: "abandono" },
+          { text: "Nos ombros e costas, como se estivesse carregando uma montanha.", ferida: "humilhacao" },
+          { text: "Na mandíbula travada e testa franzida de quem vigia.", ferida: "traicao" },
+          { text: "Na coluna excessivamente ereta e pescoço rígido.", ferida: "injustica" }
+        ]
+      },
+      {
+        id: 8,
+        question: "Qual dessas memórias ou sentimentos de infância mais ressoa em você?",
+        options: [
+          { text: "Sentir que eu era um incômodo ou que não pertencia a lugar nenhum.", ferida: "rejeicao" },
+          { text: "Medo constante de ser esquecida na escola ou deixada sozinha em casa.", ferida: "abandono" },
+          { text: "Lembrança de passar vergonha, ser exposta ou criticada publicamente.", ferida: "humilhacao" },
+          { text: "Ver promessas de proteção serem quebradas por quem eu mais confiava.", ferida: "traicao" },
+          { text: "Cobrança excessiva para tirar notas altas e ser a filha exemplar.", ferida: "injustica" }
+        ]
+      },
+      {
+        id: 9,
+        question: "Depois de um término, o que você mais faz sem perceber?",
+        options: [
+          { text: "Sumo completamente, apago fotos e finjo que nada aconteceu.", ferida: "rejeicao" },
+          { text: "Busco preencher o buraco imediatamente com qualquer distração ou companhia.", ferida: "abandono" },
+          { text: "Fico me culpando pelo que deu errado e tentando provar que mudei.", ferida: "humilhacao" },
+          { text: "Investigo exaustivamente a vida do ex para saber se já me substituiu.", ferida: "traicao" },
+          { text: "Foco obsessivamente no trabalho e na minha estética para parecer intocável.", ferida: "injustica" }
+        ]
+      },
+      {
+        id: 10,
+        question: "O que seu corpo faz quando alguém se aproxima demais emocionalmente?",
+        options: [
+          { text: "Entra em letargia, fica dormente e perde o interesse de repente.", ferida: "rejeicao" },
+          { text: "Gruda, querendo contato físico e validação o tempo todo.", ferida: "abandono" },
+          { text: "Fica submisso, aceitando demandas que ferem minha liberdade.", ferida: "humilhacao" },
+          { text: "Fica tenso e analítico, examinando cada palavra em busca de mentiras.", ferida: "traicao" },
+          { text: "Cria uma distância polida e intelectualizada, sem real intimidade.", ferida: "injustica" }
+        ]
+      },
+      {
+        id: 11,
+        question: "Qual frase seus pais (ou quem te criou) diriam sobre você quando criança?",
+        options: [
+          { text: "\"Ela é muito quieta, fica lá no canto dela e não dá nenhum trabalho.\"", ferida: "rejeicao" },
+          { text: "\"Ela chora se a mãe sai de perto por um segundo sequer.\"", ferida: "abandono" },
+          { text: "\"Ela é tão boazinha, limpa tudo e ajuda a cuidar de toda a casa.\"", ferida: "humilhacao" },
+          { text: "\"Ela é muito teimosa, desconfiada e mandona.\"", ferida: "traicao" },
+          { text: "\"Ela é extremamente certinha, perfeccionista e organizada.\"", ferida: "injustica" }
+        ]
+      },
+      {
+        id: 12,
+        question: "Se você pudesse curar uma coisa pra sempre no seu jeito de amar, qual seria?",
+        options: [
+          { text: "A desconfiança de que as pessoas vão me achar insuficiente.", ferida: "rejeicao" },
+          { text: "O pânico visceral do silêncio ou de ficar sozinha.", ferida: "abandono" },
+          { text: "A facilidade de aceitar menos do que mereço apenas para agradar.", ferida: "humilhacao" },
+          { text: "O cansaço mental de viver monitorando e testando o parceiro.", ferida: "traicao" },
+          { text: "A rigidez implacável que me impede de curtir a leveza do amor.", ferida: "injustica" }
+        ]
+      }
+    ];
+
+    // Informações detalhadas das feridas psicológicas
+    const FERIDAS_INFO = {
+      rejeicao: {
+        title: "Ferida da Rejeição",
+        subtitle: "A Fuga que virou Proteção",
+        color: "text-purple-700 bg-purple-50 border-purple-100",
+        bg: "bg-purple-950",
+        accent: "purple",
+        description: "Você construiu uma armadura que faz você fugir antes mesmo de correr o risco de ser rejeitada. Prefere a segurança da distância física ou emocional à vulnerabilidade de ser vista de verdade, pois no fundo acredita que 'nunca é o bastante'."
+      },
+      abandono: {
+        title: "Ferida do Abandono",
+        subtitle: "O Medo de Ficar Só",
+        color: "text-rose-700 bg-rose-50 border-rose-100",
+        bg: "bg-rose-950",
+        accent: "rose",
+        description: "Você carrega um vazio imenso no peito que tenta preencher a qualquer custo nos seus parceiros. Tolera ausências, desrespeito e migalhas emocionais apenas porque o silêncio da sua própria companhia soa como um deserto perigoso."
+      },
+      humilhacao: {
+        title: "Ferida da Humilhação",
+        subtitle: "Quando Aceitar Menos Virou Hábito",
+        color: "text-amber-700 bg-amber-50 border-amber-100",
+        bg: "bg-amber-950",
+        accent: "amber",
+        description: "Você aprendeu a carregar o peso dos outros e a negligenciar sua própria dignidade para garantir pertencimento. Cria cenários onde atua como a salvadora ou a responsável, anulando-se repetidamente para evitar que o outro se afaste."
+      },
+      traicao: {
+        title: "Ferida da Traição",
+        subtitle: "O Controle que virou Vigilância",
+        color: "text-slate-700 bg-slate-50 border-slate-100",
+        bg: "bg-slate-950",
+        accent: "slate",
+        description: "A menina que confiou no passado aprendeu que confiar dói. Para se proteger, você assumiu o controle absoluto sobre as dinâmicas de amor, vigiando passos, interpretando silêncios e testando as pessoas constantemente."
+      },
+      injustica: {
+        title: "Ferida da Injustiça",
+        subtitle: "Quando a Exigência virou Rigidez",
+        color: "text-orange-700 bg-orange-50 border-orange-100",
+        bg: "bg-orange-950",
+        accent: "orange",
+        description: "Você acredita que o amor tem um preço: ser perfeita. Carrega uma rigidez implacável na postura, nas atitudes e na autocobrança. Errar, para você, é reviver o tratamento frio e desigual que recebeu na infância."
+      }
+    };
+
+    // Conteúdo guiado dos 7 dias do programa
+    const DAYS_DATA = {
+      1: {
+        title: "DIA 1 — Divórcio Energético",
+        subtitle: "Com o passado",
+        themeColor: "bg-[#2B2118]",
+        accent: "tinta",
+        abertura: "Antes de tratar qualquer ferida, é preciso se desidentificar da história que você construiu sobre si mesma dentro dela.",
+        ritual: [
+          "Sente-se. Este não é um momento qualquer — é o início do seu divórcio com tudo que já não te pertence.",
+          "Chame à mente os relacionamentos que moldaram a forma como você ama hoje — não só o mais recente, todos os que vieram antes.",
+          "Cada um deixou uma marca. Um resíduo. Uma lei não escrita que você seguiu sem saber que estava seguindo.",
+          "Diga, com força: 'Eu reconheço o que essas histórias me ensinaram. Elas já cumpriram seu papel.'",
+          "Agora, os fios que ainda te prendem a esse passado se rompem — um a um, sem exceção.",
+          "Você não se culpa. Você não culpa mais ninguém. O que foi solto, foi solto.",
+          "Diga, com força: 'Eu me divorcio dessas histórias. Elas não decidem mais por mim.'",
+          "Coloque a mão sobre o peito. Sinta o que resta quando o peso finalmente vai embora.",
+          "Isso que sobra é você. Inteira. Sem os escombros do que já passou.",
+          "O divórcio está selado. A partir de agora, o que vier, vem pra somar — nunca mais pra repetir."
+        ],
+        ativacao: "Eu solto essa história. Ela já não define quem eu sou.",
+        fechamento: "Eu abençoo essa história e tudo que ela me ensinou. Eu me abençoo por ter a coragem de soltar. Que essa liberação se instale em cada célula do meu corpo."
+      },
+      2: {
+        title: "DIA 2 — Ferida da Rejeição",
+        subtitle: "A fuga que virou proteção",
+        themeColor: "bg-purple-950",
+        accent: "rejeicao",
+        abertura: "Quando a criança se sente rejeitada, ela não sente raiva de quem a rejeitou. Ela sente que nunca será suficiente. Ela sente que nada do que ela faz é o bastante. Quando essa criança cresce, ela vai provar ao mundo a sua capacidade, mas nunca mais vai se conectar emocionalmente. Pois quando ela se conecta, ela aciona a sensação de não ser suficiente, de não ser o bastante.",
+        ritual: [
+          "Sente-se e imagine você criança, no exato momento em que a ferida da rejeição se instalou em você.",
+          "Minha pequena, eu sinto muito pelo primeiro momento em que você se sentiu rejeitada.",
+          "Rejeição, até hoje você se ativou em mim. Ativou porque você já existia aqui dentro.",
+          "Eu vejo agora, em meu corpo, tudo — absolutamente tudo — o que você veio para me ensinar.",
+          "Agora sou livre, pois o programa SEGURANÇA EMOCIONAL está sendo instalado em mim, agora.",
+          "Você pode se sentir segura agora.",
+          "E agora você pode se sentir suficiente, emocionalmente segura, e pode se conectar emocionalmente."
+        ],
+        ativacao: "Eu fico. Eu não preciso fugir pra estar segura.",
+        fechamento: "Eu abençoo a menina que aprendeu a fugir pra se proteger. Hoje eu escolho ficar, e essa escolha já é cura. Que eu me sinta segura o suficiente pra ser encontrada."
+      },
+      3: {
+        title: "DIA 3 — Ferida do Abandono",
+        subtitle: "O medo de ficar só",
+        themeColor: "bg-[#4C0519]",
+        accent: "abandono",
+        abertura: "A imagem de uma criança perdida na praia, que não está sendo encontrada, gera angústia. O abandono afetivo é a mesma coisa: a pessoa busca, mas não encontra ninguém. Quem tem a figura do abandono vai sempre sentir uma solidão imensa — uma solidão que se assemelha a um vazio que nada preenche. Ela pode ter pais que amam, uma vida linda, e ainda assim um vazio que não se nomeia. Todos os dias algo acontece pra confirmar essa solidão. Não porque ela seja pessimista, mas porque nenhum ser humano conseguirá suprir isto.",
+        ritual: [
+          "Imagine que você é essa criança perdida numa praia, de frente para uma reserva florestal.",
+          "Ao seu lado, uma figura paternal — mãos firmes segurando as suas mãozinhas.",
+          "Ele te leva de volta pra sua casa interna, por lugares difíceis, onde toda a sua solidão se ativava.",
+          "Você quer soltar da mão dele, mas ele é firme, te acalma, te dá coragem pra continuar andando.",
+          "Depois de um tempo, você começa a ver uma estrada linda e dourada.",
+          "Tem um buraco sem fundo no seu peito de criança — escuro, que suga tudo ao redor.",
+          "Mas quando você entra na estrada dourada, esse homem solta sua mão. Você se sente segura pra olhar pra frente.",
+          "Nesse momento, você vê uma mulher sorrindo pra você. É você, na versão adulta.",
+          "Ela pega uma fita e uma massinha de uma caixa escrita: SEGURANÇA EMOCIONAL.",
+          "Ela preenche seu peito com essa segurança, e veda com a fita — pra nunca mais sair de lá.",
+          "Só assim, ela te leva pra viver com ela, na casa onde vocês duas sempre estarão juntas."
+        ],
+        ativacao: "Eu sei ficar comigo. Ninguém precisa me salvar da solidão.",
+        fechamento: "Eu abençoo meu próprio colo. Eu sou companhia suficiente pra mim mesma, hoje e sempre. Que essa segurança me acompanhe em todos os silêncios."
+      },
+      4: {
+        title: "DIA 4 — Ferida da Humilhação",
+        subtitle: "Quando aceitar menos virou hábito",
+        themeColor: "bg-[#542105]",
+        accent: "humilhacao",
+        abertura: "A criança com a ferida da humilhação entendeu que segurança emocional é realização. Então ela até pode realizar um monte de coisas na vida, mas não se conecta a praticamente nada, porque tudo foi criado pra tampar uma vala. Uma criança humilhada não busca exaltação. Ela busca PERTENCER. Pode nem ter sido uma humilhação direta — às vezes só a sensação de não receber o mesmo que os outros já basta pra ela sentir que não pertence, que não faz parte daquela família ou grupo, de verdade.",
+        ritual: [
+          "Diga baixinho: 'Resido em mim. Sou meu lar. Desde sempre e para sempre. Eu pertenço.'",
+          "Onde você se perdeu de si mesma, onde você se desconectou — em todos os tempos e espaços possíveis — eu pertenço.",
+          "'Eu posso ser quem eu sou. Agora eu sinto segurança. Segurança emocional e conexão emocional.'"
+        ],
+        ativacao: "Eu mereço ocupar meu espaço inteiro, sem pedir desculpas.",
+        fechamento: "Eu abençoo meu valor, que nunca dependeu de merecimento. Eu sou digna, inteira, e isso não se negocia. Que eu ocupe meu espaço com graça."
+      },
+      5: {
+        title: "DIA 5 — Ferida da Traição",
+        subtitle: "O controle que virou vigilância",
+        themeColor: "bg-[#090D16]",
+        accent: "traicao",
+        abertura: "Existe uma menina dentro de você que aprendeu, antes mesmo de entender o que era confiar, que confiar dói. Alguém que deveria proteger quebrou uma promessa, ou traiu essa confiança de alguma forma. E essa menina decidiu: nunca mais serei pega de surpresa. Ela cresceu vigiando, checando, testando quem ama antes de se entregar de verdade — não porque é ciumenta ou difícil, mas porque, pra ela, ser traída de novo não é possibilidade. É certeza.",
+        ritual: [
+          "Imagine uma casa com uma porta que você tranca, destranca, tranca de novo — a noite inteira, sem parar.",
+          "Você é a criança dessa casa. Ninguém te ensinou que a porta pode ficar fechada sem que você precise ficar de guarda.",
+          "Alguém que devia proteger essa porta a deixou aberta um dia, e algo ruim entrou. Desde então, você não descansa.",
+          "Agora, a mulher que você é hoje entra nessa casa. Ela pega a chave da sua mão — a mesma chave que você segurava apertada, com medo de largar.",
+          "Ela olha pra você e diz: 'Eu vou ficar de guarda agora. Você pode descansar.'",
+          "Ela tranca a porta uma última vez, com um cadeado diferente — um que só ela pode abrir, porque só ela decide, hoje, em quem confiar.",
+          "Diga baixinho: 'Confiar não é ingenuidade. É escolha. E hoje eu escolho por nós duas.'",
+          "Sinta o alívio de largar essa chave. Você não precisa mais vigiar sozinha."
+        ],
+        ativacao: "Eu escolho confiar de novo, sem perder o cuidado comigo mesma.",
+        fechamento: "Eu abençoo minha capacidade de confiar de novo. Eu escolho paz no lugar de vigilância. Que meu coração descanse, mesmo sem ter certeza de tudo."
+      },
+      6: {
+        title: "DIA 6 — Ferida da Injustiça",
+        subtitle: "Quando a exigência virou rigidez",
+        themeColor: "bg-[#5C1E0A]",
+        accent: "injustica",
+        abertura: "Existe uma menina dentro de você que aprendeu cedo que amor tinha um preço: ser perfeita. Ou pelo menos, parecer perfeita. Ela sentiu, em algum momento, que foi tratada de forma diferente, desigual — talvez um irmão, talvez um colega, talvez ninguém em especial, só a sensação de que o mundo não era justo com ela. Então ela decidiu: se eu for impecável, ninguém vai poder me tratar mal de novo. Ela cresceu se cobrando o que ninguém cobra dela, com medo de errar — porque errar, pra ela, é dar motivo pra ser tratada como antes.",
+        ritual: [
+          "Imagine uma mesa de jantar. Você é a criança sentada nessa mesa.",
+          "No seu prato sempre falta um pouco — nunca é exatamente igual ao dos outros.",
+          "Você aprendeu a olhar pro prato do lado, comparando, tentando entender o que fez de errado pra merecer menos.",
+          "Agora, a mulher que você é hoje entra nessa sala. Ela se ajoelha ao seu lado.",
+          "Ela pega o seu prato e troca por um prato novo — cheio, por inteiro, sem precisar comparar com ninguém.",
+          "Diga baixinho: 'Eu nunca precisei merecer isso. Isso sempre foi meu, por direito.'",
+          "Ela te ajuda a se levantar da mesa.",
+          "E dessa vez, vocês duas saem de lá sem olhar pra trás — porque não existe mais nada pra comparar."
+        ],
+        ativacao: "Eu sou suficiente, mesmo sem provar nada.",
+        fechamento: "Eu abençoo quem eu sou, sem precisar provar nada. As cinco feridas foram vistas, acolhidas e curadas. Que nasça, agora, quem sustenta tudo isso: eu."
+      },
+      7: {
+        title: "DIA 7 — Ativação da Identidade",
+        subtitle: "A base que sustenta o amor que fica",
+        themeColor: "bg-[#5C0B28]",
+        accent: "identidade",
+        abertura: "Entender as feridas não basta. É preciso construir, no lugar delas, uma estrutura nova capaz de sustentar o relacionamento adulto que você deseja.",
+        ritual: [
+          "Em estado de presença, sem pressa: sinta o corpo mais leve depois desses dias.",
+          "Visualize a mulher que você é hoje — depois de nomear rejeição, abandono, humilhação, traição e injustiça.",
+          "Diga baixinho: 'Eu escolho ser a versão de mim que sustenta o amor, ao invés da versão que só sobrevive a ele.'",
+          "Imagine essa nova identidade ocupando o lugar de cada máscara que você reconheceu nesses dias.",
+          "Toda dor foi sintoma. Todo sintoma teve origem. E teve remédio."
+        ],
+        ativacao: "Eu sou a mulher que sustenta o amor que fica.",
+        fechamento: "Eu abençoo essa nova mulher que sou. Eu sou grata por cada camada curada nesses sete dias. Que essa cura sustente o amor que ainda vai chegar."
+      }
+    };
+
+    function App() {
+      const [screen, setScreen] = useState('intro'); // Telas: 'intro', 'quiz', 'resultado', 'jornada', 'dia'
+      const [answers, setAnswers] = useState({});
+      const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
+      const [dominantFerida, setDominantFerida] = useState(null);
+      const [unlockedDay, setUnlockedDay] = useState(1);
+      const [completedDays, setCompletedDays] = useState([]);
+      const [selectedDayId, setSelectedDayId] = useState(null);
+      const [daySubScreen, setDaySubScreen] = useState('abertura'); // Subtelas do dia: 'abertura', 'ritual', 'ativacao', 'fechamento'
+      const [ritualStep, setRitualStep] = useState(0);
+
+      // Carregar os dados persistidos no LocalStorage do utilizador
+      useEffect(() => {
+        try {
+          const savedDiagnostico = localStorage.getItem('reset_diagnostico_dominante');
+          const savedUnlockedDay = localStorage.getItem('reset_unlocked_day');
+          const savedCompletedDays = localStorage.getItem('reset_completed_days');
+          const savedAnswers = localStorage.getItem('reset_quiz_answers');
+
+          if (savedDiagnostico) setDominantFerida(savedDiagnostico);
+          if (savedUnlockedDay) setUnlockedDay(parseInt(savedUnlockedDay, 10));
+          if (savedCompletedDays) setCompletedDays(JSON.parse(savedCompletedDays));
+          if (savedAnswers) setAnswers(JSON.parse(savedAnswers));
+        } catch (e) {
+          console.error("Erro ao ler dados do localStorage:", e);
+        }
+      }, []);
+
+      // Posicionar a página sempre no topo ao mudar de ecrã ou etapa
+      useEffect(() => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+      }, [screen, daySubScreen, currentQuestionIndex]);
+
+      const handleAnswerSelect = (ferida) => {
+        const updatedAnswers = { ...answers, [currentQuestionIndex]: ferida };
+        setAnswers(updatedAnswers);
+        localStorage.setItem('reset_quiz_answers', JSON.stringify(updatedAnswers));
+
+        if (currentQuestionIndex < QUIZ_QUESTIONS.length - 1) {
+          setCurrentQuestionIndex(currentQuestionIndex + 1);
+        } else {
+          calculateResults(updatedAnswers);
+        }
+      };
+
+      const calculateResults = (allAnswers) => {
+        const counts = { rejeicao: 0, abandono: 0, humilhacao: 0, traicao: 0, injustica: 0 };
+        Object.values(allAnswers).forEach((f) => {
+          if (counts[f] !== undefined) counts[f] += 1;
+        });
+
+        let dominant = 'rejeicao';
+        let maxCount = -1;
+        Object.entries(counts).forEach(([ferida, count]) => {
+          if (count > maxCount) {
+            maxCount = count;
+            dominant = ferida;
+          }
+        });
+
+        setDominantFerida(dominant);
+        localStorage.setItem('reset_diagnostico_dominante', dominant);
+        setScreen('resultado');
+      };
+
+      // Limpar todos os dados e reiniciar do zero
+      const handleResetAll = () => {
+        const confirmBox = window.confirm("Tem a certeza que deseja reiniciar todo o seu progresso no Protocolo?");
+        if (confirmBox) {
+          localStorage.clear();
+          setAnswers({});
+          setCurrentQuestionIndex(0);
+          setDominantFerida(null);
+          setUnlockedDay(1);
+          setCompletedDays([]);
+          setSelectedDayId(null);
+          setScreen('intro');
+        }
+      };
+
+      const handleGoToJourney = () => {
+        setScreen('jornada');
+      };
+
+      const handleSelectDay = (dayId) => {
+        if (dayId > unlockedDay) return;
+        setSelectedDayId(dayId);
+        setDaySubScreen('abertura');
+        setRitualStep(0);
+        setScreen('dia');
+      };
+
+      const handleNextRitualStep = (ritualLength) => {
+        if (ritualStep < ritualLength - 1) {
+          setRitualStep(ritualStep + 1);
+        } else {
+          setDaySubScreen('ativacao');
+        }
+      };
+
+      const handlePrevRitualStep = () => {
+        if (ritualStep > 0) {
+          setRitualStep(ritualStep - 1);
+        } else {
+          setDaySubScreen('abertura');
+        }
+      };
+
+      const handleCompleteDay = (dayId) => {
+        let updatedCompleted = [...completedDays];
+        if (!updatedCompleted.includes(dayId)) {
+          updatedCompleted.push(dayId);
+        }
+        setCompletedDays(updatedCompleted);
+        localStorage.setItem('reset_completed_days', JSON.stringify(updatedCompleted));
+
+        const nextDay = dayId + 1;
+        if (nextDay <= 7 && nextDay > unlockedDay) {
+          setUnlockedDay(nextDay);
+          localStorage.setItem('reset_unlocked_day', nextDay.toString());
+        }
+
+        setScreen('jornada');
+      };
+
+      const selectedDay = DAYS_DATA[selectedDayId];
+
+      return (
+        <div className="max-w-md mx-auto bg-[#F7F1E8] min-h-screen flex flex-col justify-between shadow-2xl relative border-x border-[#D1C7BD]/40">
+          
+          {/* Cabeçalho Fixo */}
+          <header className="p-4 bg-white/80 backdrop-blur-md border-b border-[#D1C7BD]/30 sticky top-0 z-40 flex justify-between items-center">
+            <div className="flex items-center gap-2">
+              <span className="w-2.5 h-2.5 rounded-full bg-rose-600 animate-pulse"></span>
+              <p className="font-serif text-sm font-semibold tracking-wide text-[#2B2118]">Reset do Amor</p>
+            </div>
+            {screen !== 'intro' && (
+              <button 
+                onClick={() => setScreen('jornada')}
+                className="text-xs font-medium tracking-tight text-[#2B2118]/70 hover:text-[#2B2118] transition-colors"
+              >
+                Voltar ao Painel
+              </button>
+            )}
+          </header>
+
+          {/* Área de Conteúdo Principal */}
+          <main className="flex-grow p-5 md:p-6 flex flex-col justify-start">
+            
+            {/* TELA 1: INTRODUÇÃO */}
+            {screen === 'intro' && (
+              <div className="fade-in space-y-6 py-2">
+                <div className="text-center space-y-3">
+                  <span className="font-handwritten text-2xl text-rose-600 block leading-none select-none">
+                    porque começar a ser você no amor nunca foi tão urgente
+                  </span>
+                  <h1 className="font-serif text-3xl font-extrabold text-[#2B2118] tracking-tight leading-tight">
+                    Protocolo de<br/>Reidentificação
+                  </h1>
+                  <p className="text-xs font-handwritten text-[#2B2118]/60 italic font-bold">
+                    Por Renata Penko Maximiliano
+                  </p>
+                </div>
+
+                <div className="bg-white border border-[#D1C7BD]/40 p-5 rounded-2xl space-y-4 shadow-sm relative overflow-hidden">
+                  <blockquote className="font-serif text-base italic text-[#2B2118]/90 leading-relaxed border-l-2 border-rose-500 pl-3">
+                    "Você não sofre por causa dos seus relacionamentos. Você sofre por causa de quem você se torna dentro deles."
+                  </blockquote>
+                  <p className="text-xs text-[#2B2118]/80 leading-relaxed">
+                    Nos próximos 7 dias, você vai nomear as feridas que ainda travam seu amor — e começar a construir, no lugar delas, a identidade que sustenta um relacionamento adulto, funcional e saudável.
+                  </p>
+                </div>
+
+                {/* Banner Diagnóstico Inicial */}
+                <div className="bg-[#2B2118] text-white p-6 rounded-2xl space-y-4 shadow-md hover:scale-[1.01] transition-transform duration-300">
+                  <div className="flex items-start gap-3">
+                    <div className="bg-white/10 p-2 rounded-xl mt-1">
+                      <Icon name="heart" className="w-5 h-5 text-rose-400" fill="currentColor" />
+                    </div>
+                    <div>
+                      <h3 className="font-serif text-lg font-medium">Diagnóstico Inicial</h3>
+                      <p className="text-xs text-[#F7F1E8]/70 leading-normal mt-1">
+                        Responda 12 perguntas rápidas. Elas revelam qual ferida emocional está mais ativa em você agora.
+                      </p>
+                    </div>
+                  </div>
+                  
+                  <button 
+                    onClick={() => {
+                      setCurrentQuestionIndex(0);
+                      setScreen('quiz');
+                    }}
+                    className="w-full bg-[#F7F1E8] text-[#2B2118] py-3 px-4 rounded-xl font-medium text-xs tracking-wide hover:bg-white transition-all flex items-center justify-center gap-2 font-semibold shadow-sm active:scale-95"
+                  >
+                    Começar diagnóstico
+                    <Icon name="arrow-right" className="w-4 h-4" />
+                  </button>
+                </div>
+
+                {/* Banner WhatsApp */}
+                <div className="bg-emerald-50 border border-emerald-100 p-5 rounded-2xl space-y-3">
+                  <div className="flex gap-3">
+                    <div className="bg-emerald-100 text-emerald-800 p-2 rounded-xl self-start">
+                      <Icon name="message-circle" className="w-5 h-5" />
+                    </div>
+                    <div className="space-y-1">
+                      <h4 className="font-bold text-xs text-emerald-900 tracking-tight">Grupo de Alunas no WhatsApp</h4>
+                      <p className="text-[11px] text-emerald-800/80 leading-relaxed">
+                        Entre agora no grupo do WhatsApp — É lá que ficam os horários das Terapias do Manto ao vivo e as gravações de cada tema, disponíveis pra você o quanto precisar.
+                      </p>
+                    </div>
+                  </div>
+                  <a 
+                    href="https://chat.whatsapp.com/Lu9I5ny47I7K3vgi5sirWl" 
+                    target="_blank"
+                    rel="noreferrer"
+                    className="block w-full bg-emerald-600 text-white text-center py-2.5 px-4 rounded-xl font-medium text-xs hover:bg-emerald-700 transition-colors"
+                  >
+                    Entrar no grupo →
+                  </a>
+                </div>
+
+                {dominantFerida && (
+                  <button
+                    onClick={handleGoToJourney}
+                    className="w-full border border-[#D1C7BD] text-[#2B2118] py-3 rounded-xl text-xs font-semibold hover:bg-white/50 transition-colors flex items-center justify-center gap-2"
+                  >
+                    Continuar minha Jornada de 7 Dias
+                    <Icon name="chevron-right" className="w-4 h-4" />
+                  </button>
+                )}
+              </div>
+            )}
+
+            {/* TELA 2: QUIZ / DIAGNÓSTICO */}
+            {screen === 'quiz' && (
+              <div className="fade-in space-y-6 py-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-xs font-bold tracking-widest text-[#2B2118]/50 uppercase">
+                    Diagnóstico: Pergunta {currentQuestionIndex + 1} de {QUIZ_QUESTIONS.length}
+                  </span>
+                  <button 
+                    onClick={() => setScreen('intro')}
+                    className="text-xs text-red-600 font-medium"
+                  >
+                    Sair
+                  </button>
+                </div>
+
+                {/* Barra de progresso do quiz */}
+                <div className="w-full h-1 bg-[#D1C7BD]/30 rounded-full overflow-hidden">
+                  <div 
+                    className="h-full bg-rose-600 transition-all duration-300"
+                    style={{ width: `${((currentQuestionIndex + 1) / QUIZ_QUESTIONS.length) * 100}%` }}
+                  ></div>
+                </div>
+
+                <div className="space-y-4">
+                  <h2 className="font-serif text-xl font-semibold leading-snug text-[#2B2118]">
+                    {QUIZ_QUESTIONS[currentQuestionIndex].question}
+                  </h2>
+                </div>
+
+                <div className="space-y-3 pt-2">
+                  {QUIZ_QUESTIONS[currentQuestionIndex].options.map((option, idx) => (
+                    <button
+                      key={idx}
+                      onClick={() => handleAnswerSelect(option.ferida)}
+                      className="w-full text-left bg-white border border-[#D1C7BD]/30 hover:border-rose-500/50 hover:bg-rose-50/20 p-4 rounded-xl text-xs leading-relaxed transition-all duration-300 hover:scale-[1.01] active:scale-[0.99] flex gap-3 shadow-sm group"
+                    >
+                      <span className="bg-[#F7F1E8] group-hover:bg-rose-100 group-hover:text-rose-700 text-[#2B2118]/60 w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold shrink-0 transition-colors">
+                        {String.fromCharCode(65 + idx)}
+                      </span>
+                      <span className="text-[#2B2118] font-medium">{option.text}</span>
+                    </button>
+                  ))}
+                </div>
+
+                {currentQuestionIndex > 0 && (
+                  <button
+                    onClick={() => setCurrentQuestionIndex(currentQuestionIndex - 1)}
+                    className="text-xs text-[#2B2118]/60 hover:text-[#2B2118] flex items-center gap-1 mt-4 transition-colors"
+                  >
+                    <Icon name="chevron-left" className="w-4 h-4" /> Voltar à pergunta anterior
+                  </button>
+                )}
+              </div>
+            )}
+
+            {/* TELA 3: RESULTADO DO DIAGNÓSTICO */}
+            {screen === 'resultado' && dominantFerida && (
+              <div className="fade-in space-y-6 py-2">
+                <div className="text-center space-y-2">
+                  <div className="inline-flex items-center justify-center w-12 h-12 rounded-full bg-rose-100 text-rose-600 mb-2">
+                    <Icon name="sparkles" className="w-6 h-6" fill="currentColor" />
+                  </div>
+                  <span className="text-[10px] font-bold uppercase tracking-widest text-rose-600 block">Diagnóstico Concluído</span>
+                  <h2 className="font-serif text-2xl font-bold tracking-tight">Sua Ferida Dominante é:</h2>
+                </div>
+
+                <div className={`border p-6 rounded-2xl space-y-4 shadow-md ${FERIDAS_INFO[dominantFerida].color}`}>
+                  <div className="space-y-1">
+                    <span className="font-handwritten text-xl font-bold text-rose-600 block">Sintoma emocional ativo</span>
+                    <h3 className="font-serif text-2xl font-extrabold tracking-tight leading-none">
+                      {FERIDAS_INFO[dominantFerida].title}
+                    </h3>
+                    <p className="text-xs font-semibold tracking-wider uppercase opacity-75">
+                      {FERIDAS_INFO[dominantFerida].subtitle}
+                    </p>
+                  </div>
+
+                  <p className="text-xs leading-relaxed text-[#2B2118]/95 font-medium">
+                    {FERIDAS_INFO[dominantFerida].description}
+                  </p>
+                </div>
+
+                <div className="bg-white border border-[#D1C7BD]/40 p-4 rounded-xl space-y-2">
+                  <div className="flex items-center gap-2 text-[#2B2118]">
+                    <Icon name="alert-circle" className="w-4.5 h-4.5 text-rose-600 shrink-0" />
+                    <span className="font-serif text-xs font-bold">O que isso significa?</span>
+                  </div>
+                  <p className="text-[11px] text-[#2B2118]/70 leading-relaxed">
+                    Ter essa ferida ativa significa apenas que sua mente utiliza essa armadura com mais frequência para se proteger do amor. <strong>Ao longo dos próximos 7 dias, trabalharemos todas as 5 feridas emocionais juntas</strong>, mas é importante ter esse olhar atento de onde sua história mais pede cuidado imediato.
+                  </p>
+                </div>
+
+                <div className="space-y-3 pt-2">
+                  <button
+                    onClick={handleGoToJourney}
+                    className="w-full bg-[#2B2118] text-white py-4 rounded-xl font-semibold text-xs tracking-wide hover:bg-[#2B2118]/90 transition-all flex items-center justify-center gap-2 shadow-lg hover:scale-[1.01] active:scale-95"
+                  >
+                    Entrar no Protocolo de 7 Dias
+                    <Icon name="arrow-right" className="w-4 h-4" />
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* TELA 4: MAPA DA JORNADA DE 7 DIAS */}
+            {screen === 'jornada' && (
+              <div className="fade-in space-y-6 py-2">
+                
+                <div className="bg-white border border-[#D1C7BD]/40 rounded-2xl p-4 flex items-center justify-between shadow-sm">
+                  <div className="space-y-1">
+                    <span className="text-[10px] font-bold text-[#2B2118]/50 uppercase tracking-wider block">Seu Progresso</span>
+                    <div className="flex items-baseline gap-1">
+                      <span className="font-serif text-2xl font-extrabold text-[#2B2118]">
+                        {completedDays.length}/7
+                      </span>
+                      <span className="text-xs text-[#2B2118]/60 font-semibold">dias concluídos</span>
+                    </div>
+                  </div>
+                  {dominantFerida && (
+                    <div className="text-right">
+                      <span className="text-[9px] font-bold text-rose-600 uppercase tracking-widest block">Sua Ferida Principal</span>
+                      <span className="font-serif text-xs font-bold text-[#2B2118] block mt-0.5">
+                        {FERIDAS_INFO[dominantFerida].title}
+                      </span>
+                    </div>
+                  )}
+                </div>
+
+                <div className="space-y-3">
+                  <h3 className="font-serif text-lg font-bold text-[#2B2118] flex items-center gap-2">
+                    <span>Caminho de Reidentificação</span>
+                    <span className="font-handwritten text-lg text-rose-600 font-bold block">(Um dia por vez)</span>
+                  </h3>
+
+                  <div className="space-y-2.5">
+                    {Object.entries(DAYS_DATA).map(([idStr, day]) => {
+                      const id = parseInt(idStr, 10);
+                      const isCompleted = completedDays.includes(id);
+                      const isUnlocked = id <= unlockedDay;
+
+                      return (
+                        <button
+                          key={id}
+                          disabled={!isUnlocked}
+                          onClick={() => handleSelectDay(id)}
+                          className={`w-full text-left p-4 rounded-xl border flex items-center justify-between transition-all duration-300 ${
+                            isCompleted 
+                              ? 'bg-white border-rose-200 shadow-sm cursor-pointer hover:border-rose-400' 
+                              : isUnlocked 
+                                ? 'bg-white border-[#D1C7BD] cursor-pointer hover:scale-[1.01] hover:border-[#2B2118] shadow-sm' 
+                                : 'bg-[#2B2118]/5 border-[#D1C7BD]/20 opacity-60 cursor-not-allowed'
+                          }`}
+                        >
+                          <div className="flex items-center gap-3 text-left">
+                            <div className={`w-9 h-9 rounded-full flex items-center justify-center ${
+                              isCompleted 
+                                ? 'bg-rose-100 text-rose-600' 
+                                : isUnlocked 
+                                  ? 'bg-[#2B2118]/10 text-[#2B2118]' 
+                                  : 'bg-stone-200 text-stone-400'
+                            }`}>
+                              {isCompleted ? (
+                                <Icon name="check" className="w-5 h-5 stroke-[2.5]" />
+                              ) : isUnlocked ? (
+                                <Icon name="play" className="w-4 h-4 text-[#2B2118] ml-0.5" fill="currentColor" />
+                              ) : (
+                                <Icon name="lock" className="w-4 h-4" />
+                              )}
+                            </div>
+
+                            <div className="space-y-0.5">
+                              <div className="flex items-center gap-1.5">
+                                <span className="text-[9px] font-bold tracking-widest uppercase text-rose-600">Dia {id}</span>
+                                {isCompleted && (
+                                  <span className="text-[8px] bg-rose-50 text-rose-700 px-1.5 py-0.2 rounded font-bold uppercase tracking-wider">Concluído</span>
+                                )}
+                              </div>
+                              <h4 className="font-serif text-sm font-bold text-[#2B2118] leading-tight">
+                                {day.title.replace(`DIA ${id} — `, "")}
+                              </h4>
+                              <p className="text-[10px] text-[#2B2118]/60 italic font-medium leading-none mt-0.5">
+                                {day.subtitle}
+                              </p>
+                            </div>
+                          </div>
+
+                          <div className="text-[#2B2118]/40 shrink-0">
+                            {isUnlocked ? (
+                              <Icon name="chevron-right" className="w-5 h-5 text-[#2B2118]" />
+                            ) : (
+                              <Icon name="lock" className="w-4 h-4" />
+                            )}
+                          </div>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                {/* Relatório Final quando os 7 dias estão concluídos */}
+                {completedDays.length === 7 && (
+                  <div className="bg-[#2B2118] text-white p-6 rounded-2xl space-y-4 shadow-lg border border-rose-500/30 fade-in">
+                    <div className="text-center space-y-1">
+                      <div className="inline-flex items-center justify-center w-10 h-10 bg-rose-500/20 text-rose-400 rounded-full mb-1">
+                        <Icon name="star" className="w-5 h-5" fill="currentColor" />
+                      </div>
+                      <h4 className="font-serif text-lg font-bold">Você Concluiu o Protocolo!</h4>
+                      <p className="text-xs text-[#F7F1E8]/70 leading-normal">
+                        As 5 feridas foram nomeadas. Uma armadura foi guardada a cada dia. E, hoje, uma nova identidade começou a ser ativada — uma que não precisa se machucar pra provar valor num relacionamento.
+                      </p>
+                    </div>
+
+                    <div className="bg-white/10 p-3.5 rounded-xl text-center space-y-2">
+                      <p className="font-serif text-xs italic text-[#F7F1E8]">"Toda dor é sintoma. Todo sintoma tem origem. E tem remédio."</p>
+                      <span className="font-handwritten text-lg text-rose-400 font-bold block leading-none">- Renata Penko</span>
+                    </div>
+
+                    <div className="space-y-2 pt-2">
+                      <span className="text-[9px] font-semibold tracking-wider text-[#F7F1E8]/60 uppercase block text-center">Aprofundamento Avançado</span>
+                      <a
+                        href="https://wa.me/5567981448229?text=Ol%C3%A1+Renata%2C+conclui+o+meu+Protocolo+de+Reidentifica%C3%A7%C3%A3o+e+gostaria+de+saber+mais+sobre+a+Sess%C3%A3o+Individual%21"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="block w-full bg-rose-700 hover:bg-rose-800 text-white text-center py-3 rounded-xl text-xs font-semibold tracking-wide transition-colors"
+                      >
+                        Agendar Minha Sessão Individual
+                      </a>
+                      <a
+                        href="https://wa.me/5567981448229?text=Ol%C3%A1+Renata%2C+conclui+o+meu+Protocolo+de+Reidentifica%C3%A7%C3%A3o+e+quero+saber+mais+sobre+o+Protocolo+completo%21"
+                        target="_blank"
+                        rel="noreferrer"
+                        className="block w-full bg-white text-[#2B2118] hover:bg-[#F7F1E8] text-center py-3 rounded-xl text-xs font-bold tracking-wide transition-all shadow-sm"
+                      >
+                        Saber Mais Sobre o Protocolo Completo
+                      </a>
+                    </div>
+                  </div>
+                )}
+
+                <div className="pt-6 border-t border-[#D1C7BD]/30 flex justify-between items-center text-xs text-[#2B2118]/40">
+                  <button 
+                    onClick={handleResetAll}
+                    className="hover:text-red-700 transition-colors flex items-center gap-1.5 font-medium"
+                  >
+                    <Icon name="refresh-cw" className="w-3.5 h-3.5" />
+                    Resetar Progresso
+                  </button>
+                  <p className="text-[10px]">v1.0.1 • Reset do Amor</p>
+                </div>
+              </div>
+            )}
+
+            {/* TELA 5: TRABALHO DO DIA INDIVIDUAL */}
+            {screen === 'dia' && selectedDay && (
+              <div className="fade-in space-y-5 py-2">
+                
+                <div className="flex justify-between items-center">
+                  <button
+                    onClick={() => setScreen('jornada')}
+                    className="text-xs font-bold text-[#2B2118]/60 hover:text-[#2B2118] flex items-center gap-1 transition-colors"
+                  >
+                    <Icon name="chevron-left" className="w-4 h-4" /> Painel
+                  </button>
+                  <span className="text-xs font-serif italic text-rose-600 font-bold">
+                    Dia {selectedDayId} de 7
+                  </span>
+                </div>
+
+                {/* SUBTELA A: ABERTURA DO DIA */}
+                {daySubScreen === 'abertura' && (
+                  <div className="space-y-6 fade-in">
+                    <div className="text-center space-y-1">
+                      <span className="text-[10px] font-bold tracking-wider uppercase text-[#2B2118]/50">Iniciando a Descoberta</span>
+                      <h2 className="font-serif text-2xl font-extrabold tracking-tight leading-snug">
+                        {selectedDay.title}
+                      </h2>
+                      <p className="text-xs font-semibold tracking-wider text-rose-600 uppercase">
+                        {selectedDay.subtitle}
+                      </p>
+                    </div>
+
+                    <div className="bg-white border border-[#D1C7BD]/40 p-6 rounded-2xl space-y-4 shadow-sm relative">
+                      <p className="text-xs text-[#2B2118]/50 font-bold uppercase tracking-widest block">O Sintoma Clínico</p>
+                      <p className="text-sm leading-relaxed text-[#2B2118] italic font-serif">
+                        "{selectedDay.abertura}"
+                      </p>
+                    </div>
+
+                    <div className="bg-amber-50 border border-amber-100 p-4 rounded-xl flex gap-3 items-start">
+                      <Icon name="alert-circle" className="w-4.5 h-4.5 text-amber-600 shrink-0 mt-0.5" />
+                      <div className="space-y-1">
+                        <h5 className="text-xs font-bold text-amber-900 leading-none">Como funciona este dia:</h5>
+                        <p className="text-[11px] text-[#2B2118]/70 leading-relaxed">
+                          A seguir, você entrará no seu Ritual de Liberação. <strong>Leia cada fala em voz alta, no seu tempo, respirando devagar.</strong>
+                        </p>
+                      </div>
+                    </div>
+
+                    <button
+                      onClick={() => setDaySubScreen('ritual')}
+                      className="w-full bg-[#2B2118] text-white py-4 rounded-xl font-bold text-xs tracking-wider uppercase hover:bg-[#2B2118]/90 transition-all flex items-center justify-center gap-2 active:scale-95 shadow-md"
+                    >
+                      Iniciar Ritual de Liberação
+                      <Icon name="arrow-right" className="w-4 h-4" />
+                    </button>
+                  </div>
+                )}
+
+                {/* SUBTELA B: RITUAL EM FORMATO "STORIES" */}
+                {daySubScreen === 'ritual' && (
+                  <div className={`fade-in text-white p-6 md:p-8 rounded-3xl shadow-xl flex flex-col justify-between min-h-[380px] relative overflow-hidden transition-colors duration-500 ${selectedDay.themeColor}`}>
+                    
+                    <div className="absolute inset-0 bg-gradient-to-b from-black/20 via-transparent to-black/40 pointer-events-none"></div>
+                    <div className="absolute -right-12 -bottom-12 w-48 h-48 bg-white/5 rounded-full pointer-events-none blur-xl"></div>
+
+                    {/* Barras de progresso fracionadas tipo Instagram Stories */}
+                    <div className="w-full flex gap-1 z-10">
+                      {selectedDay.ritual.map((_, idx) => (
+                        <div 
+                          key={idx} 
+                          className="flex-grow h-1 rounded-full overflow-hidden bg-white/20"
+                        >
+                          <div 
+                            className={`h-full transition-all duration-300 ${
+                              idx < ritualStep 
+                                ? 'bg-white' 
+                                : idx === ritualStep 
+                                  ? 'bg-rose-500 w-full' 
+                                  : 'w-0'
+                            }`}
+                          ></div>
+                        </div>
+                      ))}
+                    </div>
+
+                    {/* Bloco de texto ativo */}
+                    <div className="py-8 space-y-4 z-10 flex-grow flex flex-col justify-center text-center">
+                      <span className="font-handwritten text-xl text-rose-400 font-bold select-none opacity-90 block">
+                        {/\'|"/.test(selectedDay.ritual[ritualStep]) ? "Diga em voz alta:" : "Sinta:"}
+                      </span>
+                      <p className="font-serif text-base md:text-lg leading-relaxed font-medium transition-all duration-300">
+                        {selectedDay.ritual[ritualStep]}
+                      </p>
+                    </div>
+
+                    {/* Botões de navegação da etapa */}
+                    <div className="flex items-center justify-between gap-4 z-10 pt-4 border-t border-white/10">
+                      <button
+                        onClick={handlePrevRitualStep}
+                        className="px-4 py-2 bg-white/5 hover:bg-white/10 active:scale-95 rounded-lg text-xs font-semibold text-white/80 hover:text-white flex items-center gap-1 transition-all"
+                      >
+                        <Icon name="chevron-left" className="w-4 h-4" /> Anterior
+                      </button>
+
+                      <span className="text-[10px] uppercase font-bold tracking-widest text-white/45 select-none">
+                        {ritualStep + 1} / {selectedDay.ritual.length}
+                      </span>
+
+                      <button
+                        onClick={() => handleNextRitualStep(selectedDay.ritual.length)}
+                        className="px-5 py-2.5 bg-white text-[#2B2118] font-bold text-xs rounded-lg flex items-center gap-1.5 hover:scale-[1.02] active:scale-95 transition-all shadow-md"
+                      >
+                        {ritualStep < selectedDay.ritual.length - 1 ? 'Avançar' : 'Prosseguir'} 
+                        <Icon name="chevron-right" className="w-4 h-4" />
+                      </button>
+                    </div>
+
+                    {/* Zonas de clique rápido laterais para ecrãs táteis */}
+                    <div className="absolute inset-y-12 left-0 w-12 z-0 cursor-w-resize" onClick={handlePrevRitualStep}></div>
+                    <div className="absolute inset-y-12 right-0 w-12 z-0 cursor-e-resize" onClick={() => handleNextRitualStep(selectedDay.ritual.length)}></div>
+                  </div>
+                )}
+
+                {/* SUBTELA C: FRASE DE ATIVAÇÃO */}
+                {daySubScreen === 'ativacao' && (
+                  <div className="space-y-6 fade-in text-center">
+                    <div className="space-y-1">
+                      <span className="text-[10px] font-bold tracking-widest uppercase text-rose-600 block">Ativação de Poder</span>
+                      <h3 className="font-serif text-xl font-bold text-[#2B2118]">Declare com sua voz no presente:</h3>
+                    </div>
+
+                    <div className="bg-white border-2 border-rose-600/30 p-8 rounded-3xl shadow-md relative overflow-hidden flex flex-col justify-center items-center min-h-[160px]">
+                      <div className="absolute -left-4 -top-4 w-12 h-12 bg-rose-50 rounded-full opacity-60"></div>
+                      <p className="font-handwritten text-3xl font-extrabold text-[#2B2118] relative z-10 leading-snug px-3">
+                        "{selectedDay.ativacao}"
+                      </p>
+                    </div>
+
+                    <div className="space-y-3 pt-2">
+                      <button
+                        onClick={() => setDaySubScreen('fechamento')}
+                        className="w-full bg-[#2B2118] text-white py-4 rounded-xl font-bold text-xs tracking-wider uppercase hover:bg-[#2B2118]/90 transition-all flex items-center justify-center gap-2 active:scale-95 shadow-md"
+                      >
+                        Ativado. Próximo Passo.
+                        <Icon name="arrow-right" className="w-4 h-4" />
+                      </button>
+                      <button
+                        onClick={() => setDaySubScreen('ritual')}
+                        className="text-xs text-[#2B2118]/60 hover:text-[#2B2118] underline transition-colors block mx-auto"
+                      >
+                        Repetir Ritual de Liberação
+                      </button>
+                    </div>
+                  </div>
+                )}
+
+                {/* SUBTELA D: FECHAMENTO DO DIA */}
+                {daySubScreen === 'fechamento' && (
+                  <div className="space-y-6 fade-in">
+                    <div className="text-center space-y-1">
+                      <span className="text-[10px] font-bold tracking-wider uppercase text-emerald-600 block">Jornada do dia Completa</span>
+                      <h3 className="font-serif text-2xl font-extrabold tracking-tight">O que fica hoje</h3>
+                    </div>
+
+                    <div className="bg-white border border-[#D1C7BD]/40 p-6 rounded-2xl space-y-4 shadow-sm relative">
+                      <p className="text-sm leading-relaxed text-[#2B2118] italic">
+                        "{selectedDay.fechamento}"
+                      </p>
+                    </div>
+
+                    <button
+                      onClick={() => handleCompleteDay(selectedDayId)}
+                      className="w-full bg-emerald-600 text-white py-4 rounded-xl font-bold text-xs tracking-wider uppercase hover:bg-emerald-700 transition-all flex items-center justify-center gap-2 active:scale-95 shadow-md"
+                    >
+                      <Icon name="check-circle" className="w-4.5 h-4.5" />
+                      Concluir Dia {selectedDayId}
+                    </button>
+                  </div>
+                )}
+
+              </div>
+            )}
+
+          </main>
+
+          {/* Rodapé Fixo */}
+          <footer className="p-5 bg-[#2B2118] text-white/50 text-center text-xs space-y-1 mt-6 border-t border-white/5">
+            <p className="font-serif font-medium tracking-wide text-white/80">Reset do Amor • Protocolo de Reidentificação</p>
+            <p className="text-[10px] text-white/40">Desenvolvido clinicamente sob a supervisão de Renata Penko Maximiliano</p>
+          </footer>
+
+        </div>
+      );
+    }
+
+    // Inicialização da aplicação React
+    const container = document.getElementById('root');
+    const root = ReactDOM.createRoot(container);
+    root.render(React.createElement(App));
+  </script>
+</body>
+</html>
