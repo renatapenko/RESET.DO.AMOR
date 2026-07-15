@@ -1,0 +1,2000 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reset do Amor — O Protocolo de 7 Dias</title>
+  
+  <!-- Tailwind CSS para estilização fluida, limpa e extremamente responsiva -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Fontes do Google: Playfair Display (Serif Elegante) e Plus Jakarta Sans (Sóbria e Encorpada) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Plus+Jakarta+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0D0B0B;
+      letter-spacing: -0.01em;
+    }
+    .font-serif-elegant {
+      font-family: 'Playfair Display', serif;
+    }
+    .premium-dark-gradient {
+      background: linear-gradient(135deg, #120F0F 0%, #0D0B0B 100%);
+    }
+    .text-glow {
+      text-shadow: 0 0 15px rgba(196, 132, 138, 0.25);
+    }
+    /* Estilo premium para os inputs de alcance (sliders) */
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      background: #1C1818;
+      height: 8px;
+      border-radius: 99px;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 20px;
+      height: 20px;
+      border-radius: 50%;
+      background: #C4848A;
+      cursor: pointer;
+      box-shadow: 0 0 8px rgba(196, 132, 138, 0.5);
+    }
+    /* Suporte a transições de fade */
+    .fade-transition {
+      transition: opacity 0.35s cubic-bezier(0.4, 0, 0.2, 1), transform 0.35s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .fade-out {
+      opacity: 0;
+      transform: translateY(8px);
+    }
+    .fade-in {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* Ocultar scrollbars ou estilizar suave */
+    ::-webkit-scrollbar {
+      width: 5px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #0D0B0B;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #211B1B;
+      border-radius: 99px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #C4848A;
+    }
+    
+    /* Animação do cordão do Dia 1 */
+    .cord-line {
+      stroke-dasharray: 8, 8;
+      animation: dash 30s linear infinite;
+    }
+    @keyframes dash {
+      to {
+        stroke-dashoffset: -1000;
+      }
+    }
+  </style>
+</head>
+<body class="text-[#F0EAE4] selection:bg-[#C4848A] selection:text-white overflow-x-hidden min-h-screen premium-dark-gradient flex flex-col justify-between">
+
+  <header class="border-b border-[#1C1818] py-4 px-6 sticky top-0 bg-[#0D0B0B]/95 backdrop-blur z-50">
+    <div class="max-w-xl mx-auto w-full flex justify-between items-center">
+      <div class="flex items-center gap-3">
+        <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#C4848A] to-[#D4A574] flex items-center justify-center shadow-md">
+          <span class="font-serif-elegant font-bold text-sm text-[#0D0B0B]">R</span>
+        </div>
+        <div>
+          <h1 class="font-serif-elegant font-bold italic tracking-wide text-[#FAF7F3] text-sm">Reset do Amor</h1>
+          <p class="text-[9px] text-[#C4B5B0] uppercase tracking-widest font-bold">Método Conexão Emocional</p>
+        </div>
+      </div>
+      <nav class="flex gap-1 sm:gap-2">
+        <button id="tab-protocolo" onclick="switchTab('protocolo')" class="flex items-center gap-1 px-3 py-2 rounded-full text-[11px] font-bold transition-all bg-[#C4848A1E] text-[#C4848A] border border-[#C4848A33]">
+          <span>Protocolo</span>
+        </button>
+        <button id="tab-diario" onclick="switchTab('diario')" class="flex items-center gap-1 px-3 py-2 rounded-full text-[11px] font-bold transition-all text-[#C4B5B0] hover:text-[#FAF7F3]">
+          <span>Diário</span>
+        </button>
+        <button id="tab-tese" onclick="switchTab('tese')" class="flex items-center gap-1 px-3 py-2 rounded-full text-[11px] font-bold transition-all text-[#C4B5B0] hover:text-[#FAF7F3]">
+          <span>Inacessível</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- CONTAINER DE NAVEGAÇÃO -->
+  <main class="max-w-xl mx-auto px-4 py-8 w-full flex-1">
+    
+    <div id="content-protocolo" class="fade-transition fade-in">
+      
+      <!-- TELA DE SELEÇÃO DE PERFIL TERAPÊUTICO (SEMPRE DISPONÍVEL NO INÍCIO) -->
+      <div id="screen-profile-selector" class="space-y-6">
+        <div class="text-center mb-8">
+          <span class="text-[10px] tracking-[0.25em] font-bold text-[#C4848A] uppercase">Renata Penko Maximiliano</span>
+          <h2 class="font-serif-elegant text-3xl italic font-bold text-[#FAF7F3] mt-2">Como seu corpo se sente hoje?</h2>
+          <p class="text-[15px] font-medium text-[#E5DDD8] mt-3 leading-relaxed max-w-sm mx-auto">
+            Para que cada palavra desta vivência encontre o eco certo em seu sistema, selecione abaixo o seu momento afetivo atual.
+          </p>
+        </div>
+
+        <div class="space-y-4">
+          <button onclick="selectProfile('solteira')" class="w-full text-left p-5 rounded-2xl border-2 border-[#211B1B] bg-[#161313] hover:border-[#C4848A] transition-all group">
+            <span class="text-[9px] font-bold text-[#C4848A] tracking-wider uppercase block mb-1">A Mulher Solteira</span>
+            <h3 class="font-serif-elegant text-lg font-bold italic text-[#FAF7F3] group-hover:text-white">"Sou independente, mas me fecho ou me saboto quando alguém se aproxima."</h3>
+            <p class="text-xs text-[#C4B5B0] mt-2 font-medium">Sente tédio com homens disponíveis e acaba caindo no vazio de dinâmicas mornas.</p>
+          </button>
+
+          <button onclick="selectProfile('comprometida')" class="w-full text-left p-5 rounded-2xl border-2 border-[#211B1B] bg-[#161313] hover:border-[#C4848A] transition-all group">
+            <span class="text-[9px] font-bold text-[#7A9E8C] tracking-wider uppercase block mb-1">A Mulher Comprometida</span>
+            <h3 class="font-serif-elegant text-lg font-bold italic text-[#FAF7F3] group-hover:text-white">"Amo meu parceiro, mas vivo ansiosa, monitorando e com medo."</h3>
+            <p class="text-xs text-[#C4B5B0] mt-2 font-medium">Não consegue relaxar na relação. Interpreta cada silêncio, mensagem ou tom de voz.</p>
+          </button>
+
+          <button onclick="selectProfile('traida')" class="w-full text-left p-5 rounded-2xl border-2 border-[#211B1B] bg-[#161313] hover:border-[#C4848A] transition-all group">
+            <span class="text-[9px] font-bold text-[#D4A574] tracking-wider uppercase block mb-1">A Mulher Ferida / Traída</span>
+            <h3 class="font-serif-elegant text-lg font-bold italic text-[#FAF7F3] group-hover:text-white">"Fui muito machucada e meu corpo vive em estado constante de alerta."</h3>
+            <p class="text-xs text-[#C4B5B0] mt-2 font-medium">Quer voltar a viver e amar, mas sente que o escudo de proteção impede qualquer conexão.</p>
+          </button>
+        </div>
+      </div>
+
+      <div id="screen-menu" class="hidden space-y-6">
+        <div class="text-center mb-8">
+          <div class="inline-flex items-center gap-2 px-3 py-1 bg-[#1C1818] border border-[#211B1B] rounded-full text-[10px] text-[#C4848A] font-bold uppercase tracking-wider mb-3">
+            <span id="current-profile-badge">Perfil: Solteira</span>
+            <span class="cursor-pointer underline text-[#D4A574]" onclick="showProfileSelector()">[Alterar]</span>
+          </div>
+          <h2 class="font-serif-elegant text-3xl italic font-bold text-[#FAF7F3]">O Protocolo de 7 Dias</h2>
+          <p class="text-[15px] font-medium text-[#E5DDD8] mt-3 leading-relaxed max-w-sm mx-auto">
+            A sua dor antiga acordou e o seu corpo entrou em alerta. Este é o seu espaço seguro para acalmar o peito, recuperar o fôlego e voltar a governar a sua própria vida.
+          </p>
+          <div class="mt-4 inline-block bg-[#0F3830]/40 border border-[#0F3830] px-4 py-1.5 rounded-full text-[11px] text-[#A6C4B5] font-bold">
+            ✦ Acesso Livre: Navegue e execute na sua ordem
+          </div>
+        </div>
+
+        <!-- Barra de Progresso Geral -->
+        <div class="bg-[#161313] border border-[#211B1B] rounded-2xl p-5 flex items-center justify-between shadow-xl">
+          <div class="flex items-center gap-3">
+            <div class="w-10 h-10 rounded-full bg-[#C4848A12] flex items-center justify-center border border-[#C4848A33]">
+              <svg class="w-5 h-5 text-[#C4848A]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+            </div>
+            <div>
+              <p class="text-[10px] text-[#C4B5B0] uppercase tracking-wider font-bold">Seu Progresso</p>
+              <p id="progress-text" class="font-serif-elegant italic text-base text-[#FAF7F3] font-semibold">0 de 7 Práticas Realizadas</p>
+            </div>
+          </div>
+          <div class="w-24 h-2 bg-[#211B1B] rounded-full overflow-hidden">
+            <div id="progress-bar-fill" class="bg-gradient-to-r from-[#C4848A] to-[#D4A574] h-full w-0 transition-all duration-500"></div>
+          </div>
+        </div>
+
+        <!-- Lista de Dias Totalmente Desbloqueada -->
+        <div class="space-y-4" id="days-list-container">
+          <!-- Gerado dinamicamente no script -->
+        </div>
+
+        <div class="pt-4 text-center">
+          <button onclick="resetAllProgress()" class="text-xs text-[#A4928C] hover:text-[#C4848A] flex items-center gap-1.5 mx-auto transition-colors font-bold">
+            <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path></svg>
+            Zerar Todo o Histórico
+          </button>
+        </div>
+      </div>
+
+      <div id="screen-reading" class="hidden space-y-6">
+        <button onclick="backToMenu()" class="text-xs text-[#C4B5B0] hover:text-[#FAF7F3] flex items-center gap-1 mb-6 transition-colors font-bold">
+          <svg class="w-4 h-4" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M15 19l-7-7 7-7"></path></svg> Voltar ao Protocolo
+        </button>
+        
+        <div class="mb-6">
+          <span id="reading-subtitle" class="text-[10px] tracking-[0.25em] font-bold text-[#C4848A] uppercase">Dia 1 · Desative a Dor</span>
+          <h2 id="reading-title" class="font-serif-elegant text-3xl font-bold italic mt-2 text-[#FAF7F3]">Divórcio Energético</h2>
+        </div>
+
+        <div id="reading-paragraphs" class="space-y-5 text-[#E5DDD8] text-[15px] font-medium leading-relaxed mb-8">
+          <!-- Gerado dinamicamente -->
+        </div>
+
+        <div class="p-6 rounded-2xl bg-[#161313] border border-[#211B1B] mb-8">
+          <p id="reading-bridge" class="font-serif-elegant italic text-lg text-[#FAF7F3] leading-relaxed text-center font-medium">
+            "Sua estrutura emocional está saturada."
+          </p>
+        </div>
+
+        <button id="btn-start-activity" onclick="startDayActivity()" class="w-full text-[#0D0B0B] py-4 rounded-full font-bold shadow-lg text-[15px] transition-all hover:scale-[1.01] active:scale-95">
+          Iniciar Vivência Clínica de Reorganização
+        </button>
+      </div>
+
+      <!-- CONTAINER PARA EXECUTAR A ATIVIDADE ATIVA -->
+      <div id="screen-activity" class="hidden">
+        <!-- As atividades de cada dia serão inseridas aqui dinamicamente pelo JS -->
+      </div>
+
+      <div id="screen-day-done" class="hidden text-center py-10 space-y-6">
+        <div class="text-4xl text-[#7A9E8C]">✦</div>
+        <span class="text-[10px] uppercase text-[#7A9E8C] tracking-widest font-bold">Vivência Integrada</span>
+        <h2 class="font-serif-elegant text-3xl font-bold italic mt-2 text-[#FAF7F3]">Sua postura adulta voltou ao comando.</h2>
+        <p class="text-base text-[#E5DDD8] mt-4 leading-relaxed max-w-sm mx-auto font-medium">
+          As suas escolhas foram salvas no seu Diário de Transformação. Seu sistema começou a mapear este novo caminho de segurança interna.
+        </p>
+
+        <div class="my-8 p-6 rounded-2xl bg-[#161313] border border-[#211B1B] text-left">
+          <p class="text-xs text-[#C4B5B0] uppercase tracking-wider font-bold mb-2">Mensagem de Renata Penko</p>
+          <p id="day-done-quote" class="font-serif-elegant italic text-base text-[#D4A574] leading-relaxed font-medium">
+            "Ver e sentir é o início de toda a reorganização. Sua mente agora trabalha a seu favor. Você está se devolvendo a si mesma."
+          </p>
+        </div>
+
+        <button id="btn-next-day-flow" onclick="goToNextDayInFlow()" class="w-full bg-gradient-to-r from-[#C4848A] to-[#9A80C0] text-[#0D0B0B] py-4 rounded-full font-bold tracking-wide text-[15px] transition-all active:scale-95">
+          Ir para o Próximo Dia
+        </button>
+
+        <button onclick="backToMenu()" class="text-xs text-[#A4928C] hover:text-[#FAF7F3] mt-6 block mx-auto transition-colors font-bold">
+          Voltar para o Painel de 7 Dias
+        </button>
+      </div>
+
+    </div>
+
+    <div id="content-diario" class="fade-transition fade-out hidden space-y-6">
+      <div class="text-center mb-8">
+        <span class="text-[10px] tracking-widest text-[#C4848A] font-bold uppercase">Sua História Escrita</span>
+        <h2 class="font-serif-elegant text-3xl italic font-bold text-[#FAF7F3] mt-1">Dossiê do Reset</h2>
+        <p class="text-sm text-[#E5DDD8] mt-2 leading-relaxed font-medium">As marcações, sentimentos e escolhas que revelam a sua identidade relacional.</p>
+      </div>
+
+      <div id="diario-cards-container" class="space-y-6">
+        <!-- Inserido dinamicamente com base nas respostas reais guardadas -->
+      </div>
+    </div>
+
+    <div id="content-tese" class="fade-transition fade-out hidden space-y-6">
+      <div class="text-center mb-10">
+        <span class="text-[10px] tracking-widest text-[#C4848A] font-bold uppercase">Estrutura Emocional</span>
+        <h2 class="font-serif-elegant text-3xl italic font-bold text-[#FAF7F3] mt-1">Inacessível</h2>
+        <p class="text-xs text-[#C4B5B0] mt-2 font-bold">O norte clínico que organiza toda a experiência do Reset.</p>
+      </div>
+
+      <div class="p-6 bg-[#161313] border border-[#211B1B] rounded-2xl text-center">
+        <p class="font-serif-elegant text-xl italic text-[#FAF7F3] leading-relaxed font-medium">
+          "Você não sofre por causa dos seus relacionamentos. Você sofre por causa de quem você se torna dentro deles."
+        </p>
+      </div>
+
+      <div class="space-y-6 text-[15px] font-medium leading-relaxed text-[#E5DDD8]">
+        <div>
+          <h3 class="font-serif-elegant text-lg text-[#FAF7F3] italic font-bold mb-2">O Verdadeiro Problema</h3>
+          <p>
+            Inacessibilidade Emocional não é quem você é como pessoa. É para onde seu sistema foge quando um vínculo afetivo importante é ativado em sua mente.
+          </p>
+          <p class="mt-3">
+            Quando o amor se aproxima, a adulta funcional e inteligente desaparece temporariamente, e a criança assustada, repleta de feridas de escassez da infância, assume os controles somáticos do seu corpo.
+          </p>
+        </div>
+        
+        <div>
+          <h3 class="font-serif-elegant text-lg text-[#FAF7F3] italic font-bold mb-2">A Lente Relacional</h3>
+          <p>
+            Você jura que está tentando enxergar o parceiro atual ou a ausência dele, mas na realidade está enxergando apenas a projeção de suas feridas mais antigas: abandono, rejeição e falta de amparo.
+          </p>
+          <p class="mt-3">
+            Mudar de parceiro ou tentar ficar sozinha sem alterar essa lente original é apenas rever o mesmo filme dramático com atores diferentes no elenco. O Reset do Amor reorganiza essa lente profunda.
+          </p>
+        </div>
+      </div>
+
+      <!-- Rodapé de Ação Integrando o Instagram da Renata -->
+      <div class="border-t border-[#1C1818] pt-6 text-center space-y-4">
+        <p class="text-xs text-[#C4B5B0] font-bold">Continue acompanhando a tese da Identidade Relacional:</p>
+        <a href="https://www.instagram.com/renatapenko.psicanalista?igsh=MWdxN3V6dWx0NHlvdA==" target="_blank" class="inline-block w-full bg-[#FAF7F3] text-[#0D0B0B] hover:bg-white py-4 rounded-full font-bold text-sm transition-colors shadow-lg">
+          Acompanhar Renata Penko no Instagram →
+        </a>
+      </div>
+    </div>
+
+  </main>
+
+  <!-- FOOTER -->
+  <footer class="py-8 text-center text-[10px] text-[#C4B5B0] border-t border-[#1C1818] max-w-xl mx-auto w-full font-bold">
+    <p>© 2026 Renata Penko Maximiliano · Método Conexão Emocional</p>
+    <p class="mt-1">Uma experiência terapêutica digital de reorganização relacional.</p>
+  </footer>
+
+  <script>
+    // Configurações e Textos da Jornada Adaptativa de 7 Dias
+    const JORNADA_DIAS = [
+      {
+        number: 1,
+        title: "Divórcio Energético",
+        subtitle: "Dia 1 · Desative a Dor Primária",
+        color: "#C4848A",
+        theme: "DESATIVE",
+        bridge: {
+          solteira: "Seu sistema emocional está saturado. O primeiro passo não é procurar alguém de novo. É respirar e cortar o cordão com os fantasmas do passado que drenam sua energia.",
+          comprometida: "Seu sistema emocional está saturado. O primeiro passo não é tentar controlar o parceiro. É respirar e cortar o cordão da sua necessidade de validação imediata.",
+          traida: "Seu sistema de alerta está exausto. O primeiro passo não é buscar respostas do que houve. É dar fôlego ao seu peito e liberar a dor traumática que paralisa você."
+        },
+        introText: {
+          solteira: [
+            "O Reset do Amor não começa prometendo encontrar a pessoa ideal.",
+            "Começa ensinando seu sistema a parar de sangrar e a recuperar seu tônus vital.",
+            "Hoje você vai recolher sua energia de volta.",
+            "O divórcio energético é o desligamento consciente daquela imagem masculina do passado que você ainda tenta curar ou consertar."
+          ],
+          comprometida: [
+            "O Reset do Amor não começa ensinando você a ser a parceira perfeita.",
+            "Começa silenciando o alerta somático da ansiedade para que você consiga respirar debaixo do seu próprio teto.",
+            "Hoje você vai recolher sua energia de volta.",
+            "O divórcio energético é o desligamento consciente da sua dependência diária do comportamento dele para se sentir em paz."
+          ],
+          traida: [
+            "O Reset do Amor não começa fingindo que nada aconteceu e exigindo que você perdoe.",
+            "Começa desarmando a armadura rígida que mantém você travada em estado de constante perigo.",
+            "Hoje você vai recolher sua energia de volta.",
+            "O divórcio energético é a liberação da memória da ferida para que seu sistema sinta que é seguro voltar à vida."
+          ]
+        }
+      },
+      {
+        number: 2,
+        title: "Retorne a Si",
+        subtitle: "Dia 2 · Suas Âncoras",
+        color: "#7A9E8C",
+        theme: "RETORNE",
+        bridge: {
+          solteira: "Você se desconectou do que drenava sua mente no Dia 1. Agora você vai lembrar quem você é quando não está na posição de escassez afetiva.",
+          comprometida: "Você pausou a necessidade de auditoria no Dia 1. Agora você vai lembrar quem você é quando sua paz não está nas mãos de outra pessoa.",
+          traida: "Você deu fôlego ao peito no Dia 1. Agora você vai lembrar quem você é fora do papel de defesa e alerta contra o sofrimento."
+        },
+        introText: {
+          solteira: [
+            "A escassez relacional faz você morar temporariamente na expectativa de um encontro perfeito.",
+            "Você acha que o disponível dá tédio, mas na verdade você se acostumou ao barulho da rejeição.",
+            "Hoje vamos construir o seu próprio solo seguro de dignidade.",
+            "Suas âncoras de retorno são o que restabelecem o seu valor, independentemente do masculino."
+          ],
+          comprometida: [
+            "A ansiedade relacional faz você morar temporariamente na mente do outro.",
+            "Se ele responde com carinho, seu corpo relaxa. Se ele se afasta, seu peito entra em pânico.",
+            "Hoje vamos construir o seu próprio solo seguro de dignidade.",
+            "Suas âncoras emocionais são o que devolvem o seu centro interno de forma independente do humor dele."
+          ],
+          traida: [
+            "A dor da traição fez você morar temporariamente na defensiva do medo.",
+            "Você acredita que vigiar tudo impede que te machuquem de novo, mas isso só consome a sua paz.",
+            "Hoje vamos construir o seu próprio solo seguro de dignidade.",
+            "Suas âncoras emocionais devolvem o respeito pela sua história e o direito de descansar."
+          ]
+        }
+      },
+      {
+        number: 3,
+        title: "Reconstrua o Eixo",
+        subtitle: "Dia 3 · Suas Necessidades",
+        color: "#9A80C0",
+        theme: "RECONSTRUA",
+        bridge: {
+          solteira: "Você regulou e voltou para si mesma. Agora, você vai olhar para a sua carência de forma madura, sem fugir para o indisponível.",
+          comprometida: "Você regulou e voltou para si. Agora, você vai olhar para suas carências sem o filtro do desespero e da urgência infantil.",
+          traida: "Você regulou e voltou. Agora, você vai entender o que seu sistema realmente precisa para se sentir seguro para caminhar de novo."
+        },
+        introText: {
+          solteira: [
+            "Você jura que precisa de um parceiro distante para se provar valiosa.",
+            "Mas na verdade, sente falta da regulação e da validação que você mesma não se dá.",
+            "Hoje vamos mapear o que você realmente precisa para se sentir segura.",
+            "E parar de tentar arrancar de homens indisponíveis a aprovação que você mesma pode sustentar."
+          ],
+          comprometida: [
+            "Você jura que não consegue viver sem a presença dele ativa a cada minuto.",
+            "Mas na verdade, sente falta da regulação emocional que achou que ele traria para o seu caos interno.",
+            "Hoje vamos mapear o que você realmente precisa para se sentir segura.",
+            "E parar de tentar cobrar dele o amparo que você mesma pode aprender a sustentar de forma adulta."
+          ],
+          traida: [
+            "Você jura que só estará segura quando o mundo te der garantias de que ninguém vai falhar.",
+            "Mas as garantias não existem. O que existe é a sua capacidade de sobreviver e se reerguer se algo der errado.",
+            "Hoje vamos mapear o que você realmente precisa para habitar o seu próprio corpo sem medo.",
+            "Retomando as rédeas das suas escolhas e decisões de vida."
+          ]
+        }
+      },
+      {
+        number: 4,
+        title: "Revele a Lente",
+        subtitle: "Dia 4 · A Origem Familiar",
+        color: "#D4A574",
+        theme: "REVELAR",
+        bridge: {
+          solteira: "Você não escolhe ficar sozinha ou se sabotar por acaso. Você aprendeu a fazer isso por scripts sistêmicos de infância.",
+          comprometida: "Você não vigia seu casamento por acaso. Você aprendeu que a conexão é instável com base no que viu na infância.",
+          traida: "O tamanho do alerta de hoje reflete o tamanho da vulnerabilidade que você viveu no seu passado familiar."
+        },
+        introText: {
+          solteira: [
+            "Dá para ter pai e mãe presentes fisicamente dentro de casa e crescer em profunda escassez emocional.",
+            "Se o afeto era condicionado ou distante, você aprendeu a implorar por atenção ou a se fechar em um orgulho protetor.",
+            "Hoje vamos olhar para a raiz da sua lente relacional para desmitificar o seu destino.",
+            "O medo de se entregar e ser rejeitada é a menina ferida se defendendo do ontem."
+          ],
+          comprometida: [
+            "Se você cresceu observando dinâmicas de traição, brigas ou abandono silencioso entre seus pais, seu sistema associou amor com perigo.",
+            "Por isso seu corpo não descansa: ele está sempre esperando a próxima bomba estourar.",
+            "Hoje vamos olhar para a raiz da sua lente relacional para desmitificar o seu destino.",
+            "Seu parceiro atual não é o seu pai, e você não precisa viver vigiando os fantasmas da sua infância."
+          ],
+          traida: [
+            "Quando a quebra de confiança acontece na vida adulta, ela ativa com força máxima as feridas de abandono que já moravam na base.",
+            "O trauma de hoje usa os óculos das suas carências mais antigas de amparo.",
+            "Hoje vamos olhar para a raiz da sua lente relacional para desmitificar o seu destino.",
+            "Você é a adulta de hoje que consegue sobreviver e governar a si mesma, livre das sombras de ontem."
+          ]
+        }
+      },
+      {
+        number: 5,
+        title: "Abra a Porta",
+        subtitle: "Dia 5 · Disponibilidade Emocional",
+        color: "#C4848A",
+        theme: "DISPONIBILIDADE",
+        bridge: {
+          solteira: "Você diz que quer ser amada, mas sabota quem tenta ficar por perto. Vamos entender essa barreira.",
+          comprometida: "Você diz que quer intimidade, mas se fecha em cobranças quando ele se aproxima de verdade.",
+          traida: "Sua armadura protege você de sofrer novamente, mas também impede o amor real de te alcançar."
+        },
+        introText: {
+          solteira: [
+            "Estar inacessível é um quarto fechado com chave pelo lado de dentro.",
+            "Para a solteira, manter-se distante ou escolher indisponíveis protege você de viver uma entrega real e falhar.",
+            "Hoje vamos destrancar essa porta do seu quarto emocional interno.",
+            "Para que o homem disponível te dê paz e o indisponível finalmente te dê tédio."
+          ],
+          comprometida: [
+            "Estar inacessível é um quarto fechado com chave pelo lado de dentro.",
+            "Você jura que quer intimidade, mas quando ele se abre, você ataca com cobranças para não precisar se vulnerabilizar.",
+            "Hoje vamos destrancar essa porta do seu quarto emocional interno.",
+            "Deixando o controle de lado para permitir que o afeto e o amparo finalmente te alcancem."
+          ],
+          traida: [
+            "Estar inacessível é um quarto fechado com chave pelo lado de dentro.",
+            "Sua armadura de desconfiança protege você de sofrer de novo, mas também impede que seu peito descanse.",
+            "Hoje vamos destrancar essa porta do seu quarto emocional interno.",
+            "Entendendo que estar disponível é uma força da postura adulta, e não uma fraqueza."
+          ]
+        }
+      },
+      {
+        number: 6,
+        title: "A Postura Adulta",
+        subtitle: "Dia 6 · Reações vs. Respostas",
+        color: "#7A9E8C",
+        theme: "ADULTECER",
+        bridge: {
+          solteira: "Quando um gatilho afetivo dispara, quem assume os controles: a mulher inteligente que você é, ou a menina assustada?",
+          comprometida: "Quando ele visualiza e não responde, quem assume o controle: a mulher madura que você é, ou a menina assustada de 8 anos?",
+          traida: "Quando o medo da rejeição domina, quem toma as decisões: a mulher autossuficiente ou a criança machucada?"
+        },
+        introText: {
+          solteira: [
+            "Inteligência acadêmica e sucesso profissional não regulam o apego.",
+            "Hoje vamos treinar o seu sistema somático para agir a partir do eixo adulto.",
+            "Interrompendo de uma vez a compulsão de fugir quando o afeto é estável, calmo e seguro.",
+            "A adulta escolhe a paz do disponível. A criança busca o caos do indisponível."
+          ],
+          comprometida: [
+            "Inteligência acadêmica e sucesso profissional não regulam o apego.",
+            "Hoje vamos treinar o seu sistema somático para agir a partir do eixo adulto.",
+            "Interrompendo de uma vez a compulsão de auditar conversas, monitorar e cobrar.",
+            "A adulta deita e dorme em paz. A criança ferida vigia as notificações até de madrugada."
+          ],
+          traida: [
+            "Inteligência acadêmica e sucesso profissional não regulam o apego.",
+            "Hoje vamos treinar o seu sistema somático para agir a partir do eixo adulto.",
+            "Interrompendo o hábito de viver em estado de guerra esperando o próximo golpe.",
+            "A adulta escolhe os limites claros e a dignidade. A criança vive refém do medo da perda."
+          ]
+        }
+      },
+      {
+        number: 7,
+        title: "A Conexão Real",
+        subtitle: "Dia 7 · O Descanso Emocional",
+        color: "#D4A574",
+        theme: "CONECTAR",
+        bridge: {
+          solteira: "Você não terminou um aplicativo. Você iniciou uma nova forma de existir no mundo dos afetos.",
+          comprometida: "Você não terminou um aplicativo. Você iniciou uma nova forma de existir no mundo dos afetos.",
+          traida: "Você não terminou um aplicativo. Você iniciou uma nova forma de existir no mundo dos afetos."
+        },
+        introText: {
+          solteira: [
+            "Chegamos ao último dia do seu reset de sobrevivência.",
+            "A noite em que você se deita em paz na sua cama, inteira, sem a urgência de ser escolhida para sentir que existe.",
+            "Você voltou para dentro de si.",
+            "Vamos integrar sua nova estrutura emocional definitiva."
+          ],
+          comprometida: [
+            "Chegamos ao último dia do seu reset de sobrevivência.",
+            "A noite em que você se deita ao lado de alguém e simplesmente descansa e respira sem medo.",
+            "Sem precisar de auditorias ou confirmações constantes. Presente. Acessível.",
+            "Vamos integrar sua nova estrutura emocional definitiva."
+          ],
+          traida: [
+            "Chegamos ao último dia do seu reset de sobrevivência.",
+            "A noite em que seu peito finalmente relaxa e você decide seus próximos passos a partir do seu tamanho adulto, e não do medo.",
+            "Livre das amarras do trauma antigo. Inteira.",
+            "Vamos integrar sua nova estrutura emocional definitiva."
+          ]
+        }
+      }
+    ];
+
+    let userProfile = localStorage.getItem("reset_amor_profile") || "";
+    let completedDays = [];
+    let currentDayIndex = 0;
+    
+    // Respostas estruturadas em formato de cliques e opções
+    let answers = {
+      d1_nome: "", d1_corpo: [],
+      d2_ancora: "", d2_carta_id: "", d2_origem: [],
+      d3_necessidades: [], d3_compromissos: [],
+      d4_mae: 5, d4_pai: 5, d4_projecoes: [],
+      d5_chave_id: "", d5_compromisso_id: "",
+      d6_cenario1: "", d6_cenario2: "",
+      d7_diretrizes: []
+    };
+
+    window.onload = function() {
+      loadProgress();
+      if (userProfile) {
+        document.getElementById("screen-profile-selector").classList.add("hidden");
+        document.getElementById("screen-menu").classList.remove("hidden");
+        updateProfileBadge();
+      }
+      renderDaysList();
+      updateProgressBar();
+    };
+
+    function loadProgress() {
+      const savedCompleted = localStorage.getItem("reset_amor_completed_v4");
+      const savedAnswers = localStorage.getItem("reset_amor_answers_v4");
+      
+      if (savedCompleted) {
+        try { completedDays = JSON.parse(savedCompleted); } catch(e) { completedDays = []; }
+      }
+      if (savedAnswers) {
+        try { answers = { ...answers, ...JSON.parse(savedAnswers) }; } catch(e) {}
+      }
+    }
+
+    function saveProgress() {
+      localStorage.setItem("reset_amor_completed_v4", JSON.stringify(completedDays));
+      localStorage.setItem("reset_amor_answers_v4", JSON.stringify(answers));
+      updateProgressBar();
+      renderDaysList();
+    }
+
+    function selectProfile(profile) {
+      userProfile = profile;
+      localStorage.setItem("reset_amor_profile", profile);
+      updateProfileBadge();
+      document.getElementById("screen-profile-selector").classList.add("hidden");
+      document.getElementById("screen-menu").classList.remove("hidden");
+      renderDaysList();
+    }
+
+    function showProfileSelector() {
+      document.getElementById("screen-menu").classList.add("hidden");
+      document.getElementById("screen-profile-selector").classList.remove("hidden");
+    }
+
+    function updateProfileBadge() {
+      const badge = document.getElementById("current-profile-badge");
+      let profileText = "Solteira";
+      if (userProfile === "comprometida") profileText = "Comprometida";
+      if (userProfile === "traida") profileText = "Ferida / Traída";
+      badge.innerHTML = `Perfil: <strong>${profileText}</strong>`;
+    }
+
+    function updateProgressBar() {
+      const percentage = (completedDays.length / JORNADA_DIAS.length) * 100;
+      document.getElementById("progress-bar-fill").style.width = percentage + "%";
+      document.getElementById("progress-text").innerText = `${completedDays.length} de ${JORNADA_DIAS.length} Práticas Concluídas`;
+    }
+
+    function switchTab(tabId) {
+      const tabs = ["protocolo", "diario", "tese"];
+      tabs.forEach(t => {
+        const el = document.getElementById("content-" + t);
+        const btn = document.getElementById("tab-" + t);
+        if (t === tabId) {
+          el.classList.remove("hidden");
+          setTimeout(() => {
+            el.classList.remove("fade-out");
+            el.classList.add("fade-in");
+          }, 50);
+          btn.className = "flex items-center gap-1.5 px-3 py-2 rounded-full text-[11px] font-bold transition-all bg-[#C4848A1E] text-[#C4848A] border border-[#C4848A33]";
+        } else {
+          el.classList.add("hidden");
+          el.classList.add("fade-out");
+          el.classList.remove("fade-in");
+          btn.className = "flex items-center gap-1.5 px-3 py-2 rounded-full text-[11px] font-bold transition-all text-[#C4B5B0] hover:text-[#FAF7F3]";
+        }
+      });
+
+      if (tabId === "diario") {
+        renderDiario();
+      }
+    }
+
+    function renderDaysList() {
+      const container = document.getElementById("days-list-container");
+      if (!container) return;
+      container.innerHTML = "";
+
+      JORNADA_DIAS.forEach((day, index) => {
+        const isCompleted = completedDays.includes(day.number);
+        
+        let statusIcon = `
+          <button onclick="toggleDayCompleted(event, ${day.number})" class="w-6 h-6 rounded-full border-2 transition-all ${
+            isCompleted 
+              ? 'bg-[#7A9E8C] border-[#7A9E8C] text-[#0D0B0B]' 
+              : 'border-[#211B1B] bg-transparent text-[#A4928C] hover:border-[#C4848A]'
+          } flex items-center justify-center" title="Marcar como concluído">
+            <svg class="w-3.5 h-3.5" fill="none" stroke="currentColor" stroke-width="4" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M5 13l4 4L19 7"></path></svg>
+          </button>
+        `;
+
+        const card = document.createElement("div");
+        card.className = `group p-5 rounded-2xl border transition-all duration-300 bg-[#161313] hover:bg-[#1E1A1A] border-[#211B1B] cursor-pointer flex justify-between items-center`;
+        card.setAttribute("onclick", `startDay(${index})`);
+
+        card.innerHTML = `
+          <div class="flex items-center gap-4 flex-1">
+            <div class="w-11 h-11 rounded-full border flex items-center justify-center text-[#FAF7F3] transition-all bg-[#FAF7F3]/5 border-[#FAF7F3]/10 group-hover:border-[#C4848A]/30">
+              <span class="font-serif-elegant font-bold text-[15px]">${day.number}</span>
+            </div>
+            <div>
+              <span class="text-[9px] tracking-wider font-bold uppercase" style="color: ${isCompleted ? '#7A9E8C' : day.color}">
+                ${day.theme} ${isCompleted ? '· CONCLUÍDO' : ''}
+              </span>
+              <h3 class="font-serif-elegant text-base font-bold text-[#FAF7F3] mt-0.5 group-hover:text-white">
+                ${day.title}
+              </h3>
+              <p class="text-xs text-[#C4B5B0] mt-0.5 font-medium">
+                ${day.subtitle}
+              </p>
+            </div>
+          </div>
+          <div class="flex items-center gap-3" onclick="event.stopPropagation();">
+            ${statusIcon}
+            <div class="cursor-pointer p-1" onclick="startDay(${index})">
+              <svg class="w-5 h-5 text-[#A4928C] group-hover:text-[#FAF7F3] transition-colors" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+            </div>
+          </div>
+        `;
+        container.appendChild(card);
+      });
+    }
+
+    function toggleDayCompleted(event, dayNumber) {
+      if (completedDays.includes(dayNumber)) {
+        completedDays = completedDays.filter(d => d !== dayNumber);
+      } else {
+        completedDays.push(dayNumber);
+      }
+      saveProgress();
+    }
+
+    function startDay(index) {
+      currentDayIndex = index;
+      const day = JORNADA_DIAS[index];
+      const activeProf = userProfile || 'solteira';
+
+      document.getElementById("screen-menu").classList.add("hidden");
+      document.getElementById("screen-reading").classList.remove("hidden");
+      
+      document.getElementById("reading-subtitle").innerText = day.subtitle;
+      document.getElementById("reading-title").innerText = day.title;
+      document.getElementById("reading-bridge").innerText = `"${day.bridge[activeProf]}"`;
+
+      const paragraphsContainer = document.getElementById("reading-paragraphs");
+      paragraphsContainer.innerHTML = "";
+      
+      const introParagraphs = day.introText[activeProf];
+      introParagraphs.forEach((pText, pIdx) => {
+        const p = document.createElement("p");
+        if (pIdx === 0) {
+          p.className = "text-[#FAF7F3] font-serif-elegant italic text-lg leading-relaxed font-semibold";
+        } else {
+          p.className = "text-[#E5DDD8] text-[15px] font-medium leading-relaxed";
+        }
+        p.innerText = pText;
+        paragraphsContainer.appendChild(p);
+      });
+
+      const startBtn = document.getElementById("btn-start-activity");
+      startBtn.style.backgroundColor = day.color;
+    }
+
+    function backToMenu() {
+      document.getElementById("screen-reading").classList.add("hidden");
+      document.getElementById("screen-activity").classList.add("hidden");
+      document.getElementById("screen-day-done").classList.add("hidden");
+      document.getElementById("screen-menu").classList.remove("hidden");
+      renderDaysList();
+    }
+
+    function startDayActivity() {
+      document.getElementById("screen-reading").classList.add("hidden");
+      const activityScreen = document.getElementById("screen-activity");
+      activityScreen.classList.remove("hidden");
+      
+      const dayNum = currentDayIndex + 1;
+      
+      if (dayNum === 1) renderDay1Activity();
+      else if (dayNum === 2) renderDay2Activity();
+      else if (dayNum === 3) renderDay3Activity();
+      else if (dayNum === 4) renderDay4Activity();
+      else if (dayNum === 5) renderDay5Activity();
+      else if (dayNum === 6) renderDay6Activity();
+      else if (dayNum === 7) renderDay7Activity();
+    }
+
+    // ==========================================
+    // DIA 1: DIVÓRCIO ENERGÉTICO (VIVÊNCIA INTERATIVA COMPLETA)
+    // ==========================================
+    let d1Step = 0;
+    let breathTimer = null;
+
+    function renderDay1Activity() {
+      d1Step = 0;
+      showD1Step();
+    }
+
+    function showD1Step() {
+      const container = document.getElementById("screen-activity");
+      
+      if (d1Step === 0) {
+        let textPlaceholder = "Nome dele...";
+        let questionText = "Qual é o primeiro nome da pessoa de quem seu sistema precisa se desligar hoje para respirar?";
+        
+        if (userProfile === 'solteira') {
+          questionText = "Nomeie o homem do passado que ainda drena sua energia ou bloqueia sua abertura relacional:";
+        } else if (userProfile === 'comprometida') {
+          questionText = "Qual é o nome do seu parceiro de quem você precisa temporariamente se desligar emocionalmente hoje para respirar?";
+        } else if (userProfile === 'traida') {
+          questionText = "Nomeie a pessoa que feriu seu sistema e que você precisa desativar do seu corpo hoje para recuperar as rédeas:";
+          textPlaceholder = "Nome da pessoa...";
+        }
+
+        container.innerHTML = `
+          <div class="space-y-6">
+            <h3 class="font-serif-elegant text-2xl italic text-[#FAF7F3] font-bold mb-4">Nomeie a Ligação</h3>
+            <p class="text-[15px] font-medium text-[#E5DDD8] leading-relaxed">${questionText}</p>
+            
+            <input type="text" id="d1-input-nome" value="${answers.d1_nome}" placeholder="${textPlaceholder}" class="w-full bg-[#161313] border border-[#211B1B] rounded-xl p-4 text-[#FAF7F3] placeholder-[#A4928C] focus:ring-1 focus:ring-[#C4848A] focus:outline-none font-serif-elegant italic text-xl text-center font-bold">
+
+            <p class="text-xs text-[#C4B5B0] text-center italic font-bold">Apenas o primeiro nome. Esse ato dará direção à sua vivência somática.</p>
+
+            <button onclick="saveD1Step0()" class="w-full bg-[#C4848A] text-[#0D0B0B] py-4 rounded-full font-bold text-[15px] transition-all active:scale-95">Continuar</button>
+          </div>
+        `;
+      } else if (d1Step === 1) {
+        const partes = ["Garganta (Aperto)", "Peito (Pesado / Vazio)", "Estômago (Frio / Ansiedade)", "Mandíbula (Tensa)", "Falta de Ar", "Mãos (Trêmulas / Inquietas)"];
+        let btnsHtml = partes.map(part => {
+          const isSelected = answers.d1_corpo.includes(part);
+          return `
+            <button onclick="toggleD1Corpo('${part}')" class="p-4 rounded-xl border-2 text-[13px] font-bold text-left transition-all ${
+              isSelected ? 'border-[#C4848A] bg-[#C4848A15] text-[#FAF7F3]' : 'border-[#211B1B] bg-[#161313] text-[#E5DDD8]'
+            }">
+              ${part}
+            </button>
+          `;
+        }).join('');
+
+        container.innerHTML = `
+          <div class="space-y-6">
+            <h3 class="font-serif-elegant text-2xl italic text-[#FAF7F3] font-bold">Soma Relacional</h3>
+            <p class="text-[15px] font-medium text-[#E5DDD8] leading-relaxed">Feche os olhos. Pense em ${answers.d1_nome || 'ele'} por um instante. Onde seu corpo reage com mais força e tensão dolorosa agora?</p>
+            
+            <div class="grid grid-cols-2 gap-3 mb-6">
+              ${btnsHtml}
+            </div>
+
+            <button id="btn-d1-next-1" onclick="saveD1Step1()" disabled class="w-full bg-[#211B1B] text-[#A4928C] py-4 rounded-full font-bold text-[15px] transition-all">Levar a Mão ao Corpo e Avançar</button>
+          </div>
+        `;
+        validateD1Step1();
+      } else if (d1Step === 2) {
+        container.innerHTML = `
+          <div class="space-y-6 text-center py-4">
+            <h3 class="font-serif-elegant text-2xl italic text-[#FAF7F3] font-bold">Respiração Somática</h3>
+            <div id="breath-box" class="space-y-6">
+              <div class="p-5 bg-[#161313] border border-[#211B1B] rounded-2xl text-left">
+                <span class="text-[10px] text-[#C4848A] font-bold uppercase tracking-wider block mb-2">Instrução Essencial</span>
+                <p class="text-sm text-[#E5DDD8] font-medium leading-relaxed">
+                  Não é para forçar nada, apenas respirar naturalmente seguindo as instruções abaixo. Apenas relaxe, sem cobrança, para avisar ao seu cérebro que você está segura debaixo do seu próprio teto emocional.
+                </p>
+              </div>
+              <button onclick="startBreathExercise()" class="bg-[#C4848A] text-[#0D0B0B] py-4 px-10 rounded-full font-bold shadow-lg text-[15px] transition-transform active:scale-95">
+                Iniciar Guia de Respiração
+              </button>
+            </div>
+          </div>
+        `;
+      } else if (d1Step === 3) {
+        container.innerHTML = `
+          <div class="text-center py-4 space-y-6">
+            <h3 class="font-serif-elegant text-2xl italic text-[#FAF7F3] font-bold">O Corte do Vínculo</h3>
+            
+            <div class="p-5 bg-[#161313] border border-[#211B1B] rounded-xl text-left space-y-3">
+              <p class="text-xs text-[#C4B5B0] leading-relaxed font-bold">Sente de forma ereta, assumindo a postura da adulta. Feche os olhos, coloque a mão no seu peito e diga mentalmente ou em voz alta:</p>
+              <div class="border-l-2 border-[#D4A574] pl-4 font-serif-elegant italic text-base text-[#FAF7F3] font-medium space-y-2">
+                <p>"Eu vi o que esta ligação veio me mostrar."</p>
+                <p>"Eu vi o que esta dor veio me mostrar."</p>
+                <p>"Você já cumpriu a sua função no meu sistema. Agora, eu te libero e me recolho por completo."</p>
+              </div>
+            </div>
+
+            <div class="relative h-32 flex items-center justify-center border border-[#1C1818] rounded-2xl bg-[#0E0C0C] overflow-hidden">
+              <svg id="cord-svg" class="w-full h-12" viewBox="0 0 300 40">
+                <path class="cord-line" d="M 0 20 Q 75 10, 150 20 T 300 20" fill="none" stroke="#C4848A" stroke-width="3" />
+              </svg>
+              <div id="cut-success-visual" class="hidden text-xs text-[#D4A574] tracking-widest uppercase font-bold">Corte Efetuado. Você voltou para si. ✓</div>
+            </div>
+
+            <button id="btn-cut-cord" onclick="executeCordCut()" class="w-full bg-gradient-to-r from-[#C4848A] to-[#8A4A5A] text-white py-4 rounded-full font-bold tracking-wide shadow-lg text-[15px] active:scale-95">
+              Cortar o Cordão Energético
+            </button>
+            <button id="btn-cut-next" onclick="d1Step++; showD1Step();" class="hidden w-full bg-[#161313] border border-[#211B1B] text-[#FAF7F3] py-4 rounded-full font-bold text-[15px] transition-transform active:scale-95">
+              Continuar
+            </button>
+          </div>
+        `;
+      } else if (d1Step === 4) {
+        container.innerHTML = `
+          <div class="space-y-6">
+            <h3 class="font-serif-elegant text-2xl italic text-[#FAF7F3] font-bold">Declarações de Autonomia</h3>
+            <p class="text-[15px] font-medium text-[#E5DDD8] leading-relaxed">Leia com calma e firmeza:</p>
+            
+            <div class="space-y-4 mb-6">
+              <div class="p-4 rounded-xl bg-[#161313] border border-[#211B1B] font-serif-elegant italic text-[15px] font-medium text-[#FAF7F3] flex gap-3">
+                <span class="text-[#C4848A]">✦</span>
+                <span>Eu desativo a urgência de ser respondida ou amparada. Meu valor não reside na validação de ninguém.</span>
+              </div>
+              <div class="p-4 rounded-xl bg-[#161313] border border-[#211B1B] font-serif-elegant italic text-[15px] font-medium text-[#FAF7F3] flex gap-3">
+                <span class="text-[#C4848A]">✦</span>
+                <span>Seu afastamento ou ausência não dita minha integridade. Estou aqui comigo, inteira.</span>
+              </div>
+            </div>
+
+            <button onclick="finishDay(1)" class="w-full bg-[#C4848A] text-[#0D0B0B] py-4 rounded-full font-bold text-[15px] transition-transform active:scale-95">
+              Concluir Prática Somática
+            </button>
+          </div>
+        `;
+      }
+    }
+
+    function saveD1Step0() {
+      answers.d1_nome = document.getElementById("d1-input-nome").value.trim() || "essa ligação";
+      saveProgress();
+      d1Step = 1;
+      showD1Step();
+    }
+
+    function toggleD1Corpo(part) {
+      if (answers.d1_corpo.includes(part)) {
+        answers.d1_corpo = answers.d1_corpo.filter(p => p !== part);
+      } else {
+        answers.d1_corpo.push(part);
+      }
+      saveProgress();
+      validateD1Step1();
+    }
+
+    function validateD1Step1() {
+      const btn = document.getElementById("btn-d1-next-1");
+      if (!btn) return;
+      if (answers.d1_corpo.length > 0) {
+        btn.disabled = false;
+        btn.className = "w-full bg-[#C4848A] text-[#0D0B0B] py-4 rounded-full font-bold text-[15px] transition-all active:scale-95";
+      } else {
+        btn.disabled = true;
+        btn.className = "w-full bg-[#211B1B] text-[#A4928C] py-4 rounded-full font-bold text-[15px] transition-all cursor-not-allowed";
+      }
+    }
+
+    function saveD1Step1() {
+      d1Step = 2;
+      showD1Step();
+    }
+
+    function startBreathExercise() {
+      const box = document.getElementById("breath-box");
+      let cycle = 1;
+      let stage = "in"; 
+      let count = 4;
+      
+      const sequence = [
+        { stage: "in", dur: 4, text: "Apenas inspire suavemente..." },
+        { stage: "hold", dur: 4, text: "Mantenha o corpo calmo..." },
+        { stage: "out", dur: 6, text: "Solte sem esforço algum..." },
+        { stage: "cue", dur: 4, text: "" }
+      ];
+
+      const bodyCues = [
+        "Apenas solte a mandíbula. Deixe a boca levemente entreaberta.",
+        "Sinta o contato das mãos nas suas pernas ou no seu peito.",
+        "Abra espaço no estômago. Amacie seu abdômen."
+      ];
+
+      function runTimer() {
+        if (cycle > 3) {
+          box.innerHTML = `
+            <div class="text-4xl text-[#7A9E8C] mb-4">✦</div>
+            <h4 class="font-serif-elegant text-xl italic text-[#FAF7F3] font-bold mb-2">Sistema Regulado.</h4>
+            <p class="text-[13px] text-[#E5DDD8] mb-6 max-w-xs mx-auto font-medium">Você não precisou correr para se regular. O seu próprio ritmo somático te trouxe para o presente.</p>
+            <button onclick="d1Step = 3; showD1Step();" class="w-full bg-[#C4848A] text-[#0D0B0B] py-3 rounded-full font-bold text-[14px] transition-colors">
+              Continuar
+            </button>
+          `;
+          return;
+        }
+
+        const currentSeq = sequence.find(s => s.stage === stage);
+        let messageText = currentSeq.text;
+        if (stage === "cue") {
+          messageText = bodyCues[cycle - 1] || bodyCues[0];
+        }
+
+        box.innerHTML = `
+          <div class="flex flex-col items-center">
+            <div style="border-color: #C4848A44; background-color: #C4848A10;" 
+                 class="w-32 h-32 rounded-full border-2 flex items-center justify-center transition-all duration-1000 ${
+                   stage === 'in' ? 'scale-110' : stage === 'out' ? 'scale-90' : 'scale-100'
+                 }">
+              <span class="font-serif-elegant text-3xl font-bold text-[#C4848A]">${count}</span>
+            </div>
+            <p class="font-serif-elegant italic text-base mt-6 text-[#FAF7F3] h-12 text-center px-4 max-w-xs leading-relaxed font-semibold">
+              ${messageText}
+            </p>
+            <span class="text-[10px] text-[#C4B5B0] mt-2 uppercase tracking-widest font-bold">Ciclo ${cycle} de 3</span>
+          </div>
+        `;
+
+        breathTimer = setTimeout(() => {
+          count--;
+          if (count <= 0) {
+            const currIdx = sequence.findIndex(s => s.stage === stage);
+            const nextIdx = currIdx + 1;
+            if (nextIdx >= sequence.length) {
+              cycle++;
+              stage = "in";
+              count = 4;
+            } else {
+              stage = sequence[nextIdx].stage;
+              count = sequence[nextIdx].dur;
+            }
+          }
+          runTimer();
+        }, 1000);
+      }
+
+      runTimer();
+    }
+
+    function executeCordCut() {
+      document.getElementById("cord-svg").classList.add("hidden");
+      document.getElementById("cut-success-visual").classList.remove("hidden");
+      document.getElementById("btn-cut-cord").classList.add("hidden");
+      document.getElementById("btn-cut-next").classList.remove("hidden");
+    }
+
+    // ==========================================
+    // DIA 2: RETORNE A SI (ÂNCORAS E ESCOLHA DE CARTA)
+    // ==========================================
+    let d2Step = 0;
+    const d2_cartas = [
+      {
+        id: "carta_limite",
+        titulo: "Carta do Limite Adulto",
+        corpo: "Querida, você não precisa ficar indisponível para o mundo para se proteger, mas precisa saber traçar limites claros. O seu corpo está exausto de segurar o peso que pertence ao outro. Eu te devolvo a dignidade de não precisar ser aceita a qualquer custo. O amor não exige sacrifícios somáticos."
+      },
+      {
+        id: "carta_acolhimento",
+        titulo: "Carta do Acolhimento Compassivo",
+        corpo: "Menina, eu vejo você assustada tentando consertar esse abandono antigo. Você não está mais lá atrás. Olhe para mim, eu sou a sua adulta sábia. Eu já cresci e o nosso teto emocional é extremamente seguro e nutrido. Você não precisa mendigar atenção de quem não tem afeto para dar."
+      },
+      {
+        id: "carta_soltura",
+        titulo: "Carta do Desapego Consciente",
+        corpo: "Está na hora de soltar as mãos do controle. Você vigia e audita porque acha que isso previne o fim, mas só consome sua paz. O que for seu, chegará e permanecerá com facilidade. O que não puder ficar, que se afaste para abrir espaço para o amor de verdade. Descanse os seus olhos."
+      }
+    ];
+
+    function renderDay2Activity() {
+      d2Step = 0;
+      showD2Step();
+    }
+
+    function showD2Step() {
+      const container = document.getElementById("screen-activity");
+      
+      if (d2Step === 0) {
+        const ancoras = [
+          "Preparar um chá ou café quente prestando atenção no aroma e calor da xícara.",
+          "Caminhar ao ar livre focando na sensação do vento contra a minha pele.",
+          "Ficar 5 minutos de olhos fechados sentindo o batimento cardíaco.",
+          "Ouvir uma música de base profunda instrumental sem mexer no celular."
+        ];
+        
+        let listHtml = ancoras.map(anc => {
+          const isSelected = answers.d2_ancora === anc;
+          return `
+            <button onclick="selectD2Ancora('${anc}')" class="w-full p-4 rounded-xl border-2 text-[13px] font-medium text-left transition-all ${
+              isSelected ? 'border-[#7A9E8C] bg-[#7A9E8C15] text-[#FAF7F3]' : 'border-[#211B1B] bg-[#161313] text-[#E5DDD8]'
+            }">
+              ${anc}
+            </button>
+          `;
+        }).join('');
+
+        container.innerHTML = `
+          <div class="space-y-6">
+            <h3 class="font-serif-elegant text-2xl italic text-[#FAF7F3] font-bold">Sua Âncora de Retorno</h3>
+            <p class="text-[15px] font-medium text-[#E5DDD8]">As âncoras devolvem o seu eixo somático quando um gatilho de rejeição ou carência é ativado. Escolha uma prática prática de retorno para se comprometer hoje:</p>
+            
+            <div class="space-y-3">
+              ${listHtml}
+            </div>
+
+            <button id="btn-d2-next-0" onclick="saveD2Step0()" disabled class="w-full bg-[#211B1B] text-[#A4928C] py-4 rounded-full font-bold text-[15px]">Continuar</button>
+          </div>
+        `;
+        validateD2Step0();
+      } else if (d2Step === 1) {
+        let cartasHtml = d2_cartas.map(carta => {
+          const isSelected = answers.d2_carta_id === carta.id;
+          return `
+            <button onclick="selectD2Carta('${carta.id}')" class="w-full p-4 rounded-xl border-2 text-[13px] font-medium text-left transition-all ${
+              isSelected ? 'border-[#7A9E8C] bg-[#7A9E8C15] text-[#FAF7F3]' : 'border-[#211B1B] bg-[#161313] text-[#E5DDD8]'
+            }">
+              <span class="font-bold block mb-1 text-[14px] ${isSelected ? 'text-[#7A9E8C]' : 'text-[#FAF7F3]'}">${carta.titulo}</span>
+              ${isSelected ? `<p class="mt-2 font-serif-elegant italic leading-relaxed text-[15px] font-medium text-[#F0EAE4]">${carta.corpo}</p>` : 'Toque para abrir e ler esta mensagem'}
+            </button>
+          `;
+        }).join('');
+
+        container.innerHTML = `
+          <div class="space-y-6">
+            <h3 class="font-serif-elegant text-2xl italic text-[#FAF7F3] font-bold">Mensagem da Sua Versão Adulta</h3>
+            <p class="text-[15px] font-medium text-[#E5DDD8]">Abra e sintonize-se com a carta de direcionamento que seu sistema precisa integrar neste momento:</p>
+            
+            <div class="space-y-4">
+              ${cartasHtml}
+            </div>
+
+            <button id="btn-d2-next-1" onclick="saveD2Step1()" disabled class="w-full bg-[#211B1B] text-[#A4928C] py-4 rounded-full font-bold text-[15px]">Acolher Carta e Prosseguir</button>
+          </div>
+        `;
+        validateD2Step1();
+      } else if (d2Step === 2) {
+        const origens = [
+          "Senti medo constante do abandono na minha infância.",
+          "Aprendi que precisava merecer carinho sendo uma menina exemplar e perfeita.",
+          "O afeto na minha casa parecia instável ou condicionado ao meu comportamento.",
+          "Tive que cuidar das dores emocionais dos meus pais muito cedo na vida."
+        ];
+        
+        let listHtml = origens.map(orig => {
+          const isSelected = answers.d2_origem.includes(orig);
+          return `
+            <button onclick="toggleD2Origem('${orig}')" class="w-full p-4 rounded-xl border-2 text-[13px] font-medium text-left transition-all ${
+              isSelected ? 'border-[#7A9E8C] bg-[#7A9E8C15] text-[#FAF7F3]' : 'border-[#211B1B] bg-[#161313] text-[#E5DDD8]'
+            }">
+              ${orig}
+            </button>
+          `;
+        }).join('');
+
+        container.innerHTML = `
+          <div class="space-y-6">
+            <h3 class="font-serif-elegant text-2xl italic text-[#FAF7F3] font-bold">O Rastro Familiar</h3>
+            <p class="text-[15px] font-medium text-[#E5DDD8]">Qual dessas dinâmicas sistêmicas de infância você reconhece como o berço da sua atual estrutura de sobrevivência?</p>
+            
+            <div class="space-y-3 mb-6">
+              ${listHtml}
+            </div>
+
+            <button onclick="finishDay(2)" class="w-full bg-[#7A9E8C] text-[#0D0B0B] py-4 rounded-full font-bold text-[15px]">Concluir Dia 2</button>
+          </div>
+        `;
+      }
+    }
+
+    function selectD2Ancora(anc) {
+      answers.d2_ancora = anc;
+      saveProgress();
+      validateD2Step0();
+      showD2Step();
+    }
+
+    function validateD2Step0() {
+      const btn = document.getElementById("btn-d2-next-0");
+      if (!btn) return;
+      if (answers.d2_ancora) {
+        btn.disabled = false;
+        btn.className = "w-full bg-[#7A9E8C] text-[#0D0B0B] py-4 rounded-full font-bold text-[15px] transition-all active:scale-95";
+      } else {
+        btn.disabled = true;
+        btn.className = "w-full bg-[#211B1B] text-[#A4928C] py-4 rounded-full font-bold text-[15px] cursor-not-allowed";
+      }
+    }
+
+    function saveD2Step0() {
+      d2Step = 1;
+      showD2Step();
+    }
+
+    function selectD2Carta(id) {
+      answers.d2_carta_id = id;
+      saveProgress();
+      validateD2Step1();
+      showD2Step();
+    }
+
+    function validateD2Step1() {
+      const btn = document.getElementById("btn-d2-next-1");
+      if (!btn) return;
+      if (answers.d2_carta_id) {
+        btn.disabled = false;
+        btn.className = "w-full bg-[#7A9E8C] text-[#0D0B0B] py-4 rounded-full font-bold text-[15px] transition-all active:scale-95";
+      } else {
+        btn.disabled = true;
+        btn.className = "w-full bg-[#211B1B] text-[#A4928C] py-4 rounded-full font-bold text-[15px] cursor-not-allowed";
+      }
+    }
+
+    function saveD2Step1() {
+      d2Step = 2;
+      showD2Step();
+    }
+
+    function toggleD2Origem(orig) {
+      if (answers.d2_origem.includes(orig)) {
+        answers.d2_origem = answers.d2_origem.filter(o => o !== orig);
+      } else {
+        answers.d2_origem.push(orig);
+      }
+      saveProgress();
+      showD2Step();
+    }
+
+
+    // ==========================================
+    // DIA 3: RECONSTRUA O EIXO (VINCULO INTERATIVO)
+    // ==========================================
+    let d3Step = 0;
+
+    function renderDay3Activity() {
+      d3Step = 0;
+      showD3Step();
+    }
+
+    function showD3Step() {
+      const container = document.getElementById("screen-activity");
+      
+      if (d3Step === 0) {
+        const necs = [
+          "Segurança Emocional e Constância",
+          "Sentir que sou vista e ouvida como mulher adulta",
+          "Clareza absoluta de intenções mútua",
+          "Presença física e disponibilidade real",
+          "Estabilidade para seguir focando na minha vida e carreira"
+        ];
+        
+        let listHtml = necs.map(n => {
+          const isSelected = answers.d3_necessidades.includes(n);
+          return `
+            <button onclick="toggleD3Nec('${n}')" class="w-full p-4 rounded-xl border-2 text-[13px] font-medium text-left transition-all ${
+              isSelected ? 'border-[#9A80C0] bg-[#9A80C015] text-[#FAF7F3]' : 'border-[#211B1B] bg-[#161313] text-[#E5DDD8]'
+            }">
+              ${n}
+            </button>
+          `;
+        }).join('');
+
+        container.innerHTML = `
+          <div class="space-y-6">
+            <h3 class="font-serif-elegant text-2xl italic text-[#FAF7F3] font-bold">Suas Reais Necessidades</h3>
+            <p class="text-[15px] font-medium text-[#E5DDD8]">Por trás da urgência compulsiva por validação ou de se fechar em uma armadura, qual dessas necessidades o seu corpo quer ver suprida?</p>
+            
+            <div class="space-y-3">
+              ${listHtml}
+            </div>
+
+            <button id="btn-d3-next-0" onclick="saveD3Step0()" disabled class="w-full bg-[#211B1B] text-[#A4928C] py-4 rounded-full font-bold text-[15px]">Avançar</button>
+          </div>
+        `;
+        validateD3Step0();
+      } else if (d3Step === 1) {
+        const compromissos = [
+          "Parar de checar o status de 'visto por último' ou redes sociais.",
+          "Parar de reler conversas buscando indícios de esfriamento ou perigo.",
+          "Não pedir opinião para terceiros sobre o que o silêncio dele significa.",
+          "Parar de monitorar curtidas, publicações ou sinais virtuais nas próximas 72 horas."
+        ];
+
+        let listHtml = compromissos.map(comp => {
+          const isSelected = answers.d3_compromissos.includes(comp);
+          return `
+            <button onclick="toggleD3Compromisso('${comp}')" class="w-full p-4 rounded-xl border-2 text-[13px] font-medium text-left transition-all ${
+              isSelected ? 'border-[#9A80C0] bg-[#9A80C015] text-[#FAF7F3]' : 'border-[#211B1B] bg-[#161313] text-[#E5DDD8]'
+            }">
+              ${comp}
+            </button>
+          `;
+        }).join('');
+
+        container.innerHTML = `
+          <div class="space-y-6">
+            <h3 class="font-serif-elegant text-2xl italic text-[#FAF7F3] font-bold">Suas Barreiras de Proteção</h3>
+            <p class="text-[15px] font-medium text-[#E5DDD8]">Quais comportamentos compulsivos infantis ou defensivos você se compromete a pausar pelas próximas 72 horas?</p>
+            
+            <div class="space-y-3">
+              ${listHtml}
+            </div>
+
+            <button id="btn-d3-next-1" onclick="finishDay(3)" disabled class="w-full bg-[#211B1B] text-[#A4928C] py-4 rounded-full font-bold text-[15px]">Integrar e Concluir Dia 3</button>
+          </div>
+        `;
+        validateD3Step1();
+      }
+    }
+
+    function toggleD3Nec(n) {
+      if (answers.d3_necessidades.includes(n)) {
+        answers.d3_necessidades = answers.d3_necessidades.filter(x => x !== n);
+      } else {
+        answers.d3_necessidades.push(n);
+      }
+      saveProgress();
+      validateD3Step0();
+      showD3Step();
+    }
+
+    function validateD3Step0() {
+      const btn = document.getElementById("btn-d3-next-0");
+      if (!btn) return;
+      if (answers.d3_necessidades.length > 0) {
+        btn.disabled = false;
+        btn.className = "w-full bg-[#9A80C0] text-[#0D0B0B] py-4 rounded-full font-bold text-[15px] transition-all active:scale-95";
+      } else {
+        btn.disabled = true;
+        btn.className = "w-full bg-[#211B1B] text-[#A4928C] py-4 rounded-full font-bold text-[15px] cursor-not-allowed";
+      }
+    }
+
+    function saveD3Step0() {
+      d3Step = 1;
+      showD3Step();
+    }
+
+    function toggleD3Compromisso(comp) {
+      if (answers.d3_compromissos.includes(comp)) {
+        answers.d3_compromissos = answers.d3_compromissos.filter(x => x !== comp);
+      } else {
+        answers.d3_compromissos.push(comp);
+      }
+      saveProgress();
+      validateD3Step1();
+      showD3Step();
+    }
+
+    function validateD3Step1() {
+      const btn = document.getElementById("btn-d3-next-1");
+      if (!btn) return;
+      if (answers.d3_compromissos.length > 0) {
+        btn.disabled = false;
+        btn.className = "w-full bg-[#9A80C0] text-[#0D0B0B] py-4 rounded-full font-bold text-[15px] transition-all active:scale-95";
+      } else {
+        btn.disabled = true;
+        btn.className = "w-full bg-[#211B1B] text-[#A4928C] py-4 rounded-full font-bold text-[15px] cursor-not-allowed";
+      }
+    }
+
+
+    // ==========================================
+    // DIA 4: REVELE A LENTE (ATIVIDADE FAMILIAR)
+    // ==========================================
+    let d4Step = 0;
+
+    function renderDay4Activity() {
+      d4Step = 0;
+      showD4Step();
+    }
+
+    function showD4Step() {
+      const container = document.getElementById("screen-activity");
+      
+      if (d4Step === 0) {
+        container.innerHTML = `
+          <div class="space-y-6">
+            <h3 class="font-serif-elegant text-2xl italic text-[#FAF7F3] font-bold">O Termômetro de Origem</h3>
+            <p class="text-[15px] font-medium text-[#E5DDD8] leading-relaxed">Qual era a disponibilidade e nutrição emocional das suas figuras de cuidado na infância?</p>
+            
+            <div class="space-y-6">
+              <div>
+                <div class="flex justify-between text-xs text-[#C4B5B0] font-bold mb-2">
+                  <span>Mãe Indisponível</span>
+                  <span>Mãe Presente e Nutridora</span>
+                </div>
+                <input type="range" id="d4-range-mae" min="1" max="10" value="${answers.d4_mae}" class="w-full accent-[#D4A574]" oninput="updateD4MaeText(this.value)">
+                <p class="text-xs text-right text-[#D4A574] font-bold mt-1">Nível da Mãe: <span id="mae-val" class="text-sm font-bold">${answers.d4_mae}</span>/10</p>
+              </div>
+
+              <div>
+                <div class="flex justify-between text-xs text-[#C4B5B0] font-bold mb-2">
+                  <span>Pai Indisponível</span>
+                  <span>Pai Protetor e Conectado</span>
+                </div>
+                <input type="range" id="d4-range-pai" min="1" max="10" value="${answers.d4_pai}" class="w-full accent-[#D4A574]" oninput="updateD4PaiText(this.value)">
+                <p class="text-xs text-right text-[#D4A574] font-bold mt-1">Nível do Pai: <span id="pai-val" class="text-sm font-bold">${answers.d4_pai}</span>/10</p>
+              </div>
+            </div>
+
+            <button onclick="saveD4Step0()" class="w-full bg-[#D4A574] text-[#0D0B0B] py-4 rounded-full font-bold text-[15px] transition-all active:scale-95">Mapear Projeções Atuais</button>
+          </div>
+        `;
+      } else if (d4Step === 1) {
+        const projs = [
+          "Busco parceiros distantes para tentar reviver e consertar o vazio com minhas figuras familiares.",
+          "Finjo extrema autossuficiência e frieza por medo de me abrir e sofrer de novo.",
+          "Acredito secretamente que o amor verdadeiro exige dor, ansiedade e sofrimento.",
+          "Fujo rapidamente ou saboto quando percebo que um homem disponível se interessa de verdade."
+        ];
+
+        let listHtml = projs.map(p => {
+          const isSelected = answers.d4_projecoes.includes(p);
+          return `
+            <button onclick="toggleD4Proj('${p}')" class="w-full p-4 rounded-xl border-2 text-[13px] font-medium text-left transition-all ${
+              isSelected ? 'border-[#D4A574] bg-[#D4A57415] text-[#FAF7F3]' : 'border-[#211B1B] bg-[#161313] text-[#E5DDD8]'
+            }">
+              ${p}
+            </button>
+          `;
+        }).join('');
+
+        container.innerHTML = `
+          <div class="space-y-6">
+            <h3 class="font-serif-elegant text-2xl italic text-[#FAF7F3] font-bold">Suas Projeções Relacionais</h3>
+            <p class="text-[15px] font-medium text-[#E5DDD8]">Como o vazio das suas figuras familiares se manifesta hoje nas suas escolhas e reações afetivas?</p>
+            
+            <div class="space-y-3 mb-6">
+              ${listHtml}
+            </div>
+
+            <button id="btn-d4-next-1" onclick="finishDay(4)" disabled class="w-full bg-[#211B1B] text-[#A4928C] py-4 rounded-full font-bold text-[15px]">Concluir Dia 4</button>
+          </div>
+        `;
+        validateD4Step1();
+      }
+    }
+
+    function updateD4MaeText(val) {
+      document.getElementById("mae-val").innerText = val;
+      answers.d4_mae = parseInt(val);
+    }
+
+    function updateD4PaiText(val) {
+      document.getElementById("pai-val").innerText = val;
+      answers.d4_pai = parseInt(val);
+    }
+
+    function saveD4Step0() {
+      answers.d4_mae = parseInt(document.getElementById("d4-range-mae").value);
+      answers.d4_pai = parseInt(document.getElementById("d4-range-pai").value);
+      saveProgress();
+      d4Step = 1;
+      showD4Step();
+    }
+
+    function toggleD4Proj(p) {
+      if (answers.d4_projecoes.includes(p)) {
+        answers.d4_projecoes = answers.d4_projecoes.filter(x => x !== p);
+      } else {
+        answers.d4_projecoes.push(p);
+      }
+      saveProgress();
+      validateD4Step1();
+      showD4Step();
+    }
+
+    function validateD4Step1() {
+      const btn = document.getElementById("btn-d4-next-1");
+      if (!btn) return;
+      if (answers.d4_projecoes.length > 0) {
+        btn.disabled = false;
+        btn.className = "w-full bg-[#D4A574] text-[#0D0B0B] py-4 rounded-full font-bold text-[15px] transition-all active:scale-95";
+      } else {
+        btn.disabled = true;
+        btn.className = "w-full bg-[#211B1B] text-[#A4928C] py-4 rounded-full font-bold text-[15px] cursor-not-allowed";
+      }
+    }
+
+
+    // ==========================================
+    // DIA 5: ABRA A PORTA (VULNERABILIDADE E ENTRADA)
+    // ==========================================
+    let d5Step = 0;
+    const d5_chaves = [
+      { id: "vulnerabilidade", t: "Chave da Vulnerabilidade", d: "A autorização para ser verdadeiramente tocada e vista pelo outro, sabendo que amar é correr riscos conscientes de forma adulta." },
+      { id: "soltar", t: "Chave de Soltar o Controle", d: "Abandonar o papel de defensiva e vigia do amor, permitindo-me receber o afeto que já está disponível sem exigir garantias prévias." },
+      { id: "merecimento", t: "Chave do Merecimento", d: "Parar de implorar por migalhas de atenção e descansar no meu próprio valor de mulher inteira, livre da necessidade de aprovação externa." }
+    ];
+
+    const d5_compromissos = [
+      { id: "comp_vulnerabilidade", text: "Eu me comprometo a deixar de lado a armadura do orgulho silencioso e expressar claramente o que sinto, sem jogos de desinteresse." },
+      { id: "comp_soltar", text: "Eu desisto de vigiar e monitorar quem amo. Deixo que o outro exerça o seu livre arbítrio de permanecer ou partir. Eu me sinto segura de qualquer forma." },
+      { id: "comp_merecimento", text: "Eu assumo o compromisso de não sustentar vínculos mornos apenas por medo do vazio ou da solidão. Eu mereço nutrição emocional integral." }
+    ];
+
+    function renderDay5Activity() {
+      d5Step = 0;
+      showD5Step();
+    }
+
+    function showD5Step() {
+      const container = document.getElementById("screen-activity");
+      
+      if (d5Step === 0) {
+        let listHtml = d5_chaves.map(c => {
+          const isSelected = answers.d5_chave_id === c.id;
+          return `
+            <div onclick="selectD5Chave('${c.id}')" class="p-4 rounded-xl border-2 cursor-pointer transition-all ${
+              isSelected ? 'border-[#C4848A] bg-[#C4848A10]' : 'border-[#211B1B] bg-[#161313]'
+            }">
+              <div class="flex gap-3 items-start">
+                <div class="w-5 h-5 flex-shrink-0 mt-0.5 text-[#C4848A] text-center">🔑</div>
+                <div>
+                  <h4 class="font-serif-elegant font-bold text-[15px] text-[#FAF7F3]">${c.t}</h4>
+                  <p class="text-xs text-[#E5DDD8] mt-1 leading-relaxed font-medium">${c.d}</p>
+                </div>
+              </div>
+            </div>
+          `;
+        }).join('');
+
+        container.innerHTML = `
+          <div class="space-y-6">
+            <h3 class="font-serif-elegant text-2xl italic text-[#FAF7F3] font-bold">Sua Chave de Abertura</h3>
+            <p class="text-[15px] font-medium text-[#E5DDD8] leading-relaxed">Qual dessas chaves internas o seu sistema mais precisa rodar hoje para sair do quarto fechado da inacessibilidade?</p>
+            
+            <div class="space-y-4">
+              ${listHtml}
+            </div>
+
+            <button id="btn-d5-next-0" onclick="saveD5Step0()" disabled class="w-full bg-[#211B1B] text-[#A4928C] py-4 rounded-full font-bold text-[15px]">Avançar</button>
+          </div>
+        `;
+        validateD5Step0();
+      } else if (d5Step === 1) {
+        let listHtml = d5_compromissos.map(comp => {
+          const isSelected = answers.d5_compromisso_id === comp.id;
+          return `
+            <button onclick="selectD5Compromisso('${comp.id}')" class="w-full p-4 rounded-xl border-2 text-[13px] font-medium text-left transition-all ${
+              isSelected ? 'border-[#C4848A] bg-[#C4848A15] text-[#FAF7F3]' : 'border-[#211B1B] bg-[#161313] text-[#E5DDD8]'
+            }">
+              ${comp.text}
+            </button>
+          `;
+        }).join('');
+
+        container.innerHTML = `
+          <div class="space-y-6">
+            <h3 class="font-serif-elegant text-2xl italic text-[#FAF7F3] font-bold">O Seu Compromisso Adulto</h3>
+            <p class="text-[15px] font-medium text-[#E5DDD8]">Selecione a sua declaração prática de abertura emocional:</p>
+            
+            <div class="space-y-3 mb-6">
+              ${listHtml}
+            </div>
+
+            <button id="btn-d5-next-1" onclick="finishDay(5)" disabled class="w-full bg-[#211B1B] text-[#A4928C] py-4 rounded-full font-bold text-[15px]">Selar Compromisso e Concluir</button>
+          </div>
+        `;
+        validateD5Step1();
+      }
+    }
+
+    function selectD5Chave(id) {
+      answers.d5_chave_id = id;
+      saveProgress();
+      validateD5Step0();
+      showD5Step();
+    }
+
+    function validateD5Step0() {
+      const btn = document.getElementById("btn-d5-next-0");
+      if (!btn) return;
+      if (answers.d5_chave_id) {
+        btn.disabled = false;
+        btn.className = "w-full bg-[#C4848A] text-[#0D0B0B] py-4 rounded-full font-bold text-[15px] transition-all active:scale-95";
+      } else {
+        btn.disabled = true;
+        btn.className = "w-full bg-[#211B1B] text-[#A4928C] py-4 rounded-full font-bold text-[15px] cursor-not-allowed";
+      }
+    }
+
+    function saveD5Step0() {
+      d5Step = 1;
+      showD5Step();
+    }
+
+    function selectD5Compromisso(id) {
+      answers.d5_compromisso_id = id;
+      saveProgress();
+      validateD5Step1();
+      showD5Step();
+    }
+
+    function validateD5Step1() {
+      const btn = document.getElementById("btn-d5-next-1");
+      if (!btn) return;
+      if (answers.d5_compromisso_id) {
+        btn.disabled = false;
+        btn.className = "w-full bg-[#C4848A] text-[#0D0B0B] py-4 rounded-full font-bold text-[15px] transition-all active:scale-95";
+      } else {
+        btn.disabled = true;
+        btn.className = "w-full bg-[#211B1B] text-[#A4928C] py-4 rounded-full font-bold text-[15px] cursor-not-allowed";
+      }
+    }
+
+
+    // ==========================================
+    // DIA 6: POSTURA ADULTA (CENÁRIOS COMPARATIVOS)
+    // ==========================================
+    let d6Step = 0;
+
+    const d6_cenarios = [
+      {
+        id: "c1",
+        situacao: "A pessoa visualizou a sua mensagem há várias horas e não enviou nenhuma resposta.",
+        reacoes: [
+          { id: "r1_infantil", t: "Reação Automática Infantil", d: "Ficar checando constantemente as redes, reler conversas antigas e enviar uma mensagem irônica cobrando atenção." },
+          { id: "r1_adulta", t: "Postura Adulta Escolhida", d: "Compreender que o silêncio dele não reduz meu valor como mulher. Silenciar a conversa, guardar o celular e focar em minhas próprias atividades diárias." }
+        ]
+      },
+      {
+        id: "c2",
+        situacao: "Um parceiro atencioso e emocionalmente disponível te convida para um encontro.",
+        reacoes: [
+          { id: "r2_infantil", t: "Reação Automática Infantil", d: "Sentir tédio imediato por achar que ele é 'fácil demais', procurar defeitos para justificar sua fuga do vínculo seguro." },
+          { id: "r2_adulta", t: "Postura Adulta Escolhida", d: "Acalmar o meu sistema nervoso viciado na montanha-russa do caos. Entender que paz não é tédio e dar uma oportunidade real de conexão estável." }
+        ]
+      }
+    ];
+
+    function renderDay6Activity() {
+      d6Step = 0;
+      showD6Step();
+    }
+
+    function showD6Step() {
+      const container = document.getElementById("screen-activity");
+      const c = d6_cenarios[d6Step];
+      const isC1 = d6Step === 0;
+      const selectedId = isC1 ? answers.d6_cenario1 : answers.d6_cenario2;
+
+      let listHtml = c.reacoes.map(reacao => {
+        const isSelected = selectedId === reacao.id;
+        return `
+          <button onclick="selectD6Option('${reacao.id}', ${isC1})" class="w-full p-4 rounded-xl border-2 text-[13px] font-medium text-left transition-all ${
+            isSelected ? 'border-[#7A9E8C] bg-[#7A9E8C10] text-[#FAF7F3]' : 'border-[#211B1B] bg-[#161313] text-[#E5DDD8]'
+          }">
+            <h4 class="font-bold text-[14px] ${isSelected ? 'text-[#7A9E8C]' : 'text-[#FAF7F3]'}">${reacao.t}</h4>
+            <p class="text-xs mt-1.5 leading-relaxed font-medium">${reacao.d}</p>
+          </button>
+        `;
+      }).join('');
+
+      container.innerHTML = `
+        <div class="space-y-6">
+          <div>
+            <span class="text-[9px] uppercase text-[#7A9E8C] tracking-widest font-bold">Cenário Clínico ${d6Step + 1} de 2</span>
+            <p class="text-[15px] text-[#FAF7F3] mt-3 p-4 rounded-xl bg-[#161313] border border-[#211B1B] font-serif-elegant italic leading-relaxed text-center font-semibold">
+              "${c.situacao}"
+            </p>
+          </div>
+
+          <p class="text-xs text-[#C4B5B0] text-center font-bold">Como você decide agir de forma madura hoje?</p>
+          <div class="space-y-3 mb-6">
+            ${listHtml}
+          </div>
+
+          <button id="btn-d6-next" onclick="nextD6Step()" disabled class="w-full bg-[#211B1B] text-[#A4928C] py-4 rounded-full font-bold text-[15px] transition-all font-bold">Continuar</button>
+        </div>
+      `;
+      validateD6Step();
+    }
+
+    function selectD6Option(id, isC1) {
+      if (isC1) answers.d6_cenario1 = id;
+      else answers.d6_cenario2 = id;
+      saveProgress();
+      validateD6Step();
+      showD6Step();
+    }
+
+    function validateD6Step() {
+      const btn = document.getElementById("btn-d6-next");
+      if (!btn) return;
+      const selected = d6Step === 0 ? answers.d6_cenario1 : answers.d6_cenario2;
+      if (selected) {
+        btn.disabled = false;
+        btn.className = "w-full bg-[#7A9E8C] text-[#0D0B0B] py-4 rounded-full font-bold text-[15px] transition-all active:scale-95";
+      } else {
+        btn.disabled = true;
+        btn.className = "w-full bg-[#211B1B] text-[#A4928C] py-4 rounded-full font-bold text-[15px] cursor-not-allowed";
+      }
+    }
+
+    function nextD6Step() {
+      if (d6Step === 0) {
+        d6Step = 1;
+        showD6Step();
+      } else {
+        finishDay(6);
+      }
+    }
+
+
+    // ==========================================
+    // DIA 7: A CONEXÃO REAL (INTEGRAÇÃO E MANIFESTO)
+    // ==========================================
+    const d7_diretrizes = [
+      "Eu escolho me relacionar de peito aberto a partir do meu tamanho adulto, sem carregar pesos antigos.",
+      "Eu não nego as minhas feridas de infância, mas impeço que elas sigam conduzindo a minha vida afetiva.",
+      "Eu mereço um amor constante, seguro e claro, e me comprometo a estar disponível para sustentá-lo."
+    ];
+
+    function renderDay7Activity() {
+      showD7Step();
+    }
+
+    function showD7Step() {
+      const container = document.getElementById("screen-activity");
+      
+      let listHtml = d7_diretrizes.map(dir => {
+        const isSelected = answers.d7_diretrizes.includes(dir);
+        return `
+          <button onclick="toggleD7Diretriz('${dir}')" class="w-full p-4 rounded-xl border-2 text-[13px] font-medium text-left transition-all ${
+            isSelected ? 'border-[#D4A574] bg-[#D4A57415] text-[#FAF7F3]' : 'border-[#211B1B] bg-[#161313] text-[#E5DDD8]'
+          }">
+            <div class="flex gap-3">
+              <span class="text-[#D4A574] font-bold">${isSelected ? '✦' : '◦'}</span>
+              <span>${dir}</span>
+            </div>
+          </button>
+        `;
+      }).join('');
+
+      container.innerHTML = `
+        <div class="space-y-6">
+          <h3 class="font-serif-elegant text-2xl italic text-[#FAF7F3] font-bold">O Manifesto da Nova Estrutura</h3>
+          <p class="text-[15px] font-medium text-[#E5DDD8]">Quais dessas premissas clínicas você escolhe incorporar como lei máxima da sua nova identidade relacional a partir de hoje?</p>
+          
+          <div class="space-y-3 mb-6">
+            ${listHtml}
+          </div>
+
+          <button id="btn-d7-done" onclick="finishDay(7)" disabled class="w-full bg-[#211B1B] text-[#A4928C] py-4 rounded-full font-bold text-[15px]">Concluir Protocolo ✦</button>
+        </div>
+      `;
+      validateD7();
+    }
+
+    function toggleD7Diretriz(dir) {
+      if (answers.d7_diretrizes.includes(dir)) {
+        answers.d7_diretrizes = answers.d7_diretrizes.filter(d => d !== dir);
+      } else {
+        answers.d7_diretrizes.push(dir);
+      }
+      saveProgress();
+      showD7Step();
+    }
+
+    function validateD7() {
+      const btn = document.getElementById("btn-d7-done");
+      if (!btn) return;
+      if (answers.d7_diretrizes.length > 0) {
+        btn.disabled = false;
+        btn.className = "w-full bg-[#D4A574] text-[#0D0B0B] py-4 rounded-full font-bold text-[15px] transition-all active:scale-95";
+      } else {
+        btn.disabled = true;
+        btn.className = "w-full bg-[#211B1B] text-[#A4928C] py-4 rounded-full font-bold text-[15px] cursor-not-allowed";
+      }
+    }
+
+
+    // ==========================================
+    // FINALIZAÇÃO DE CADA DIA
+    // ==========================================
+    function finishDay(dayNum) {
+      if (breathTimer) clearTimeout(breathTimer);
+
+      if (!completedDays.includes(dayNum)) {
+        completedDays.push(dayNum);
+      }
+      
+      saveProgress();
+      document.getElementById("screen-activity").classList.add("hidden");
+      
+      if (dayNum === 7) {
+        renderFinalScreen();
+      } else {
+        document.getElementById("screen-day-done").classList.remove("hidden");
+        const nextBtn = document.getElementById("btn-next-day-flow");
+        nextBtn.innerText = `Iniciar o Dia ${dayNum + 1} →`;
+        
+        // Ajusta a mensagem de encerramento baseada na tese de Renata
+        const doneQuote = document.getElementById("day-done-quote");
+        if (userProfile === 'solteira') {
+          doneQuote.innerText = '"Retomar seu próprio espaço é o primeiro ato de disponibilidade real. O homem disponível agora tem caminho livre para te alcançar."';
+        } else if (userProfile === 'comprometida') {
+          doneQuote.innerText = '"A sua paz não é vigiar. A sua paz é deitar ao lado de quem você ama e desarmar os controles somáticos do corpo."';
+        } else if (userProfile === 'traida') {
+          doneQuote.innerText = '"Nenhum trauma antigo tem o poder de ditar o seu valor. A adulta de hoje assumiu o comando para te dar as rédeas."';
+        }
+      }
+    }
+
+    function goToNextDayInFlow() {
+      document.getElementById("screen-day-done").classList.add("hidden");
+      const nextDayIdx = completedDays.length;
+      if (nextDayIdx < 7) {
+        startDay(nextDayIdx);
+      } else {
+        backToMenu();
+      }
+    }
+
+    function renderFinalScreen() {
+      const container = document.getElementById("screen-activity");
+      container.classList.remove("hidden");
+      
+      let finalTitle = "Você voltou para dentro de si.";
+      let finalDesc = "Durante esses 7 passos, você reduziu a identificação com a dor, ergueu suas âncoras, mapeou suas projeções familiares e escolheu a Postura Adulta.";
+      let finalBefore = "Sua estabilidade e o valor da sua vida moravam na mente ou no comportamento do outro.";
+      let finalAfter = "Sua paz mora debaixo do seu próprio teto emocional construído à mão.";
+
+      if (userProfile === 'solteira') {
+        finalTitle = "Você não é mais a mesma mulher.";
+        finalDesc = "Você desarmou a lente que sabotava sua presença. Agora o disponível traz paz, e o indisponível traz tédio.";
+        finalBefore = "Fugir ou se fechar por medo de falhar na entrega.";
+        finalAfter = "Abrir a porta da disponibilidade emocional sem medo de se vulnerabilizar.";
+      } else if (userProfile === 'comprometida') {
+        finalTitle = "Seu casamento agora tem respiro.";
+        finalDesc = "Você desarmou as auditorias mentais e o monitoramento constante para descansar ao lado de quem ama.";
+        finalBefore = "Vigiar o visto por último, reler conversas e viver em constante estado de perigo.";
+        finalAfter = "Deitar e dormir com o corpo em paz, sabendo que você é inteira e suficiente.";
+      } else if (userProfile === 'traida') {
+        finalTitle = "A armadura foi destrancada.";
+        finalDesc = "Você escolheu o governo da sua própria vida em vez de viver refém do medo do próximo abandono.";
+        finalBefore = "Carregar a traição no peito como identidade protetora contra o afeto.";
+        finalAfter = "Se reerguer no seu real tamanho, consciente do seu poder de governar a si mesma.";
+      }
+
+      container.innerHTML = `
+        <div class="text-center py-10 space-y-6">
+          <div class="w-16 h-16 rounded-full bg-[#D4A57415] border border-[#D4A57433] flex items-center justify-center mx-auto">
+            <svg class="w-8 h-8 text-[#D4A574]" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M12 15v2m-6 4h12a2 2 0 002-2v-6a2 2 0 00-2-2H6a2 2 0 00-2 2v6a2 2 0 002 2zm10-10V7a4 4 0 00-8 0v4h8z"></path></svg>
+          </div>
+          <span class="text-[10px] uppercase text-[#D4A574] tracking-widest font-bold">Protocolo Integral Concluído</span>
+          <h2 class="font-serif-elegant text-3xl font-bold italic mt-2 text-[#FAF7F3] leading-tight">${finalTitle}</h2>
+          <p class="text-[15px] font-medium text-[#E5DDD8] mt-4 leading-relaxed max-w-sm mx-auto">
+            ${finalDesc}
+          </p>
+
+          <div class="my-8 space-y-3 text-left">
+            <div class="p-4 rounded-xl bg-[#161313] border border-[#211B1B]">
+              <span class="text-xs text-[#C4848A] font-bold block mb-1">Antes</span>
+              <p class="text-xs text-[#E5DDD8] font-semibold">${finalBefore}</p>
+            </div>
+            <div class="p-4 rounded-xl bg-[#C4848A10] border border-[#C4848A33]">
+              <span class="text-xs text-[#C4848A] font-bold block mb-1">Agora</span>
+              <p class="text-sm text-[#FAF7F3] font-serif-elegant italic font-medium">${finalAfter}</p>
+            </div>
+          </div>
+
+          <div class="bg-[#161313] border border-[#211B1B] p-6 rounded-2xl mb-8 text-left space-y-4">
+            <h4 class="font-serif-elegant text-lg italic text-[#D4A574] font-bold">O Caminho da Identidade Relacional</h4>
+            <p class="text-xs text-[#C4B5B0] leading-relaxed font-bold">
+              Você concluiu o reset inicial do seu sistema. Continue acompanhando os ensinamentos, dinâmicas clínicas e o aprofundamento sistêmico da Renata Penko Maximiliano diretamente no Instagram:
+            </p>
+            <a href="https://www.instagram.com/renatapenko.psicanalista?igsh=MWdxN3V6dWx0NHlvdA==" target="_blank" class="block w-full text-center bg-gradient-to-r from-[#C4848A] to-[#D4A574] text-[#0D0B0B] py-3.5 rounded-full font-bold text-[13px] hover:scale-[1.01] transition-transform shadow-lg">
+              Seguir Renata Penko no Instagram →
+            </a>
+          </div>
+
+          <button onclick="backToMenu()" class="text-xs text-[#A4928C] hover:text-[#FAF7F3] transition-colors font-bold">
+            Voltar ao Painel para Rever Respostas
+          </button>
+        </div>
+      `;
+    }
+
+    // ==========================================
+    // DIÁRIO (PERSISTÊNCIA DINÂMICA REFORMULADA)
+    // ==========================================
+    function renderDiario() {
+      const container = document.getElementById("diario-cards-container");
+      if (!container) return;
+      container.innerHTML = "";
+
+      let hasAnswers = false;
+
+      // Dia 1
+      if (answers.d1_nome) {
+        hasAnswers = true;
+        container.innerHTML += `
+          <div class="p-5 rounded-2xl bg-[#161313] border border-[#211B1B] space-y-2">
+            <span class="text-[9px] text-[#C4848A] font-bold uppercase tracking-widest">DIA 1 · CORTANDO O CORDÃO</span>
+            <h4 class="font-serif-elegant text-base italic text-[#FAF7F3] font-bold">Desligamento de: ${answers.d1_nome}</h4>
+            <div class="flex flex-wrap gap-1.5 mt-2">
+              ${answers.d1_corpo.map(tag => `<span class="text-[10px] bg-[#C4848A1A] text-[#C4848A] px-2.5 py-1 rounded-full font-bold border border-[#C4848A33]">${tag}</span>`).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      // Dia 2
+      if (answers.d2_ancora) {
+        hasAnswers = true;
+        let carta = d2_cartas.find(c => c.id === answers.d2_carta_id);
+        container.innerHTML += `
+          <div class="p-5 rounded-2xl bg-[#161313] border border-[#211B1B] space-y-2">
+            <span class="text-[9px] text-[#7A9E8C] font-bold uppercase tracking-widest">DIA 2 · RETORNO AO EIXO</span>
+            <p class="text-sm text-[#E5DDD8] font-semibold"><strong>Sua Âncora somática ativa:</strong> ${answers.d2_ancora}</p>
+            ${carta ? `
+              <div class="p-3 bg-[#0D0B0B] rounded-xl border border-[#211B1B] mt-2">
+                <p class="text-[9px] text-[#7A9E8C] uppercase font-bold mb-1">${carta.titulo}</p>
+                <p class="text-xs italic text-[#FAF7F3] leading-relaxed">"${carta.corpo}"</p>
+              </div>
+            ` : ""}
+            ${answers.d2_origem.length > 0 ? `
+              <div class="mt-2 space-y-1">
+                <p class="text-xs text-[#E5DDD8] font-bold">Dinâmicas herdadas reconhecidas:</p>
+                ${answers.d2_origem.map(o => `<p class="text-[11px] text-[#7A9E8C] font-bold">• ${o}</p>`).join('')}
+              </div>
+            ` : ""}
+          </div>
+        `;
+      }
+
+      // Dia 3
+      if (answers.d3_necessidades.length > 0) {
+        hasAnswers = true;
+        container.innerHTML += `
+          <div class="p-5 rounded-2xl bg-[#161313] border border-[#211B1B] space-y-2">
+            <span class="text-[9px] text-[#9A80C0] font-bold uppercase tracking-widest">DIA 3 · COMPULSÕES INTERROMPIDAS</span>
+            <div class="space-y-1 my-2">
+              <p class="text-xs text-[#E5DDD8] font-bold">Suas necessidades maduras:</p>
+              ${answers.d3_necessidades.map(n => `<p class="text-[11px] text-[#9A80C0] font-bold">• ${n}</p>`).join('')}
+            </div>
+            <div class="mt-2 space-y-1">
+              <p class="text-xs text-[#E5DDD8] font-bold">O que se comprometeu a pausar:</p>
+              ${answers.d3_compromissos.map(c => `<p class="text-[11px] text-[#9A80C0] font-bold">• ${c}</p>`).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      // Dia 4
+      if (answers.d4_projecoes.length > 0) {
+        hasAnswers = true;
+        container.innerHTML += `
+          <div class="p-5 rounded-2xl bg-[#161313] border border-[#211B1B] space-y-2">
+            <span class="text-[9px] text-[#D4A574] font-bold uppercase tracking-widest">DIA 4 · MAPEAMENTO DA LENTE</span>
+            <div class="grid grid-cols-2 gap-4 my-2 text-xs text-[#C4B5B0] border-b border-[#211B1B] pb-2 font-bold">
+              <div>Mãe: <strong class="text-[#D4A574] text-sm font-bold">${answers.d4_mae}/10</strong></div>
+              <div>Pai: <strong class="text-[#D4A574] text-sm font-bold">${answers.d4_pai}/10</strong></div>
+            </div>
+            <p class="text-xs text-[#E5DDD8] mt-2 font-bold">Lentes e Projeções sistêmicas ativas:</p>
+            <div class="flex flex-col gap-1">
+              ${answers.d4_projecoes.map(p => `<p class="text-[11px] text-[#D4A574] font-bold">• ${p}</p>`).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      // Dia 5
+      if (answers.d5_chave_id) {
+        hasAnswers = true;
+        let chave = d5_chaves.find(c => c.id === answers.d5_chave_id);
+        let comp = d5_compromissos.find(c => c.id === answers.d5_compromisso_id);
+        container.innerHTML += `
+          <div class="p-5 rounded-2xl bg-[#161313] border border-[#211B1B] space-y-2">
+            <span class="text-[9px] text-[#C4848A] font-bold uppercase tracking-widest">DIA 5 · CHAVE DE ACESSO</span>
+            <h4 class="font-serif-elegant text-base italic text-[#FAF7F3] font-bold">${chave ? chave.t : "Chave Escolhida"}</h4>
+            ${comp ? `<p class="text-xs text-[#FAF7F3] italic leading-relaxed font-semibold">"${comp.text}"</p>` : ""}
+          </div>
+        `;
+      }
+
+      // Dia 6
+      if (answers.d6_cenario1) {
+        hasAnswers = true;
+        container.innerHTML += `
+          <div class="p-5 rounded-2xl bg-[#161313] border border-[#211B1B] space-y-2">
+            <span class="text-[9px] text-[#7A9E8C] font-bold uppercase tracking-widest">DIA 6 · DECISÕES DA POSTURA ADULTA</span>
+            <p class="text-[11px] text-[#E5DDD8] font-semibold"><strong>Cenário da Mensagem Ignorada:</strong> ${answers.d6_cenario1 === 'r1_adulta' ? 'Adulta / Segura ✓' : 'Padrão Infantil Automático'}</p>
+            <p class="text-[11px] text-[#E5DDD8] font-semibold"><strong>Cenário do Homem Disponível:</strong> ${answers.d6_cenario2 === 'r2_adulta' ? 'Adulta / Segura ✓' : 'Padrão Infantil Automático'}</p>
+          </div>
+        `;
+      }
+
+      // Dia 7
+      if (answers.d7_diretrizes.length > 0) {
+        hasAnswers = true;
+        container.innerHTML += `
+          <div class="p-5 rounded-2xl bg-[#161313] border border-[#211B1B] space-y-2">
+            <span class="text-[9px] text-[#D4A574] font-bold uppercase tracking-widest">DIA 7 · DIRETRIZES DA NOVA ESTRUTURA</span>
+            <div class="space-y-1">
+              ${answers.d7_diretrizes.map(dir => `<p class="text-xs italic text-[#FAF7F3] leading-relaxed font-semibold">"${dir}"</p>`).join('')}
+            </div>
+          </div>
+        `;
+      }
+
+      if (!hasAnswers) {
+        container.innerHTML = `
+          <div class="p-8 rounded-xl bg-[#161313] border border-[#211B1B] text-center text-xs text-[#C4B5B0] font-bold">
+            Nenhum registro encontrado. Suas escolhas aparecerão aqui conforme você interage com o protocolo.
+          </div>
+        `;
+      }
+    }
+
+    function resetAllProgress() {
+      if (confirm("Isso apagará todas as suas respostas do Diário e zerará o seu histórico de 7 dias. Deseja prosseguir?")) {
+        localStorage.removeItem("reset_amor_completed_v4");
+        localStorage.removeItem("reset_amor_answers_v4");
+        localStorage.removeItem("reset_amor_profile");
+        
+        completedDays = [];
+        userProfile = "";
+        answers = {
+          d1_nome: "", d1_corpo: [],
+          d2_ancora: "", d2_carta_id: "", d2_origem: [],
+          d3_necessidades: [], d3_compromissos: [],
+          d4_mae: 5, d4_pai: 5, d4_projecoes: [],
+          d5_chave_id: "", d5_compromisso_id: "",
+          d6_cenario1: "", d6_cenario2: "",
+          d7_diretrizes: []
+        };
+
+        saveProgress();
+        document.getElementById("screen-menu").classList.add("hidden");
+        document.getElementById("screen-reading").classList.add("hidden");
+        document.getElementById("screen-activity").classList.add("hidden");
+        document.getElementById("screen-day-done").classList.add("hidden");
+        document.getElementById("screen-profile-selector").classList.remove("hidden");
+      }
+    }
+  </script>
+</body>
+</html>
