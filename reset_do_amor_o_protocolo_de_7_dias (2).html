@@ -1,0 +1,1573 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reset do Amor — O Protocolo de 7 Dias</title>
+  
+  <!-- Tailwind CSS para estilização premium, fluida e totalmente responsiva -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  
+  <!-- Fontes do Google: Playfair Display (Serifada Elegante) e Plus Jakarta Sans (Sóbria e Encorpada) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', sans-serif;
+      background-color: #0D0B0B;
+      letter-spacing: -0.010em;
+      color: #E5DDD8;
+      font-weight: 500; /* Letra mais encorpada e confortável de ler no celular */
+    }
+    .font-serif-elegant {
+      font-family: 'Playfair Display', serif;
+    }
+    .premium-dark-gradient {
+      background: radial-gradient(circle at 50% 30%, #161213 0%, #0D0B0B 100%);
+    }
+    /* Customização elegante para sliders de toque (não cansativo) */
+    input[type="range"] {
+      -webkit-appearance: none;
+      appearance: none;
+      background: #211B1B;
+      height: 6px;
+      border-radius: 99px;
+    }
+    input[type="range"]::-webkit-slider-thumb {
+      -webkit-appearance: none;
+      appearance: none;
+      width: 22px;
+      height: 22px;
+      border-radius: 50%;
+      background: #D4A574;
+      cursor: pointer;
+      box-shadow: 0 0 14px rgba(212, 165, 116, 0.6);
+    }
+    /* Transições de Fade Suave de Página */
+    .fade-transition {
+      transition: opacity 0.4s cubic-bezier(0.4, 0, 0.2, 1), transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    /* Esconder barra de rolagem horizontal mantendo a funcionalidade de arrastar */
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+    /* Animação suave para a pulsação do cordão */
+    .cord-line {
+      stroke-dasharray: 8, 8;
+      animation: dash 25s linear infinite;
+    }
+    @keyframes dash {
+      to {
+        stroke-dashoffset: -1000;
+      }
+    }
+  </style>
+</head>
+<body class="selection:bg-[#C94F78] selection:text-white overflow-x-hidden min-h-screen premium-dark-gradient flex flex-col justify-between">
+
+  <!-- CABEÇALHO SÓBRIO COM NAVEGADOR DE DIAS -->
+  <header id="app-header" class="border-b border-[#1C1818] py-4 px-4 sticky top-0 bg-[#0D0B0B]/95 backdrop-blur z-50 hidden transition-all duration-300">
+    <div class="max-w-xl mx-auto w-full flex flex-col gap-3">
+      <div class="flex justify-between items-center">
+        <div class="flex items-center gap-3">
+          <div class="w-8 h-8 rounded-full bg-gradient-to-tr from-[#C94F78] to-[#D4A574] flex items-center justify-center shadow-md">
+            <span class="font-serif-elegant font-bold text-sm text-[#0D0B0B]">R</span>
+          </div>
+          <div>
+            <h1 class="font-serif-elegant font-bold italic tracking-wide text-[#FAF7F3] text-sm">Reset do Amor</h1>
+            <p class="text-[9px] text-[#C4B5B0] uppercase tracking-widest font-bold">Método Conexão Emocional</p>
+          </div>
+        </div>
+        <button onclick="goToMenu()" class="text-[10px] uppercase tracking-wider font-bold text-[#D4A574] bg-[#211B1B] px-3.5 py-2 rounded-full hover:bg-white/5 active:scale-95 transition-all">
+          🧭 Painel
+        </button>
+      </div>
+      
+      <!-- Navegação Rápida pelos Dias do Protocolo (Swipe horizontal gostoso de usar no celular) -->
+      <div class="flex justify-between items-center overflow-x-auto gap-1 py-1 no-scrollbar border-t border-[#1C1818]/50 pt-2">
+        <button onclick="jumpToDay(1)" class="day-nav-btn text-[10px] font-bold px-3 py-1.5 rounded-md text-center transition-all bg-[#211B1B] text-[#C4B5B0] shrink-0" id="nav-day-1">D1</button>
+        <button onclick="jumpToDay(2)" class="day-nav-btn text-[10px] font-bold px-3 py-1.5 rounded-md text-center transition-all bg-[#211B1B] text-[#C4B5B0] shrink-0" id="nav-day-2">D2</button>
+        <button onclick="jumpToDay(3)" class="day-nav-btn text-[10px] font-bold px-3 py-1.5 rounded-md text-center transition-all bg-[#211B1B] text-[#C4B5B0] shrink-0" id="nav-day-3">D3</button>
+        <button onclick="jumpToDay(4)" class="day-nav-btn text-[10px] font-bold px-3 py-1.5 rounded-md text-center transition-all bg-[#211B1B] text-[#C4B5B0] shrink-0" id="nav-day-4">D4</button>
+        <button onclick="jumpToDay(5)" class="day-nav-btn text-[10px] font-bold px-3 py-1.5 rounded-md text-center transition-all bg-[#211B1B] text-[#C4B5B0] shrink-0" id="nav-day-5">D5</button>
+        <button onclick="jumpToDay(6)" class="day-nav-btn text-[10px] font-bold px-3 py-1.5 rounded-md text-center transition-all bg-[#211B1B] text-[#C4B5B0] shrink-0" id="nav-day-6">D6</button>
+        <button onclick="jumpToDay(7)" class="day-nav-btn text-[10px] font-bold px-3 py-1.5 rounded-md text-center transition-all bg-[#211B1B] text-[#C4B5B0] shrink-0" id="nav-day-7">D7</button>
+        <button onclick="jumpToTab('diario')" class="day-nav-btn text-[10px] font-bold px-3.5 py-1.5 rounded-md text-center transition-all bg-[#161313] text-[#C94F78] border border-[#C94F78]/20 shrink-0" id="nav-diario">Diário</button>
+      </div>
+    </div>
+  </header>
+
+  <!-- CONTAINER DE NAVEGAÇÃO CENTRAL -->
+  <main class="max-w-xl mx-auto px-4 py-6 w-full flex-1 flex flex-col justify-center">
+    <!-- MODAL CUSTOMIZADO DE RESET (Eliminando alert/confirm nativos) -->
+    <div id="reset-confirm-modal" class="hidden fixed inset-x-4 top-1/4 bg-[#161313] border border-[#C94F78]/30 rounded-2xl p-6 shadow-2xl z-50 max-w-sm mx-auto">
+      <h4 class="font-serif-elegant italic text-lg text-[#FAF7F3] font-bold mb-3">Reiniciar sua caminhada?</h4>
+      <p class="text-xs text-[#C4B5B0] leading-relaxed mb-6 font-medium">Isso apagará permanentemente todas as suas respostas salvas e o seu progresso neste celular. Tem certeza de que deseja recomeçar?</p>
+      <div class="flex gap-3 justify-end">
+        <button onclick="closeResetModal()" class="px-4 py-2 bg-[#211B1B] rounded-full text-xs font-bold text-[#E5DDD8]">Cancelar</button>
+        <button onclick="executeResetAll()" class="px-5 py-2 bg-[#C94F78] rounded-full text-xs font-bold text-white shadow-md shadow-[#C94F78]/20">Sim, reiniciar</button>
+      </div>
+    </div>
+    <div id="modal-overlay" class="hidden fixed inset-0 bg-black/80 backdrop-blur-sm z-40"></div>
+
+    <!-- CONTEÚDO PRINCIPAL (RENDERIZADO DINAMICAMENTE) -->
+    <div id="content-container" class="fade-transition w-full">
+      <!-- As telas da jornada serão injetadas de forma estável aqui -->
+    </div>
+  </main>
+
+  <!-- RODAPÉ SÓBRIO -->
+  <footer class="py-6 text-center text-[10px] text-[#C4B5B0] border-t border-[#1C1818] max-w-xl mx-auto w-full font-bold px-4">
+    <p>© 2026 Renata Penko Maximiliano · Método Conexão Emocional</p>
+    <p class="mt-1">Uma experiência terapêutica digital de reorganização relacional.</p>
+  </footer>
+
+  <script>
+    // ─── CONTEÚDOS CLÍNICOS ADAPTATIVOS DA JORNADA ───
+    const JORNADA_DIAS = [
+      {
+        number: 1,
+        title: "Divórcio Energético",
+        subtitle: "Dia 1 · Desative a Dor no Corpo",
+        color: "#C94F78",
+        theme: "DESATIVE",
+        bridge: {
+          solteira: "O primeiro passo não é procurar alguém de novo para provar que você é capaz de ser amada. É respirar, recolher sua força e cortar o cordão com os fantasmas do passado que drenam sua energia.",
+          comprometida: "O primeiro passo não é tentar controlar, cobrar ou monitorar os movimentos dele. É respirar e cortar o cordão que faz a sua paz depender do comportamento de outra pessoa.",
+          traida: "O primeiro passo não é buscar respostas exaustivas sobre o que houve para tentar se defender. É dar fôlego ao seu peito e cortar o cordão com a memória do trauma que paralisa você."
+        }
+      },
+      {
+        number: 2,
+        title: "Retorne a Si",
+        subtitle: "Dia 2 · Suas Âncoras",
+        color: "#7A9E8C",
+        theme: "RETORNE",
+        bridge: {
+          solteira: "No Dia 1, você cortou a drenagem. Hoje você vai lembrar quem você é quando não está na posição de escassez afetiva ou mendigando migalhas.",
+          comprometida: "No Dia 1, você pausou a necessidade de auditoria. Hoje você vai resgatar quem você é quando sua estabilidade emocional não está terceirizada.",
+          traida: "No Dia 1, você deu fôlego ao peito. Hoje você vai lembrar quem você é fora do papel de hipervigilância e alerta contra o sofrimento."
+        }
+      },
+      {
+        number: 3,
+        title: "Reconstrua o Eixo",
+        subtitle: "Dia 3 · Suas Reais Necessidades",
+        color: "#9A80C0",
+        theme: "RECONSTRUA",
+        bridge: {
+          solteira: "Você voltou para si mesma. Agora, você vai aprender a olhar para a sua carência de forma madura, sem fugir correndo para o primeiro homem indisponível.",
+          comprometida: "Você voltou para si. Agora, você vai olhar para as suas carências de forma lúcida, sem o filtro do desespero e da urgência infantil.",
+          traida: "Você regulou seu corpo. Agora, você vai mapear o que o seu sistema precisa de verdade para se sentir seguro para caminhar de novo."
+        }
+      },
+      {
+        number: 4,
+        title: "Revele a Lente",
+        subtitle: "Dia 4 · A Origem Familiar",
+        color: "#D4A574",
+        theme: "REVELAR",
+        bridge: {
+          solteira: "Você não escolhe ficar sozinha ou se sabotar por acaso. Você aprendeu a fazer isso através de scripts de sobrevivência na sua infância.",
+          comprometida: "Você não vigia seu casamento por acaso. Você aprendeu que a conexão é instável com base na indisponibilidade que viu no seu passado.",
+          traida: "O tamanho do alerta que seu corpo vive hoje reflete o tamanho da vulnerabilidade desamparada que você viveu no seu passado familiar."
+        }
+      },
+      {
+        number: 5,
+        title: "Abra a Porta",
+        subtitle: "Dia 5 · Disponibilidade Emocional",
+        color: "#C94F78",
+        theme: "DISPONIBILIDADE",
+        bridge: {
+          solteira: "Você diz que quer ser amada, mas sabota quem tenta chegar perto. Hoje vamos entender a fechadura desse quarto fechado por dentro.",
+          comprometida: "Você diz que quer intimidade, mas se fecha em cobranças e defesas quando ele tenta se aproximar de verdade.",
+          traida: "Sua armadura protege você de sofrer novamente, mas também impede o amor real de alcançar o seu peito."
+        }
+      },
+      {
+        number: 6,
+        title: "A Postura Adulta",
+        subtitle: "Dia 6 · Governança Somática",
+        color: "#7A9E8C",
+        theme: "ADULTECER",
+        bridge: {
+          solteira: "Quando a carência ou o medo do tédio disparam, quem assume os controles: a mulher inteligente que você é, ou a menina assustada?",
+          comprometida: "Quando ele visualiza e não responde, quem assume o controle do seu corpo: a mulher madura ou a criança em pânico?",
+          traida: "Quando o medo de ser rejeitada novamente domina, quem toma as decisões: a mulher autossuficiente ou a criança machucada?"
+        }
+      },
+      {
+        number: 7,
+        title: "A Conexão Real",
+        subtitle: "Dia 7 · O Descanso Emocional",
+        color: "#D4A574",
+        theme: "CONECTAR",
+        bridge: {
+          solteira: "Você não terminou um aplicativo. Você iniciou uma nova forma de governar o seu corpo e existir no mundo dos afetos.",
+          comprometida: "Você não terminou um aplicativo. Você iniciou uma nova forma de governar o seu corpo e existir no mundo dos afetos.",
+          traida: "Você não terminou um aplicativo. Você iniciou uma nova forma de governar o seu corpo e existir no mundo dos afetos."
+        }
+      }
+    ];
+
+    // CARTAS PRONTAS DA ADULTA SÁBIA (Dia 2)
+    const D2_CARTAS = {
+      solteira: "Minha querida, você não precisa se fechar ou se sabotar para se proteger do sofrimento. O que você precisa é aprender a desenhar limites com a sua postura de mulher adulta. O homem disponível não é sem graça, ele é o seu solo de paz. Desarme-se e permita que o afeto estável te encontre.",
+      comprometida: "Acalme esse peito, menina. Ele não é o seu ontem e você não precisa vigiá-lo para impedir que ele te deixe. Deixe o controle de lado. Se você precisar vigiar alguém para que ele permaneça, o vínculo já faliu. Sinta a sua respiração e decida descansar sob o seu próprio teto hoje.",
+      traida: "Sua armadura rígida protegeu você da dor da traição, mas também está impedindo você de viver qualquer afeto. Estar sempre em estado de alerta gasta sua preciosa energia vital. Você já cresceu. Se alguém falhar com você, a adulta que você é hoje saberá sobreviver. Você pode descansar os olhos."
+    };
+
+    // ESTADO DO APP COM SALVAMENTO AUTOMÁTICO
+    let state = {
+      profile: localStorage.getItem("reset_v8_profile") || "",
+      completedDays: JSON.parse(localStorage.getItem("reset_v8_completed")) || [],
+      currentScreen: localStorage.getItem("reset_v8_screen") || "intro0",
+      answers: JSON.parse(localStorage.getItem("reset_v8_answers")) || {
+        d1_nome: "",
+        d1_corpo: "",
+        d1_breath_done: false,
+        d2_ancora: "",
+        d2_carta_escolhida: false,
+        d2_origem: "",
+        d3_necessidade: "",
+        d3_pausa: "",
+        d4_mae: 5,
+        d4_pai: 5,
+        d4_projecao: "",
+        d5_chave: "",
+        d5_compromisso: "",
+        d6_gatilho_somático: "",
+        d6_postura_check: false,
+        d6_resposta_adulta: "",
+        d6_cenario_escolhido: "",
+        d7_diretriz: ""
+      }
+    };
+
+    function saveState() {
+      localStorage.setItem("reset_v8_profile", state.profile);
+      localStorage.setItem("reset_v8_completed", JSON.stringify(state.completedDays));
+      localStorage.setItem("reset_v8_screen", state.currentScreen);
+      localStorage.setItem("reset_v8_answers", JSON.stringify(state.answers));
+      updateNavigationUI();
+    }
+
+    // CONTROLE DE NAVEGAÇÃO DOS BOTÕES SUPERIORES (Navegação Gostosa e Intuitiva)
+    function updateNavigationUI() {
+      const header = document.getElementById("app-header");
+      if (!state.profile || state.currentScreen === "intro0" || state.currentScreen === "intro1") {
+        header.classList.add("hidden");
+        return;
+      }
+      header.classList.remove("hidden");
+
+      for (let i = 1; i <= 7; i++) {
+        const btn = document.getElementById("nav-day-" + i);
+        if (!btn) continue;
+        const isCompleted = state.completedDays.includes(i);
+        
+        if (state.currentScreen === `day-${i}`) {
+          btn.className = "day-nav-btn text-[10px] font-bold px-3.5 py-2 rounded-md text-center transition-all bg-[#C94F78] text-white shadow-md shadow-[#C94F78]/15 border border-[#C94F78]";
+        } else if (isCompleted) {
+          btn.className = "day-nav-btn text-[10px] font-bold px-3.5 py-2 rounded-md text-center transition-all bg-[#7A9E8C]/20 text-[#7A9E8C] border border-[#7A9E8C]/30";
+        } else {
+          btn.className = "day-nav-btn text-[10px] font-bold px-3.5 py-2 rounded-md text-center transition-all bg-[#161313] text-[#C4B5B0] border border-[#211B1B]";
+        }
+      }
+
+      const navDiario = document.getElementById("nav-diario");
+      if (navDiario) {
+        if (state.currentScreen === "diario") {
+          navDiario.className = "day-nav-btn text-[10px] font-bold px-3.5 py-2 rounded-md text-center transition-all bg-[#C94F78]/20 text-[#C94F78] border-2 border-[#C94F78]";
+        } else {
+          navDiario.className = "day-nav-btn text-[10px] font-bold px-3.5 py-2 rounded-md text-center transition-all bg-[#161313] text-[#C4B5B0] border border-[#211B1B]";
+        }
+      }
+    }
+
+    window.onload = function() {
+      renderCurrentScreen();
+    };
+
+    function setScreen(screenName) {
+      state.currentScreen = screenName;
+      saveState();
+      renderCurrentScreen();
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    function jumpToDay(num) {
+      setScreen(`day-${num}`);
+    }
+
+    function jumpToTab(tab) {
+      if (tab === 'diario') {
+        setScreen("diario");
+      }
+    }
+
+    function goToMenu() {
+      setScreen("dashboard");
+    }
+
+    // INTERVENÇÕES HUMANAS DA RENATA (Sussurros da Renata)
+    function renderRenataNote(text) {
+      return `
+        <div class="my-6 p-5 rounded-2xl bg-[#1C1818]/60 border-l-2 border-[#D4A574] text-left">
+          <p class="text-[9px] text-[#D4A574] tracking-widest font-bold uppercase mb-2">Uma observação da Renata</p>
+          <p class="font-serif-elegant italic text-sm text-[#E5DDD8] leading-relaxed">"${text}"</p>
+        </div>
+      `;
+    }
+
+    function renderRenataQuote(text) {
+      return `
+        <div class="my-6 p-5 rounded-xl bg-[#C94F780D] border border-[#C94F781A] text-center">
+          <p class="font-serif-elegant italic text-sm text-[#C4B5B0] leading-relaxed">"${text}"</p>
+        </div>
+      `;
+    }
+
+    // TELA DE CONCLUÍDO DO DIA (Sem linguagem de produtividade)
+    function renderDayDoneScreen(dayNum, text) {
+      if (!state.completedDays.includes(dayNum)) {
+        state.completedDays.push(dayNum);
+        saveState();
+      }
+
+      const container = document.getElementById("content-container");
+      container.innerHTML = `
+        <div class="space-y-6 text-center max-w-md mx-auto py-4">
+          <div class="text-3xl text-[#7A9E8C]">✦</div>
+          <span class="text-[10px] tracking-widest text-[#7A9E8C] font-bold uppercase">Espaço de Integração</span>
+          <h2 class="font-serif-elegant text-2xl font-bold italic text-[#FAF7F3]">Por hoje é suficiente.</h2>
+          
+          <div class="p-6 rounded-2xl bg-[#161313] border border-[#211B1B] text-left">
+            <p class="font-serif-elegant italic text-[15px] text-[#E5DDD8] leading-relaxed">
+              "${text}"
+            </p>
+          </div>
+
+          <p class="text-xs text-[#C4B5B0] font-medium max-w-xs mx-auto leading-relaxed">
+            Tudo o que precisava ser visto hoje já começou a encontrar um lugar dentro de você. Amanhã continuaremos.
+          </p>
+
+          <div class="pt-4 flex flex-col gap-3">
+            <button onclick="setScreen('dashboard')" class="w-full bg-[#161313] border border-[#211B1B] text-[#FAF7F3] py-4 rounded-full font-bold text-[14px] transition-all duration-300 active:scale-95 hover:bg-white/5">
+              Voltar ao Painel da Jornada
+            </button>
+            ${dayNum < 7 ? `
+              <button onclick="jumpToDay(${dayNum + 1})" class="w-full bg-gradient-to-r from-[#C94F78] to-[#D4A574] text-[#0D0B0B] py-4 rounded-full font-bold text-[14px] transition-all duration-300 active:scale-95 shadow-lg">
+                Seguir para o próximo dia →
+              </button>
+            ` : `
+              <button onclick="jumpToTab('diario')" class="w-full bg-gradient-to-r from-[#7A9E8C] to-[#D4A574] text-[#0D0B0B] py-4 rounded-full font-bold text-[14px] transition-all duration-300 active:scale-95 shadow-lg">
+                Ver meu Diário de Integração →
+              </button>
+            `}
+          </div>
+        </div>
+      `;
+    }
+  </script>
+
+  <script>
+    // ─── RENDERIZADOR DE TELAS DA JORNADA ───
+    function renderCurrentScreen() {
+      const container = document.getElementById("content-container");
+      const scr = state.currentScreen;
+
+      // 1. PRIMEIRA TELA DE BOAS VINDAS (Tese Pura da Renata - Sem parecer aplicativo)
+      if (scr === "intro0") {
+        container.innerHTML = `
+          <div class="space-y-8 py-6 text-center max-w-md mx-auto">
+            <div class="font-serif-elegant text-5xl text-[#C94F78] opacity-80 select-none">✦</div>
+            <h2 class="font-serif-elegant text-3xl italic font-semibold text-[#FAF7F3] leading-relaxed">
+              Você não chegou aqui porque ama demais.
+            </h2>
+            <div class="space-y-6 text-[#E5DDD8] text-[15px] font-medium leading-relaxed text-justify px-2">
+              <p>
+                Você chegou porque alguma coisa acontece dentro de você sempre que um vínculo afetivo começa a se tornar importante.
+              </p>
+              <p>
+                Talvez o seu peito aperte. Talvez você sinta uma pressa urgente por respostas, ou um medo silencioso de que, a qualquer momento, tudo vá desmoronar. Talvez você simplesmente se feche e sabote antes que o outro possa se aproximar.
+              </p>
+              <p>
+                Você ainda não sabe explicar isso em palavras. Mas, ao longo dos próximos sete dias, nós vamos olhar para essa história juntas. Sem pressa.
+              </p>
+            </div>
+            <div class="pt-4">
+              <button onclick="setScreen('intro1')" class="w-full bg-gradient-to-r from-[#C94F78] to-[#D4A574] text-[#0D0B0B] py-4 rounded-full font-bold tracking-wide text-[14px] transition-all duration-300 hover:scale-[1.01] active:scale-95 shadow-lg">
+                Vamos olhar para isso juntas
+              </button>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      // 2. SELEÇÃO DE PERFIL TERAPÊUTICO (Acolhedor e sem rótulos fáceis)
+      if (scr === "intro1") {
+        container.innerHTML = `
+          <div class="space-y-8 py-6 max-w-md mx-auto">
+            <div class="text-center">
+              <span class="text-[10px] tracking-[0.25em] font-bold text-[#C94F78] uppercase">O Ponto de Partida</span>
+              <h2 class="font-serif-elegant text-3xl italic font-bold text-[#FAF7F3] mt-2">Como seu corpo se sente hoje?</h2>
+              <p class="text-[14px] font-medium text-[#C4B5B0] mt-3 leading-relaxed text-center">
+                Para que eu possa caminhar ao seu lado com a voz certa para o seu momento de vida, selecione a sua situação atual:
+              </p>
+            </div>
+
+            <div class="space-y-4">
+              <button onclick="selectProfile('solteira')" class="w-full text-left p-5 rounded-2xl border border-[#211B1B] bg-[#161313] hover:border-[#C94F78]/50 active:scale-[0.98] transition-all duration-300 group">
+                <span class="text-[9px] font-bold text-[#C94F78] tracking-wider uppercase block mb-1">A Mulher Solteira</span>
+                <h3 class="font-serif-elegant text-base font-bold italic text-[#FAF7F3] leading-relaxed group-hover:text-white">"Sou independente e forte na vida, mas me fecho, sinto tédio ou saboto quando alguém se aproxima."</h3>
+              </button>
+
+              <button onclick="selectProfile('comprometida')" class="w-full text-left p-5 rounded-2xl border border-[#211B1B] bg-[#161313] hover:border-[#7A9E8C]/50 active:scale-[0.98] transition-all duration-300 group">
+                <span class="text-[9px] font-bold text-[#7A9E8C] tracking-wider uppercase block mb-1">A Mulher Comprometida</span>
+                <h3 class="font-serif-elegant text-base font-bold italic text-[#FAF7F3] leading-relaxed group-hover:text-white">"Amo meu parceiro, mas vivo ansiosa, monitorando, interpretando mensagens e sem descansar na relação."</h3>
+              </button>
+
+              <button onclick="selectProfile('traida')" class="w-full text-left p-5 rounded-2xl border border-[#211B1B] bg-[#161313] hover:border-[#D4A574]/50 active:scale-[0.98] transition-all duration-300 group">
+                <span class="text-[9px] font-bold text-[#D4A574] tracking-wider uppercase block mb-1">A Mulher Ferida / Desconectada</span>
+                <h3 class="font-serif-elegant text-base font-bold italic text-[#FAF7F3] leading-relaxed group-hover:text-white">"Fui muito machucada no passado, meu corpo vive em alerta e tenho medo de me entregar novamente."</h3>
+              </button>
+            </div>
+          </div>
+        `;
+        return;
+      }
+
+      // 3. PAINEL DA JORNADA (Navegação Livre com progresso)
+      if (scr === "dashboard") {
+        let badgeText = "Solteira";
+        let badgeColor = "#C94F78";
+        if (state.profile === "comprometida") { badgeText = "Comprometida"; badgeColor = "#7A9E8C"; }
+        if (state.profile === "traida") { badgeText = "Ferida / Desconectada"; badgeColor = "#D4A574"; }
+
+        const progressPercent = (state.completedDays.length / 7) * 100;
+
+        let html = `
+          <div class="space-y-6 max-w-md mx-auto">
+            <div class="text-center py-4">
+              <div class="inline-flex items-center gap-2 px-4 py-1.5 bg-[#161313] border border-[#211B1B] rounded-full text-[10px] text-[#C4B5B0] font-bold uppercase tracking-wider mb-4">
+                <span>Sua lente atual:</span>
+                <span style="color: ${badgeColor};" class="font-extrabold">${badgeText}</span>
+                <span class="cursor-pointer underline text-[#D4A574] ml-1.5" onclick="resetProfileSelection()">[Alterar]</span>
+              </div>
+              <h2 class="font-serif-elegant text-3xl italic font-bold text-[#FAF7F3]">O Protocolo de 7 Dias</h2>
+              <p class="text-xs text-[#C4B5B0] mt-2 font-semibold">Toda a caminhada está acessível. Siga no seu próprio tempo de regulação.</p>
+            </div>
+
+            <!-- Progresso Geral -->
+            <div class="bg-[#161313] border border-[#211B1B] rounded-2xl p-5 flex items-center justify-between">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-full bg-[#C94F780D] flex items-center justify-center border border-[#C94F7833]">
+                  <span class="font-serif-elegant font-bold text-xs text-[#C94F78]">✦</span>
+                </div>
+                <div>
+                  <p class="text-[10px] text-[#C4B5B0] uppercase tracking-wider font-bold">Caminhada Emocional</p>
+                  <p class="font-serif-elegant italic text-sm text-[#FAF7F3] font-semibold">${state.completedDays.length} de 7 Passos Integrados</p>
+                </div>
+              </div>
+              <div class="w-20 h-1.5 bg-[#211B1B] rounded-full overflow-hidden">
+                <div class="bg-[#C94F78] h-full transition-all duration-500" style="width: ${progressPercent}%"></div>
+              </div>
+            </div>
+
+            <!-- LISTA DOS DIAS -->
+            <div class="space-y-4">
+        `;
+
+        JORNADA_DIAS.forEach((day) => {
+          const isCompleted = state.completedDays.includes(day.number);
+          html += `
+            <div onclick="jumpToDay(${day.number})" class="group p-5 rounded-2xl border transition-all duration-300 bg-[#161313] hover:bg-[#1E1A1A] ${isCompleted ? 'border-[#7A9E8C]/30' : 'border-[#211B1B]'} cursor-pointer flex justify-between items-center active:scale-[0.99]">
+              <div class="flex items-center gap-4 flex-1">
+                <div class="w-10 h-10 rounded-full border flex items-center justify-center text-[#FAF7F3] transition-all ${isCompleted ? 'bg-[#7A9E8C]/10 border-[#7A9E8C]/30 text-[#7A9E8C]' : 'bg-white/5 border-white/10 group-hover:border-[#C94F78]/30'}">
+                  <span class="font-serif-elegant font-bold text-sm">${day.number}</span>
+                </div>
+                <div>
+                  <span class="text-[9px] tracking-wider font-bold uppercase" style="color: ${isCompleted ? '#7A9E8C' : day.color}">
+                    ${day.theme} ${isCompleted ? '· INTEGRADO' : ''}
+                  </span>
+                  <h3 class="font-serif-elegant text-base font-bold text-[#FAF7F3] mt-0.5 group-hover:text-white">
+                    ${day.title}
+                  </h3>
+                </div>
+              </div>
+              <div>
+                <svg class="w-5 h-5 text-[#A4928C] group-hover:text-[#FAF7F3] transition-colors" fill="none" stroke="currentColor" stroke-width="2.5" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" d="M9 5l7 7-7 7"></path></svg>
+              </div>
+            </div>
+          `;
+        });
+
+        html += `
+            </div>
+            <div class="pt-4 text-center">
+              <button onclick="openResetModal()" class="text-[10px] text-[#C4B5B0] hover:text-[#C94F78] transition-colors font-bold tracking-widest uppercase">
+                Reiniciar histórico de respostas
+              </button>
+            </div>
+          </div>
+        `;
+
+        container.innerHTML = html;
+        return;
+      }
+
+      // EXECUÇÃO INDIVIDUAL DOS DIAS DA JORNADA
+      if (scr.startsWith("day-")) {
+        const dayNum = parseInt(scr.split("-")[1]);
+        renderDay(dayNum);
+        return;
+      }
+
+      // DIÁRIO INTERATIVO
+      if (scr === "diario") {
+        renderDiario();
+        return;
+      }
+    }
+
+    function selectProfile(profile) {
+      state.profile = profile;
+      setScreen("dashboard");
+    }
+
+    function resetProfileSelection() {
+      state.profile = "";
+      state.completedDays = [];
+      setScreen("intro1");
+    }
+
+    // Modal de Confirmação Customizado (Seguro)
+    function openResetModal() {
+      document.getElementById("reset-confirm-modal").classList.remove("hidden");
+      document.getElementById("modal-overlay").classList.remove("hidden");
+    }
+
+    function closeResetModal() {
+      document.getElementById("reset-confirm-modal").classList.add("hidden");
+      document.getElementById("modal-overlay").classList.add("hidden");
+    }
+
+    function executeResetAll() {
+      state.completedDays = [];
+      state.answers = {
+        d1_nome: "", d1_corpo: "", d1_breath_done: false,
+        d2_ancora: "", d2_carta_escolhida: false, d2_origem: "",
+        d3_necessidade: "", d3_pausa: "",
+        d4_mae: 5, d4_pai: 5, d4_projecao: "",
+        d5_chave: "", d5_compromisso: "",
+        d6_gatilho_somático: "", d6_postura_check: false, d6_resposta_adulta: "",
+        d6_cenario_escolhido: "",
+        d7_diretriz: ""
+      };
+      saveState();
+      closeResetModal();
+      setScreen("intro1");
+    }
+  </script>
+
+  <script>
+    // ─── DIAS DETALHADOS DA JORNADA ───
+    function renderDay(num) {
+      const container = document.getElementById("content-container");
+      const dayData = JORNADA_DIAS[num - 1];
+
+      // ─── DIA 1: DIVÓRCIO ENERGÉTICO ───
+      if (num === 1) {
+        if (!state.answers.d1_nome) {
+          container.innerHTML = `
+            <div class="space-y-6 max-w-md mx-auto">
+              <span class="text-[9px] text-[#C94F78] tracking-widest font-bold uppercase">Dia 1 · Passo 1 de 4</span>
+              <h2 class="font-serif-elegant text-2xl font-bold italic text-[#FAF7F3]">De quem seu corpo precisa se libertar hoje?</h2>
+              
+              <p class="text-xs text-[#C4B5B0] leading-relaxed font-medium text-justify">
+                ${dayData.bridge[state.profile]}
+              </p>
+              
+              <p class="text-xs text-[#E5DDD8] leading-relaxed font-bold mt-4">Escreva apenas o primeiro nome dele. Esse pequeno ato simbólico dará direção à sua vivência:</p>
+              
+              <input type="text" id="d1-nome-input" placeholder="Primeiro nome..." class="w-full bg-[#161313] border border-[#211B1B] rounded-xl p-4 text-[#FAF7F3] placeholder-[#A4928C] focus:ring-1 focus:ring-[#C94F78] focus:outline-none font-serif-elegant italic text-xl text-center font-bold">
+
+              <button id="btn-d1-next" onclick="saveDay1Nome()" class="w-full bg-[#211B1B] text-[#C4B5B0] py-4 rounded-full font-bold text-[14px]">
+                Preencha o nome acima para continuar
+              </button>
+            </div>
+          `;
+          
+          const input = document.getElementById("d1-nome-input");
+          const btn = document.getElementById("btn-d1-next");
+          input.oninput = function() {
+            if (input.value.trim().length > 0) {
+              btn.className = "w-full bg-[#C94F78] text-[#0D0B0B] py-4 rounded-full font-bold text-[14px] transition-all active:scale-95 shadow-md shadow-[#C94F78]/15";
+              btn.innerText = "Continuar no seu tempo";
+            } else {
+              btn.className = "w-full bg-[#211B1B] text-[#C4B5B0] py-4 rounded-full font-bold text-[14px]";
+              btn.innerText = "Preencha o nome acima para continuar";
+            }
+          };
+          return;
+        }
+
+        if (!state.answers.d1_corpo) {
+          const parts = ["Garganta (Aperto / Nó)", "Peito (Pesado / Vazio)", "Estômago (Frio / Alerta)", "Mandíbula (Tensa / Travada)", "Falta de Ar"];
+          let btnsHtml = parts.map(part => {
+            return `
+              <button onclick="saveDay1Corpo('${part}')" class="w-full p-4 rounded-xl border text-sm font-bold text-left transition-all border-[#211B1B] bg-[#161313] text-[#E5DDD8] hover:border-[#C94F78]/50 active:scale-[0.98]">
+                ${part}
+              </button>
+            `;
+          }).join('');
+
+          container.innerHTML = `
+            <div class="space-y-6 max-w-md mx-auto">
+              <span class="text-[9px] text-[#C94F78] tracking-widest font-bold uppercase">Dia 1 · Passo 2 de 4</span>
+              <h2 class="font-serif-elegant text-2xl font-bold italic text-[#FAF7F3]">Onde a sua dor antiga está acordada agora?</h2>
+              
+              <p class="text-xs text-[#C4B5B0] font-medium leading-relaxed">
+                Pense por um segundo em <strong>${state.answers.d1_nome}</strong>. Onde o seu corpo reage com mais aperto físico e desconforto?
+              </p>
+              
+              <div class="space-y-3">
+                ${btnsHtml}
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        // RESPIRAÇÃO SUAVE SEM FORÇAR NADA
+        if (!state.answers.d1_breath_done) {
+          container.innerHTML = `
+            <div class="space-y-6 max-w-md mx-auto text-center">
+              <span class="text-[9px] text-[#C94F78] tracking-widest font-bold uppercase">Dia 1 · Passo 3 de 4</span>
+              <h2 class="font-serif-elegant text-2xl font-bold italic text-[#FAF7F3]">Recuperando o Fôlego</h2>
+              
+              <div class="p-5 bg-[#161313] border border-[#211B1B] rounded-2xl text-left">
+                <p class="text-xs text-[#E5DDD8] leading-relaxed font-bold">Instrução somática:</p>
+                <p class="text-xs text-[#C4B5B0] leading-relaxed mt-2 text-justify">
+                  Coloque a sua mão confortavelmente sobre o seu <strong>${state.answers.d1_corpo.toLowerCase()}</strong>. 
+                  <strong class="text-[#D4A574]">Não force a respiração e não tente prender nada.</strong> Apenas respire de forma natural, sentindo o ar entrar e sair enquanto acompanha o guia visual abaixo para acalmar o sistema nervoso.
+                </p>
+              </div>
+
+              <div id="breath-guide-box" class="py-6">
+                <button onclick="startSomaticBreathing()" class="bg-[#C94F78] text-[#0D0B0B] px-8 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider transition-all active:scale-95 shadow-md shadow-[#C94F78]/15">
+                  Iniciar Respiração Natural
+                </button>
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        // CORTE DO VÍNCULO SISTÊMICO (Frases Exatas)
+        container.innerHTML = `
+          <div class="space-y-6 max-w-md mx-auto text-center">
+            <span class="text-[9px] text-[#C94F78] tracking-widest font-bold uppercase">Dia 1 · Passo 4 de 4</span>
+            <h2 class="font-serif-elegant text-2xl font-bold italic text-[#FAF7F3]">O Corte do Vínculo</h2>
+
+            <div class="p-5 bg-[#161313] border border-[#211B1B] rounded-2xl text-left space-y-3">
+              <p class="text-xs text-[#C4B5B0] leading-relaxed font-bold">Assuma a sua postura adulta agora. Costas eretas. Coloque a mão no peito e diga em silêncio ou em voz alta:</p>
+              <div class="border-l border-[#D4A574] pl-4 font-serif-elegant italic text-[14px] text-[#FAF7F3] font-medium space-y-2 leading-relaxed">
+                <p>"Eu vi o que esta ligação veio me mostrar."</p>
+                <p>"Eu vi o que esta dor veio me mostrar."</p>
+                <p>"Você já cumpriu a sua função no meu sistema. Agora, eu te libero e me recolho."</p>
+              </div>
+            </div>
+
+            <div id="cord-interaction" class="relative h-28 flex items-center justify-center border border-[#1C1818] rounded-2xl bg-[#0E0C0C] overflow-hidden">
+              <svg id="cord-svg" class="w-full h-12" viewBox="0 0 300 40">
+                <path class="cord-line" d="M 0 20 Q 75 10, 150 20 T 300 20" fill="none" stroke="#C94F78" stroke-width="2.5" />
+              </svg>
+              <div id="cord-cut-success" class="hidden text-xs text-[#D4A574] tracking-widest uppercase font-bold animate-pulse">
+                ✓ Corte Realizado. Energia Devolvida ao seu Peito.
+              </div>
+            </div>
+
+            <button id="btn-cut-trigger" onclick="cutCordAnimation()" class="w-full bg-gradient-to-r from-[#C94F78] to-[#8A4A5A] text-white py-4 rounded-full font-bold tracking-wide shadow-lg text-[14px] active:scale-95">
+              Cortar o Cordão Energético
+            </button>
+            <button id="btn-cut-continue" onclick="completeDay1()" class="hidden w-full bg-[#161313] border border-[#211B1B] text-[#FAF7F3] py-4 rounded-full font-bold text-[14px]">
+              Finalizar o Dia 1
+            </button>
+          </div>
+        `;
+      }
+
+      // ─── DIA 2: RETORNE A SI ───
+      if (num === 2) {
+        if (!state.answers.d2_ancora) {
+          const ancoras = [
+            "Preparar um café ou chá quente sentindo o aroma e o calor da xícara nas mãos",
+            "Caminhar descalça pisando firme no solo, sentindo o peso das solas dos pés",
+            "Ficar 2 minutos de olhos fechados escutando apenas a própria batida do peito",
+            "Escutar uma música de base profunda e instrumental, longe das telas"
+          ];
+          let listHtml = ancoras.map(anc => {
+            return `
+              <button onclick="saveDay2Ancora('${anc}')" class="w-full p-4 rounded-xl border text-sm font-bold text-left transition-all border-[#211B1B] bg-[#161313] text-[#E5DDD8] hover:border-[#7A9E8C]/50 active:scale-[0.98]">
+                ${anc}
+              </button>
+            `;
+          }).join('');
+
+          container.innerHTML = `
+            <div class="space-y-6 max-w-md mx-auto">
+              <span class="text-[9px] text-[#7A9E8C] tracking-widest font-bold uppercase">Dia 2 · Passo 1 de 3</span>
+              <h2 class="font-serif-elegant text-2xl font-bold italic text-[#FAF7F3]">Sua Âncora de Retorno</h2>
+              
+              <p class="text-xs text-[#C4B5B0] font-medium leading-relaxed">
+                Qual destas práticas somáticas simples você se compromete a realizar quando a ansiedade começar a puxar você para fora de si?
+              </p>
+
+              <div class="space-y-3">
+                ${listHtml}
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        if (!state.answers.d2_carta_escolhida) {
+          const cartaTexto = D2_CARTAS[state.profile] || D2_CARTAS.solteira;
+          container.innerHTML = `
+            <div class="space-y-6 max-w-md mx-auto">
+              <span class="text-[9px] text-[#7A9E8C] tracking-widest font-bold uppercase">Dia 2 · Passo 2 de 3</span>
+              <h2 class="font-serif-elegant text-2xl font-bold italic text-[#FAF7F3]">A Carta da Sua Versão Adulta</h2>
+              
+              ${renderRenataQuote("O amor não exige sacrifícios somáticos. A conexão começa no seu descanso.")}
+
+              <div class="p-6 rounded-2xl bg-[#161313] border border-[#7A9E8C]/30 space-y-4 text-justify">
+                <span class="text-[9px] text-[#7A9E8C] font-bold uppercase tracking-wider block">Mensagem Para Guardar</span>
+                <p class="font-serif-elegant italic text-[15px] text-[#FAF7F3] leading-relaxed">
+                  "${cartaTexto}"
+                </p>
+              </div>
+
+              <button onclick="saveDay2Carta()" class="w-full bg-[#7A9E8C] text-[#0D0B0B] py-4 rounded-full font-bold text-[14px] transition-all active:scale-95 shadow-md shadow-[#7A9E8C]/15">
+                Acolher no peito e continuar
+              </button>
+            </div>
+          `;
+          return;
+        }
+
+        // Mapeamento da Origem sem Escrita Cansativa
+        const origens = [
+          "Senti medo do abandono ou da rejeição na minha infância",
+          "Aprendi que precisava merecer carinho sendo uma menina exemplar e perfeita",
+          "O afeto na minha casa de origem parecia instável ou condicionado ao meu comportamento",
+          "Precisei carregar e cuidar da dor dos meus pais muito antes da hora"
+        ];
+        let listHtml = origens.map(orig => {
+          return `
+            <button onclick="saveDay2Origem('${orig}')" class="w-full p-4 rounded-xl border text-sm font-bold text-left transition-all border-[#211B1B] bg-[#161313] text-[#E5DDD8] hover:border-[#7A9E8C]/50 active:scale-[0.98]">
+              ${orig}
+            </button>
+          `;
+        }).join('');
+
+        container.innerHTML = `
+          <div class="space-y-6 max-w-md mx-auto">
+            <span class="text-[9px] text-[#7A9E8C] tracking-widest font-bold uppercase">Dia 2 · Passo 3 de 3</span>
+            <h2 class="font-serif-elegant text-2xl font-bold italic text-[#FAF7F3]">O Rastro Familiar</h2>
+            
+            <p class="text-xs text-[#C4B5B0] font-medium leading-relaxed">
+              Qual dessas dinâmicas do seu passado você reconhece hoje como o berço do seu estado de alerta constante?
+            </p>
+
+            <div class="space-y-3">
+              ${listHtml}
+            </div>
+          </div>
+        `;
+      }
+
+      // ─── DIA 3: RECONSTRUA O EIXO ───
+      if (num === 3) {
+        if (!state.answers.d3_necessidade) {
+          const necs = [
+            "Segurança Emocional e Constância",
+            "Sentir que sou vista e ouvida no meu real tamanho",
+            "Clareza de intenções sem rodeios ou mistérios",
+            "Presença real, e não apenas digital",
+            "Respeito ao meu tempo e à minha vida"
+          ];
+          let listHtml = necs.map(n => {
+            return `
+              <button onclick="saveDay3Necessidade('${n}')" class="w-full p-4 rounded-xl border text-sm font-bold text-left transition-all border-[#211B1B] bg-[#161313] text-[#E5DDD8] hover:border-[#9A80C0]/50 active:scale-[0.98]">
+                ${n}
+              </button>
+            `;
+          }).join('');
+
+          container.innerHTML = `
+            <div class="space-y-6 max-w-md mx-auto">
+              <span class="text-[9px] text-[#9A80C0] tracking-widest font-bold uppercase">Dia 3 · Passo 1 de 2</span>
+              <h2 class="font-serif-elegant text-2xl font-bold italic text-[#FAF7F3]">Sua Real Necessidade</h2>
+              
+              <p class="text-xs text-[#C4B5B0] font-medium leading-relaxed">
+                Por trás do impulso de fugir ou do desespero por respostas, o seu sistema clama por qual nutrição emocional?
+              </p>
+
+              <div class="space-y-3">
+                ${listHtml}
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        const pausas = [
+          "Checar o status de 'visto por último' ou visualizar notificações de hora em hora",
+          "Reler conversas antigas tentando decifrar entrelinhas ou mudanças de tom",
+          "Monitorar curtidas, redes sociais ou movimentos silenciosos dele",
+          "Pedir opiniões de amigas para decifrar ou tentar adivinhar o comportamento dele"
+        ];
+        let listHtml = pausas.map(p => {
+          return `
+            <button onclick="saveDay3Pausa('${p}')" class="w-full p-4 rounded-xl border text-sm font-bold text-left transition-all border-[#211B1B] bg-[#161313] text-[#E5DDD8] hover:border-[#9A80C0]/50 active:scale-[0.98]">
+              ${p}
+            </button>
+          `;
+        }).join('');
+
+        container.innerHTML = `
+          <div class="space-y-6 max-w-md mx-auto">
+            <span class="text-[9px] text-[#9A80C0] tracking-widest font-bold uppercase">Dia 3 · Passo 2 de 2</span>
+            <h2 class="font-serif-elegant text-2xl font-bold italic text-[#FAF7F3]">Silenciando a Compulsão</h2>
+            
+            <p class="text-xs text-[#C4B5B0] font-medium leading-relaxed">
+              Qual comportamento de alerta você escolhe silenciar pelas próximas horas para devolver a dignidade ao seu corpo?
+            </p>
+
+            <div class="space-y-3">
+              ${listHtml}
+            </div>
+          </div>
+        `;
+      }
+
+      // ─── DIA 4: REVELE A LENTE ───
+      if (num === 4) {
+        if (!state.answers.d4_projecao) {
+          container.innerHTML = `
+            <div class="space-y-6 max-w-md mx-auto">
+              <span class="text-[9px] text-[#D4A574] tracking-widest font-bold uppercase">Dia 4 · Passo 1 de 2</span>
+              <h2 class="font-serif-elegant text-2xl font-bold italic text-[#FAF7F3]">O Termômetro Familiar</h2>
+              
+              <p class="text-xs text-[#C4B5B0] font-medium leading-relaxed">
+                Qual era o nível de disponibilidade e segurança emocional que você recebia das suas figuras de cuidado na infância?
+              </p>
+
+              <div class="space-y-6 py-4">
+                <div>
+                  <div class="flex justify-between text-[11px] text-[#C4B5B0] font-bold mb-2">
+                    <span>Mãe Indisponível</span>
+                    <span>Mãe Presente</span>
+                  </div>
+                  <input type="range" id="range-mae" min="1" max="10" value="${state.answers.d4_mae}" class="w-full accent-[#D4A574]">
+                  <p class="text-xs text-right text-[#D4A574] font-bold mt-1">Nível da Mãe: <span id="mae-val" class="text-sm font-bold">${state.answers.d4_mae}</span>/10</p>
+                </div>
+
+                <div>
+                  <div class="flex justify-between text-[11px] text-[#C4B5B0] font-bold mb-2">
+                    <span>Pai Distante</span>
+                    <span>Pai Protetor</span>
+                  </div>
+                  <input type="range" id="range-pai" min="1" max="10" value="${state.answers.d4_pai}" class="w-full accent-[#D4A574]">
+                  <p class="text-xs text-right text-[#D4A574] font-bold mt-1">Nível do Pai: <span id="pai-val" class="text-sm font-bold">${state.answers.d4_pai}</span>/10</p>
+                </div>
+              </div>
+
+              <button onclick="saveDay4Sliders()" class="w-full bg-[#D4A574] text-[#0D0B0B] py-4 rounded-full font-bold text-[14px] transition-all active:scale-95 shadow-md shadow-[#D4A574]/15">
+                Salvar e Continuar
+              </button>
+            </div>
+          `;
+          
+          const mInput = document.getElementById("range-mae");
+          const pInput = document.getElementById("range-pai");
+          mInput.oninput = () => { document.getElementById("mae-val").innerText = mInput.value; };
+          pInput.oninput = () => { document.getElementById("pai-val").innerText = pInput.value; };
+          return;
+        }
+
+        const projs = [
+          "Busco parceiros distantes ou confusos tentando 'consertar' a dor de não ter sido amparada antes",
+          "Finjo frieza ou desinteresse absoluto para que ninguém descubra minha carência",
+          "Acredito secretamente que o amor verdadeiro precisa ser difícil e sofrido para valer a pena",
+          "Sinto tédio ou sufoco imediato quando um homem disponível demonstra real interesse"
+        ];
+        let listHtml = projs.map(p => {
+          return `
+            <button onclick="saveDay4Projecao('${p}')" class="w-full p-4 rounded-xl border text-sm font-bold text-left transition-all border-[#211B1B] bg-[#161313] text-[#E5DDD8] hover:border-[#D4A574]/50 active:scale-[0.98]">
+              ${p}
+            </button>
+          `;
+        }).join('');
+
+        container.innerHTML = `
+          <div class="space-y-6 max-w-md mx-auto">
+            <span class="text-[9px] text-[#D4A574] tracking-widest font-bold uppercase">Dia 4 · Passo 2 de 2</span>
+            <h2 class="font-serif-elegant text-2xl font-bold italic text-[#FAF7F3]">Sua Projeção Relacional</h2>
+            
+            <p class="text-xs text-[#C4B5B0] font-medium leading-relaxed">
+              Como você percebe que a sua história familiar interfere nas suas escolhas e reações de hoje?
+            </p>
+
+            <div class="space-y-3">
+              ${listHtml}
+            </div>
+          </div>
+        `;
+      }
+
+      // ─── DIA 5: ABRA A PORTA ───
+      if (num === 5) {
+        if (!state.answers.d5_chave) {
+          const chaves = [
+            { id: "vulnerabilidade", t: "Chave da Vulnerabilidade", d: "A autorização interna para ser verdadeiramente tocada e vista pelo outro, sabendo que amar é correr riscos conscientes." },
+            { id: "soltar", t: "Chave de Soltar o Controle", d: "Abandonar o papel de defensiva e vigia, permitindo-me receber o afeto sem exigir garantias prévias." },
+            { id: "merecimento", t: "Chave do Merecimento", d: "Parar de implorar por migalhas e descansar no meu próprio valor de mulher inteira." }
+          ];
+          let listHtml = chaves.map(c => {
+            return `
+              <div onclick="saveDay5Chave('${c.id}')" class="p-4 rounded-xl border border-[#211B1B] bg-[#161313] hover:border-[#C94F78]/50 cursor-pointer transition-all text-left active:scale-[0.98]">
+                <h4 class="font-serif-elegant font-bold text-[15px] text-[#FAF7F3]">🔑 ${c.t}</h4>
+                <p class="text-xs text-[#C4B5B0] mt-1 leading-relaxed font-medium">${c.d}</p>
+              </div>
+            `;
+          }).join('');
+
+          container.innerHTML = `
+            <div class="space-y-6 max-w-md mx-auto">
+              <span class="text-[9px] text-[#C94F78] tracking-widest font-bold uppercase">Dia 5 · Passo 1 de 2</span>
+              <h2 class="font-serif-elegant text-2xl font-bold italic text-[#FAF7F3]">Sua Chave de Abertura</h2>
+              
+              <p class="text-xs text-[#C4B5B0] font-medium leading-relaxed">
+                Qual chave o seu corpo precisa virar hoje para sair do quarto fechado da inacessibilidade?
+              </p>
+
+              <div class="space-y-3">
+                ${listHtml}
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        const compromissos = [
+          "Comprometo-me a deixar de lado os jogos de desinteresse e expressar o que sinto a partir da minha adulta.",
+          "Desisto de vigiar e monitorar. Deixo que o outro exerça o seu livre arbítrio de permanecer ou partir.",
+          "Não sustento mais vínculos mornos apenas por medo do vazio ou da solidão."
+        ];
+        let listHtml = compromissos.map(comp => {
+          return `
+            <button onclick="saveDay5Compromisso('${comp}')" class="w-full p-4 rounded-xl border text-sm font-bold text-left transition-all border-[#211B1B] bg-[#161313] text-[#E5DDD8] hover:border-[#C94F78]/50 active:scale-[0.98]">
+              ${comp}
+            </button>
+          `;
+        }).join('');
+
+        container.innerHTML = `
+          <div class="space-y-6 max-w-md mx-auto">
+            <span class="text-[9px] text-[#C94F78] tracking-widest font-bold uppercase">Dia 5 · Passo 2 de 2</span>
+            <h2 class="font-serif-elegant text-2xl font-bold italic text-[#FAF7F3]">Seu Compromisso</h2>
+            
+            <p class="text-xs text-[#C4B5B0] font-medium leading-relaxed">
+              O seu compromisso prático com a sua nova postura de abertura:
+            </p>
+
+            <div class="space-y-3">
+              ${listHtml}
+            </div>
+          </div>
+        `;
+      }
+
+      // ─── DIA 6: A POSTURA ADULTA (LAVRA DE RECONFIGURAÇÃO EXPANDIDO) ───
+      if (num === 6) {
+        // Passo 1: O Gatilho Somático de Alerta
+        if (!state.answers.d6_gatilho_somático) {
+          let triggers = [];
+          if (state.profile === "solteira") {
+            triggers = [
+              { key: "tedio", title: "Tédio ou Desinteresse Imediato", desc: "Interpreto a estabilidade e carinho dele como falta de química e invento mil desculpas para fugir de volta para a minha caverna de distância." },
+              { key: "sufoco", title: "Sufoco e Bloqueio Corporal", desc: "Sinto que o afeto disponível dele vai sugar o meu espaço sagrado e ativar minhas piores feridas de sufocamento familiar." },
+              { key: "rejeicao", title: "Lente Ativa de Rejeição antecipada", desc: "Finjo frieza e desinteresse absoluto só para que ninguém descubra que eu tenho alguma necessidade de ser cuidada." }
+            ];
+          } else if (state.profile === "comprometida") {
+            triggers = [
+              { key: "alarme", title: "Alarme Somático (Pânico de Ausência)", desc: "O peito aperta diante de um silêncio temporário e preciso auditar o visto por último de minuto em minuto." },
+              { key: "punição", title: "Frieza de Defesa / Punição Silenciosa", desc: "Finjo silêncio e desinteresse apenas para castigar a ausência dele e tentar recuperar o controle da situação." },
+              { key: "cenarios", title: "Criação Obsessiva de Cenários de Ruína", desc: "Crio histórias mentais detalhadas de traição ou abandono baseadas em pequenos sinais insignificantes." }
+            ];
+          } else { // traida/ferida
+            triggers = [
+              { key: "armadura", title: "Armadura Rígida de Frieza", desc: "Prefiro manter a distância absoluta a correr qualquer risco de ser exposta e dilacerada novamente." },
+              { key: "hipervigilancia", title: "Hipervigilância Obsessiva", desc: "Passo o dia analisando cada palavra ou tom de voz dele para tentar prever e me defender da dor." },
+              { key: "susto", title: "Fuga Diante da Intimidade", desc: "Me afasto e travo estrategicamente quando sinto que a conexão está se tornando profunda de verdade." }
+            ];
+          }
+
+          let triggersHtml = triggers.map(t => {
+            return `
+              <button onclick="saveDay6Gatilho('${t.key}')" class="w-full p-4 rounded-xl border text-left transition-all border-[#211B1B] bg-[#161313] text-[#E5DDD8] hover:border-[#7A9E8C]/50 active:scale-[0.98]">
+                <span class="text-[10px] uppercase tracking-wider font-bold block mb-1 text-[#7A9E8C]">${t.title}</span>
+                <span class="text-xs leading-relaxed font-semibold block text-[#C4B5B0]">${t.desc}</span>
+              </button>
+            `;
+          }).join('');
+
+          container.innerHTML = `
+            <div class="space-y-6 max-w-md mx-auto">
+              <span class="text-[9px] text-[#7A9E8C] tracking-widest font-bold uppercase">Dia 6 · Passo 1 de 3</span>
+              <h2 class="font-serif-elegant text-2xl font-bold italic text-[#FAF7F3]">O Gatilho Ativado</h2>
+              
+              <p class="text-xs text-[#C4B5B0] font-medium leading-relaxed">
+                A sua dor antiga acordou e o seu corpo entrou em alerta. Diante da conexão ou da vulnerabilidade, qual é a reação mecânica do seu corpo?
+              </p>
+
+              <div class="space-y-3">
+                ${triggersHtml}
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        // Passo 2: O Alinhamento Somático Ativo (Exercício Físico Imediato - Expansão)
+        if (!state.answers.d6_postura_check) {
+          container.innerHTML = `
+            <div class="space-y-6 max-w-md mx-auto text-center">
+              <span class="text-[9px] text-[#7A9E8C] tracking-widest font-bold uppercase">Dia 6 · Passo 2 de 3</span>
+              <h2 class="font-serif-elegant text-2xl font-bold italic text-[#FAF7F3]">Alinhamento da Governança</h2>
+              
+              <p class="text-xs text-[#C4B5B0] leading-relaxed text-justify px-1 font-semibold">
+                Para governar a sua mente emocional, você precisa governar a sua postura corporal primeiro. Execute cada etapa física abaixo agora no seu próprio tempo:
+              </p>
+
+              <div class="space-y-3 text-left">
+                <button onclick="toggleSomaticCheck(1)" id="som-1" class="w-full p-4 rounded-xl border border-[#211B1B] bg-[#161313] transition-all text-xs font-bold text-[#E5DDD8] flex justify-between items-center active:scale-[0.98]">
+                  <span>1. Erga a sua coluna. Sinta o seu real tamanho de mulher.</span>
+                  <span id="som-check-1" class="text-sm text-[#7A9E8C]">◦</span>
+                </button>
+                
+                <button onclick="toggleSomaticCheck(2)" id="som-2" class="w-full p-4 rounded-xl border border-[#211B1B] bg-[#161313] transition-all text-xs font-bold text-[#E5DDD8] flex justify-between items-center active:scale-[0.98]">
+                  <span>2. Gire os ombros para trás, desça-os por completo.</span>
+                  <span id="som-check-2" class="text-sm text-[#7A9E8C]">◦</span>
+                </button>
+
+                <button onclick="toggleSomaticCheck(3)" id="som-3" class="w-full p-4 rounded-xl border border-[#211B1B] bg-[#161313] transition-all text-xs font-bold text-[#E5DDD8] flex justify-between items-center active:scale-[0.98]">
+                  <span>3. Solte o maxilar por completo, amacie a sua barriga.</span>
+                  <span id="som-check-3" class="text-sm text-[#7A9E8C]">◦</span>
+                </button>
+
+                <button onclick="toggleSomaticCheck(4)" id="som-4" class="w-full p-4 rounded-xl border border-[#211B1B] bg-[#161313] transition-all text-xs font-bold text-[#E5DDD8] flex justify-between items-center active:scale-[0.98]">
+                  <span>4. Finke os pés firmes no chão, sentindo o peso da gravidade.</span>
+                  <span id="som-check-4" class="text-sm text-[#7A9E8C]">◦</span>
+                </button>
+              </div>
+
+              <button id="btn-som-continue" disabled class="w-full bg-[#211B1B] text-[#C4B5B0] py-4 rounded-full font-bold text-[14px]">
+                Marque todas as etapas para prosseguir
+              </button>
+            </div>
+          `;
+          return;
+        }
+
+        // Passo 3: O Gerador de Respostas Adultas (Sua Lente Reconfigurada - Cura)
+        let cenarios = [];
+        if (state.profile === "solteira") {
+          cenarios = [
+            "Eu permaneço presente no meu corpo quando ele se aproxima, sem inventar saídas de emergência e sem fugir do tédio imaginário.",
+            "Eu escolho tolerar a calmaria do afeto estável. Entendo que paz não é tédio, é o meu novo solo de segurança.",
+            "Eu assumo o risco consciente de me vulnerabilizar, sabendo que a minha adulta hoje sabe desenhar limites saudáveis."
+          ];
+        } else if (state.profile === "comprometida") {
+          cenarios = [
+            "Eu posso sustentar a ausência temporária do outro sem decretar imediatamente que fui abandonada ou que tudo faliu.",
+            "Eu desligo o alarme obsessivo do monitoramento e decido deitar e descansar sob o meu próprio teto emocional.",
+            "Eu me comunico com clareza a partir da minha adulta, sem usar o silêncio de punição para tentar ser vista."
+          ];
+        } else { // traida/ferida
+          cenarios = [
+            "Eu me dou permissão consciente para abaixar os meus escudos e deixar o afeto limpo me alcançar, sem viver refém do ontem.",
+            "Se o outro falhar com a conexão, eu sou uma mulher adulta e sei exatamente como sobreviver e me reorganizar sem me destruir.",
+            "Eu abro mão do papel de vigilante exausta. Deixo que o outro exerça o seu livre arbítrio de permanecer."
+          ];
+        }
+
+        let cenariosHtml = cenarios.map(cen => {
+          return `
+            <button onclick="saveDay6Resposta('${cen}')" class="w-full p-4 rounded-xl border text-sm font-bold text-left transition-all border-[#211B1B] bg-[#161313] text-[#E5DDD8] hover:border-[#7A9E8C]/50 active:scale-[0.98]">
+              ${cen}
+            </button>
+          `;
+        }).join('');
+
+        container.innerHTML = `
+          <div class="space-y-6 max-w-md mx-auto">
+            <span class="text-[9px] text-[#7A9E8C] tracking-widest font-bold uppercase">Dia 6 · Passo 3 de 3</span>
+            <h2 class="font-serif-elegant text-2xl font-bold italic text-[#FAF7F3]">Sua Decisão Adulta</h2>
+            
+            <p class="text-xs text-[#C4B5B0] font-medium leading-relaxed">
+              Diante do gatilho ativado da sua dor antiga, qual resposta de governo você escolhe dar a partir da sua postura de mulher adulta?
+            </p>
+
+            <div class="space-y-3">
+              ${cenariosHtml}
+            </div>
+          </div>
+        `;
+      }
+
+      // ─── DIA 7: A CONEXÃO REAL (A CURA DO SISTEMA AFETIVO) ───
+      if (num === 7) {
+        const diretrizes = [
+          "Eu escolho me relacionar de peito aberto a partir do meu tamanho adulto, sem carregar pesos familiares ou tentar corrigir os meus pais.",
+          "Eu não nego as minhas feridas de infância, mas impeço de forma consciente que elas sigam conduzindo a minha vida afetiva.",
+          "Eu mereço um amor constante, seguro e claro, e me comprometo a estar emocionalmente disponível para sustentá-lo."
+        ];
+        let listHtml = diretrizes.map(dir => {
+          return `
+            <button onclick="saveDay7Diretriz('${dir}')" class="w-full p-4 rounded-xl border text-sm font-bold text-left transition-all border-[#211B1B] bg-[#161313] text-[#E5DDD8] hover:border-[#D4A574]/50 active:scale-[0.98]">
+              ${dir}
+            </button>
+          `;
+        }).join('');
+
+        container.innerHTML = `
+          <div class="space-y-6 max-w-md mx-auto">
+            <span class="text-[9px] text-[#D4A574] tracking-widest font-bold uppercase">Dia 7 · Passo 1 de 2</span>
+            <h2 class="font-serif-elegant text-2xl font-bold italic text-[#FAF7F3]">O Manifesto da Nova Estrutura</h2>
+            
+            <p class="text-xs text-[#C4B5B0] font-medium leading-relaxed">
+              Para selar a sua caminhada emocional, qual destas verdades o seu sistema escolhe fixar no seu corpo hoje?
+            </p>
+
+            <div class="space-y-3">
+              ${listHtml}
+            </div>
+          </div>
+        `;
+      }
+    }
+  </script>
+
+  <script>
+    // ─── FUNÇÕES DE PERSISTÊNCIA DE CADA DIA ───
+    function saveDay1Nome() {
+      const val = document.getElementById("d1-nome-input").value.trim();
+      state.answers.d1_nome = val;
+      saveState();
+      renderDay(1);
+    }
+
+    function saveDay1Corpo(val) {
+      state.answers.d1_corpo = val;
+      saveState();
+      renderDay(1);
+    }
+
+    // GUIA DE RESPIRAÇÃO SOMÁTICA
+    function startSomaticBreathing() {
+      const box = document.getElementById("breath-guide-box");
+      let count = 4;
+      let stage = "in"; // in | hold | out
+      let cycle = 1;
+
+      box.innerHTML = `
+        <div class="flex flex-col items-center space-y-4">
+          <div id="breath-circle" class="w-24 h-24 rounded-full border-2 border-[#C94F78]/30 bg-[#C94F78]/5 flex items-center justify-center transition-all duration-1000 scale-100">
+            <span id="breath-timer" class="font-serif-elegant text-2xl font-bold text-[#C94F78]">4</span>
+          </div>
+          <p id="breath-text" class="font-serif-elegant italic text-sm text-[#E5DDD8] h-10 px-4 text-center leading-relaxed">
+            Apenas inspire o ar suavemente...
+          </p>
+          <span class="text-[9px] text-[#C4B5B0] uppercase tracking-widest font-bold">Ciclo 1 de 3</span>
+        </div>
+      `;
+
+      function updateTimer() {
+        const timerEl = document.getElementById("breath-timer");
+        const textEl = document.getElementById("breath-text");
+        const circleEl = document.getElementById("breath-circle");
+
+        if (timerEl) timerEl.innerText = count;
+
+        if (stage === "in") {
+          textEl.innerText = "Apenas inspire o ar suavemente...";
+          circleEl.style.transform = "scale(1.15)";
+        } else if (stage === "hold") {
+          textEl.innerText = "Mantenha o ar e relaxe os ombros...";
+          circleEl.style.transform = "scale(1.05)";
+        } else if (stage === "out") {
+          textEl.innerText = "Solte o ar sem esforço algum...";
+          circleEl.style.transform = "scale(0.9)";
+        }
+
+        setTimeout(() => {
+          count--;
+          if (count < 0) {
+            if (stage === "in") {
+              stage = "hold";
+              count = 4;
+            } else if (stage === "hold") {
+              stage = "out";
+              count = 6;
+            } else if (stage === "out") {
+              cycle++;
+              if (cycle > 3) {
+                state.answers.d1_breath_done = true;
+                saveState();
+                renderDay(1);
+                return;
+              }
+              stage = "in";
+              count = 4;
+            }
+          }
+          updateTimer();
+        }, 1000);
+      }
+
+      updateTimer();
+    }
+
+    function cutCordAnimation() {
+      document.getElementById("cord-svg").classList.add("hidden");
+      document.getElementById("cord-cut-success").classList.remove("hidden");
+      document.getElementById("btn-cut-trigger").classList.add("hidden");
+      document.getElementById("btn-cut-continue").classList.remove("hidden");
+    }
+
+    function completeDay1() {
+      let careText = "";
+      if (state.profile === "solteira") {
+        careText = "Recolher o seu espaço e a sua força do passado é o seu primeiro ato de governança. A partir de hoje, você não está mais aberta a fantasmas ou migalhas.";
+      } else if (state.profile === "comprometida") {
+        careText = "A sua paz não é vigiar o outro. É deitar debaixo do seu próprio teto e saber que a sua vida continua inteira e intocável, independente de como ele reaja.";
+      } else {
+        careText = "Nenhuma dor do passado tem o poder de ditar o seu valor. Você tomou de volta o governo do seu próprio peito.";
+      }
+      renderDayDoneScreen(1, careText);
+    }
+
+    // DIA 2
+    function saveDay2Ancora(val) {
+      state.answers.d2_ancora = val;
+      saveState();
+      renderDay(2);
+    }
+
+    function saveDay2Carta() {
+      state.answers.d2_carta_escolhida = true;
+      saveState();
+      renderDay(2);
+    }
+
+    function saveDay2Origem(val) {
+      state.answers.d2_origem = val;
+      saveState();
+      renderDayDoneScreen(2, "Você voltou para dentro de si. Acolheu a sua história familiar e fincou as suas âncoras na Postura Adulta de governo.");
+    }
+
+    // DIA 3
+    function saveDay3Necessidade(val) {
+      state.answers.d3_necessidade = val;
+      saveState();
+      renderDay(3);
+    }
+
+    function saveDay3Pausa(val) {
+      state.answers.d3_pausa = val;
+      saveState();
+      renderDayDoneScreen(3, "Você estabeleceu limites claros para o seu comportamento de pânico relacional. A sua adulta assumiu o governo sobre a ansiedade.");
+    }
+
+    // DIA 4
+    function saveDay4Sliders() {
+      state.answers.d4_mae = parseInt(document.getElementById("range-mae").value);
+      state.answers.d4_pai = parseInt(document.getElementById("range-pai").value);
+      state.answers.d4_projecao = "sliders_saved";
+      saveState();
+      renderDay(4);
+    }
+
+    function saveDay4Projecao(val) {
+      state.answers.d4_projecao = val;
+      saveState();
+      renderDayDoneScreen(4, "Você tirou as lentes do passado familiar do seu olhar afetivo. O outro voltou a ser apenas o outro, e o passado finalmente ficou no ontem.");
+    }
+
+    // DIA 5
+    function saveDay5Chave(val) {
+      state.answers.d5_chave = val;
+      saveState();
+      renderDay(5);
+    }
+
+    function saveDay5Compromisso(val) {
+      state.answers.d5_compromisso = val;
+      saveState();
+      renderDayDoneScreen(5, "A fechadura foi desarmada no seu corpo. Você autorizou o afeto real e seguro a se aproximar da sua porta encostada.");
+    }
+
+    // DIA 6 (ADULTECER E ALINHAMENTO)
+    function saveDay6Gatilho(val) {
+      state.answers.d6_gatilho_somático = val;
+      saveState();
+      renderDay(6);
+    }
+
+    let checkState = { 1: false, 2: false, 3: false, 4: false };
+    function toggleSomaticCheck(num) {
+      checkState[num] = !checkState[num];
+      const btn = document.getElementById(`som-${num}`);
+      const check = document.getElementById(`som-check-${num}`);
+      
+      if (checkState[num]) {
+        btn.className = "w-full p-4 rounded-xl border border-[#7A9E8C] bg-[#7A9E8C]/10 transition-all text-xs font-bold text-[#FAF7F3] flex justify-between items-center active:scale-[0.98]";
+        check.innerText = "✓";
+      } else {
+        btn.className = "w-full p-4 rounded-xl border border-[#211B1B] bg-[#161313] transition-all text-xs font-bold text-[#C4B5B0] flex justify-between items-center active:scale-[0.98]";
+        check.innerText = "◦";
+      }
+
+      if (checkState[1] && checkState[2] && checkState[3] && checkState[4]) {
+        const nextBtn = document.getElementById("btn-som-continue");
+        nextBtn.className = "w-full bg-[#7A9E8C] text-[#0D0B0B] py-4 rounded-full font-bold text-[14px] transition-all active:scale-95 shadow-md shadow-[#7A9E8C]/15";
+        nextBtn.innerText = "Postura Alinhada. Continuar.";
+        nextBtn.disabled = false;
+        nextBtn.onclick = () => {
+          state.answers.d6_postura_check = true;
+          saveState();
+          renderDay(6);
+        };
+      }
+    }
+
+    function saveDay6Resposta(val) {
+      state.answers.d6_resposta_adulta = val;
+      saveState();
+      renderDayDoneScreen(6, "A postura de adulta foi assumida fisicamente e integrada à sua mente. Você está devolvendo as decisões da sua vida para quem de fato cresceu.");
+    }
+  </script>
+
+  <script>
+    // DIA 7
+    function saveDay7Diretriz(val) {
+      state.answers.d7_diretriz = val;
+      saveState();
+      
+      const container = document.getElementById("content-container");
+      
+      let finalTitle = "Você voltou para o governo de si.";
+      let finalDesc = "Durante estes 7 passos, você reduziu a identificação com a dor antiga, ergueu suas âncoras e escolheu a Postura Adulta de governança.";
+      let finalBefore = "Sua estabilidade morava na pressa ou no comportamento de outra pessoa.";
+      let finalAfter = "Sua paz mora sob o seu próprio teto emocional construído à mão.";
+
+      if (state.profile === "solteira") {
+        finalTitle = "Você não é mais a mesma mulher.";
+        finalDesc = "Você desarmou a lente que sabotava sua presença. Agora o disponível te traz paz, e o indisponível finalmente te dá tédio.";
+        finalBefore = "Fugir ou se fechar por medo de falhar na entrega.";
+        finalAfter = "Abrir a porta da disponibilidade sem medo de se vulnerabilizar.";
+      } else if (state.profile === "comprometida") {
+        finalTitle = "Seu relacionamento agora tem respiro.";
+        finalDesc = "Você desarmou as auditorias mentais e o monitoramento constante para descansar ao lado de quem ama.";
+        finalBefore = "Vigiar o visto por último e viver em alerta constante.";
+        finalAfter = "Deitar e dormir em paz, sabendo que você é inteira e suficiente.";
+      } else if (state.profile === "traida") {
+        finalTitle = "A armadura foi destrancada.";
+        finalDesc = "Você escolheu o governo da sua própria vida em vez de viver como refém do medo de uma nova dor.";
+        finalBefore = "Carregar a dor traumática como escudo protetor no peito.";
+        finalAfter = "Se reerguer no seu real tamanho, consciente do seu poder de governar a si mesma.";
+      }
+
+      // Adicionando o Dia 7 aos dias completados para controle visual final
+      if (!state.completedDays.includes(7)) {
+        state.completedDays.push(7);
+        saveState();
+      }
+
+      container.innerHTML = `
+        <div class="text-center py-4 space-y-6 max-w-md mx-auto">
+          <div class="font-serif-elegant text-5xl text-[#D4A574] opacity-80 select-none">✦</div>
+          <span class="text-[10px] uppercase text-[#D4A574] tracking-widest font-bold">Protocolo Integral Concluído</span>
+          <h2 class="font-serif-elegant text-3xl font-bold italic mt-2 text-[#FAF7F3] leading-tight">${finalTitle}</h2>
+          <p class="text-[15px] font-medium text-[#E5DDD8] leading-relaxed text-justify px-2">
+            ${finalDesc}
+          </p>
+
+          <div class="my-6 space-y-3 text-left">
+            <div class="p-4 rounded-xl bg-[#161313] border border-[#211B1B]">
+              <span class="text-xs text-[#C94F78] font-bold block mb-1">Antes</span>
+              <p class="text-xs text-[#E5DDD8] font-semibold">${finalBefore}</p>
+            </div>
+            <div class="p-4 rounded-xl bg-[#C94F780D] border border-[#C94F7833]">
+              <span class="text-xs text-[#C94F78] font-bold block mb-1">Agora</span>
+              <p class="text-sm text-[#FAF7F3] font-serif-elegant italic font-medium">${finalAfter}</p>
+            </div>
+          </div>
+
+          <div class="bg-[#161313] border border-[#211B1B] p-6 rounded-2xl mb-8 text-left space-y-4">
+            <h4 class="font-serif-elegant text-lg italic text-[#D4A574] font-bold">O Caminho da Identidade Relacional</h4>
+            <p class="text-xs text-[#C4B5B0] leading-relaxed font-bold">
+              Você concluiu o reset inicial da sua estrutura. Continue acompanhando os ensinamentos práticos e as teses sistêmicas de Renata Penko Maximiliano no Instagram:
+            </p>
+            <a href="https://www.instagram.com/renatapenko.psicanalista?igsh=MWdxN3V6dWx0NHlvdA==" target="_blank" class="block w-full text-center bg-gradient-to-r from-[#C94F78] to-[#D4A574] text-[#0D0B0B] py-3.5 rounded-full font-bold text-[13px] hover:scale-[1.01] transition-transform shadow-lg">
+              Acompanhar Renata Penko no Instagram →
+            </a>
+          </div>
+
+          <div class="flex flex-col gap-3">
+            <button onclick="setScreen('dashboard')" class="w-full bg-[#161313] border border-[#211B1B] text-xs text-[#FAF7F3] py-3.5 rounded-full font-bold tracking-wider uppercase transition-colors hover:bg-white/5 active:scale-95">
+              Voltar ao Painel Geral
+            </button>
+            <button onclick="jumpToTab('diario')" class="text-xs text-[#A4928C] hover:text-[#FAF7F3] transition-colors font-bold tracking-wider uppercase">
+              Ver meu Diário de Transformação
+            </button>
+          </div>
+        </div>
+      `;
+    }
+  </script>
+
+  <script>
+    // ─── ABA 1: DIÁRIO DO AUTOACOLHIMENTO ───
+    function renderDiario() {
+      const container = document.getElementById("content-container");
+      container.innerHTML = "";
+
+      let hasData = false;
+      let diaryHtml = `
+        <div class="text-center mb-8 max-w-md mx-auto">
+          <span class="text-[10px] tracking-widest text-[#C94F78] font-bold uppercase">Sua História Recém-Escrita</span>
+          <h2 class="font-serif-elegant text-3xl italic font-bold text-[#FAF7F3] mt-1">Seu Diário de Transformação</h2>
+          <p class="text-xs text-[#E5DDD8] mt-2 font-medium">Os registros da sua caminhada para fora do lugar inacessível.</p>
+        </div>
+        <div class="space-y-4 max-w-md mx-auto">
+      `;
+
+      // Dia 1
+      if (state.completedDays.includes(1) && state.answers.d1_nome) {
+        hasData = true;
+        diaryHtml += `
+          <div class="p-5 rounded-2xl bg-[#161313] border border-[#211B1B] space-y-2">
+            <span class="text-[9px] text-[#C94F78] font-bold uppercase tracking-widest">Dia 1 · Integrado</span>
+            <p class="font-serif-elegant italic text-base text-[#FAF7F3]">"Hoje você teve coragem de olhar para uma parte da sua história que talvez evitasse há muito tempo."</p>
+            <p class="text-xs text-[#C4B5B0] leading-relaxed text-justify">Você declarou o seu desligamento somático de <strong>${state.answers.d1_nome}</strong>, localizando a tensão na sua <strong>${state.answers.d1_corpo.toLowerCase()}</strong> e respirando suavemente para retomar a energia do seu peito.</p>
+          </div>
+        `;
+      }
+
+      // Dia 2
+      if (state.completedDays.includes(2) && state.answers.d2_ancora) {
+        hasData = true;
+        diaryHtml += `
+          <div class="p-5 rounded-2xl bg-[#161313] border border-[#211B1B] space-y-2">
+            <span class="text-[9px] text-[#7A9E8C] font-bold uppercase tracking-widest">Dia 2 · Integrado</span>
+            <p class="font-serif-elegant italic text-base text-[#FAF7F3]">"Hoje você começou a perceber que aquilo que parecia um defeito pode ter sido uma forma de proteção."</p>
+            <p class="text-xs text-[#C4B5B0] leading-relaxed text-justify">Você estabeleceu como sua âncora: <em>"${state.answers.d2_ancora}"</em>. E identificou que sua ferida nasceu de: <em>"${state.answers.d2_origem}"</em>.</p>
+          </div>
+        `;
+      }
+
+      // Dia 3
+      if (state.completedDays.includes(3) && state.answers.d3_necessidade) {
+        hasData = true;
+        diaryHtml += `
+          <div class="p-5 rounded-2xl bg-[#161313] border border-[#211B1B] space-y-2">
+            <span class="text-[9px] text-[#9A80C0] font-bold uppercase tracking-widest">Dia 3 · Integrado</span>
+            <p class="font-serif-elegant italic text-base text-[#FAF7F3]">"Hoje sua história começou a fazer mais sentido."</p>
+            <p class="text-xs text-[#C4B5B0] leading-relaxed text-justify">Você mapeou a sua verdadeira necessidade: <strong>${state.answers.d3_necessidade}</strong>. E desativou a compulsão de: <em>"${state.answers.d3_pausa}"</em>.</p>
+          </div>
+        `;
+      }
+
+      // Dia 4
+      if (state.completedDays.includes(4) && state.answers.d4_projecao) {
+        hasData = true;
+        diaryHtml += `
+          <div class="p-5 rounded-2xl bg-[#161313] border border-[#211B1B] space-y-2">
+            <span class="text-[9px] text-[#D4A574] font-bold uppercase tracking-widest">Dia 4 · Integrado</span>
+            <p class="font-serif-elegant italic text-base text-[#FAF7F3]">"Hoje você compreendeu de onde vem a sua lente de rejeição."</p>
+            <p class="text-xs text-[#C4B5B0] leading-relaxed text-justify">Parâmetros de Origem: Mãe (${state.answers.d4_mae}/10) e Pai (${state.answers.d4_pai}/10). Lente identificada: <em>"${state.answers.d4_projecao}"</em>.</p>
+          </div>
+        `;
+      }
+
+      // Dia 5
+      if (state.completedDays.includes(5) && state.answers.d5_chave) {
+        hasData = true;
+        diaryHtml += `
+          <div class="p-5 rounded-2xl bg-[#161313] border border-[#211B1B] space-y-2">
+            <span class="text-[9px] text-[#C94F78] font-bold uppercase tracking-widest">Dia 5 · Integrado</span>
+            <p class="font-serif-elegant italic text-base text-[#FAF7F3]">"Hoje você destrancou a porta secreta da entrega."</p>
+            <p class="text-xs text-[#C4B5B0] leading-relaxed text-justify">Você ativou a chave: <strong>${state.answers.d5_chave}</strong>. E estabeleceu o compromisso: <em>"${state.answers.d5_compromisso}"</em>.</p>
+          </div>
+        `;
+      }
+
+      // Dia 6
+      if (state.completedDays.includes(6) && state.answers.d6_resposta_adulta) {
+        hasData = true;
+        diaryHtml += `
+          <div class="p-5 rounded-2xl bg-[#161313] border border-[#211B1B] space-y-2">
+            <span class="text-[9px] text-[#7A9E8C] font-bold uppercase tracking-widest">Dia 6 · Integrado</span>
+            <p class="font-serif-elegant italic text-base text-[#FAF7F3]">"Hoje você escolheu ativamente governar as suas decisões."</p>
+            <p class="text-xs text-[#C4B5B0] leading-relaxed text-justify">Gatilho somático monitorado. Decisão adulta selada: <em>"${state.answers.d6_resposta_adulta}"</em>.</p>
+          </div>
+        `;
+      }
+
+      // Dia 7
+      if (state.completedDays.includes(7) && state.answers.d7_diretriz) {
+        hasData = true;
+        diaryHtml += `
+          <div class="p-5 rounded-2xl bg-[#161313] border border-[#211B1B] space-y-2">
+            <span class="text-[9px] text-[#D4A574] tracking-widest font-bold uppercase">Dia 7 · Integrado</span>
+            <p class="font-serif-elegant italic text-base text-[#FAF7F3]">"Você inaugurou uma nova forma de existir no mundo."</p>
+            <p class="text-xs text-[#C4B5B0] leading-relaxed text-justify">Diretriz da sua nova postura: <em>"${state.answers.d7_diretriz}"</em>.</p>
+          </div>
+        `;
+      }
+
+      if (!hasData) {
+        diaryHtml += `
+          <div class="p-8 rounded-2xl bg-[#161313] border border-[#211B1B] text-center text-xs text-[#C4B5B0] font-bold leading-relaxed text-justify">
+            Seu Diário de Transformação está vazio. Suas escolhas somáticas ao longo dos dias construirão a sua nova identidade relacional aqui.
+          </div>
+        `;
+      }
+
+      diaryHtml += `
+            <div class="pt-6 text-center">
+              <button onclick="setScreen('dashboard')" class="bg-gradient-to-r from-[#C94F78] to-[#D4A574] text-[#0D0B0B] px-8 py-4 rounded-full font-bold text-xs uppercase tracking-wider transition-all duration-300 active:scale-95 shadow-lg">
+                Voltar ao Painel Geral
+              </button>
+            </div>
+          </div>
+        </div>
+      `;
+      container.innerHTML = diaryHtml;
+    }
+  </script>
+</body>
+</html>
